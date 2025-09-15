@@ -1,17 +1,30 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Github, ExternalLink } from "lucide-react"
-import { motion } from "framer-motion"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Github, ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
     title: "Capstone Project – Cloud Cost & Sustainability Advisor",
     description:
       "A web platform that helps small and medium-sized enterprises (SMEs) migrate to the cloud by comparing pricing and carbon emissions across AWS, GCP, and Azure. Includes real-time cloud service data, usage-based calculators, and sustainability insights.",
-    techStack: ["React", "Python", "FastAPI", "PostgreSQL", "Google Cloud", "Docker"],
+    techStack: [
+      "React",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Google Cloud",
+      "Docker",
+    ],
     githubUrl: "https://github.com/cam-bell/Capstone",
     liveUrl: "#",
     image: "/images/cloud-migration-dashboard.png",
@@ -20,7 +33,15 @@ const projects = [
     title: "Corporate Project – BHSI Risk Classification System",
     description:
       "Built a risk classification microservice for Berkshire Hathaway Specialty Insurance to automate D&O policy assessments.",
-    techStack: ["FastAPI", "Python", "BigQuery", "Google Cloud", "Gemini Pro", "LangChain", "Vector Search"],
+    techStack: [
+      "FastAPI",
+      "Python",
+      "BigQuery",
+      "Google Cloud",
+      "Gemini Pro",
+      "LangChain",
+      "Vector Search",
+    ],
     githubUrl: "https://github.com/cam-bell/Capstone",
     liveUrl: "#",
     image: "/images/risk-assessment-top.png",
@@ -29,39 +50,73 @@ const projects = [
     title: "SignLearn – Real-Time ASL Detection Game",
     description:
       "Built a computer vision game that teaches American Sign Language using YOLOv8 and a 1,000+ image dataset. Achieved 90% mAP@0.5 with real-time webcam detection, live feedback, and 2 gamified modes. Deployed with React, FastAPI, and Roboflow pipeline.",
-    techStack: ["YOLOv8", "Python", "FastAPI", "React", "TypeScript", "Roboflow", "OpenCV"],
+    techStack: [
+      "YOLOv8",
+      "Python",
+      "FastAPI",
+      "React",
+      "TypeScript",
+      "Roboflow",
+      "OpenCV",
+    ],
     githubUrl: "https://github.com/cam-bell/Capstone",
     liveUrl: "#",
-    image: "/placeholder.svg?height=200&width=400",
+    image: "/images/sign-learn.png",
   },
   {
     title: "NLP Review Analyzer – Cross-Platform Sentiment & Emotion Analysis",
     description:
       "Built a multilingual NLP system that analyzes reviews from IMDb, Trustpilot, Steam, and Google Play. Uses HuggingFace transformers and KeyBERT for sentiment, emotion, and keyword extraction with 0% error rate across 239 reviews.",
-    techStack: ["Python", "HuggingFace", "spaCy", "KeyBERT", "LaBSE", "VADER", "BERT", "RoBERTa"],
+    techStack: [
+      "Python",
+      "HuggingFace",
+      "spaCy",
+      "KeyBERT",
+      "LaBSE",
+      "VADER",
+      "BERT",
+      "RoBERTa",
+    ],
     githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
     liveUrl: "#",
-    image: "/placeholder.svg?height=200&width=400",
+    image: "/images/review-analyzer.png",
   },
   {
     title: "Swimming Pool Detection from Aerial Imagery (YOLOv11)",
     description:
       "Built a YOLOv11 object detection model to identify swimming pools from aerial images. Achieved 95.5% mAP after 30 epochs using transfer learning on a custom-labeled dataset with GroundingDINO + Roboflow.",
-    techStack: ["YOLOv11", "GroundingDINO", "Roboflow", "Object Detection", "Python", "OpenCV"],
+    techStack: [
+      "YOLOv11",
+      "GroundingDINO",
+      "Roboflow",
+      "Object Detection",
+      "Python",
+      "OpenCV",
+    ],
     githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
     liveUrl: "#",
-    image: "/placeholder.svg?height=200&width=400",
+    image: "/images/pool-detection.jpeg",
   },
   {
     title: "MLOps – Diabetes Readmission Prediction Pipeline",
     description:
       "Built a modular, production-ready MLOps system for hospital readmission prediction using CI/CD, Hydra, MLflow, and W&B. Deployed a FastAPI service with real-time inference and Dockerized environment.",
-    techStack: ["Python", "scikit-learn", "MLflow", "Hydra", "FastAPI", "W&B", "Docker", "GitHub Actions", "Pytest"],
+    techStack: [
+      "Python",
+      "scikit-learn",
+      "MLflow",
+      "Hydra",
+      "FastAPI",
+      "W&B",
+      "Docker",
+      "GitHub Actions",
+      "Pytest",
+    ],
     githubUrl: "https://github.com/henryaschke/ML_AI_G_3",
     liveUrl: "#",
-    image: "/placeholder.svg?height=200&width=400",
+    image: "/images/mlops.png",
   },
-]
+];
 
 export function Projects() {
   return (
@@ -73,10 +128,13 @@ export function Projects() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">Featured Projects</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+            Featured Projects
+          </h2>
           <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            A collection of projects that showcase my skills in software development, data science, and problem-solving
-            across various domains.
+            A collection of projects that showcase my skills in software
+            development, data science, and problem-solving across various
+            domains.
           </p>
         </motion.div>
 
@@ -110,15 +168,32 @@ export function Projects() {
                     ))}
                   </div>
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" className="flex-1 bg-transparent" asChild>
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 bg-transparent"
+                      asChild
+                    >
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <Github className="mr-2 h-4 w-4" />
                         Code
                       </a>
                     </Button>
-                    <Button size="sm" className="flex-1" asChild={project.liveUrl !== "#"}>
+                    <Button
+                      size="sm"
+                      className="flex-1"
+                      asChild={project.liveUrl !== "#"}
+                    >
                       {project.liveUrl !== "#" ? (
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <ExternalLink className="mr-2 h-4 w-4" />
                           Live Demo
                         </a>
@@ -137,5 +212,5 @@ export function Projects() {
         </div>
       </div>
     </section>
-  )
+  );
 }
