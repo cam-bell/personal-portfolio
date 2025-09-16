@@ -146,7 +146,10 @@ export function SkillsMockupB() {
   );
 
   return (
-    <section id="skills" className="py-20">
+    <section
+      id="skills"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -206,7 +209,7 @@ export function SkillsMockupB() {
                     type: "spring",
                     stiffness: 100,
                   }}
-                  className="flex flex-col items-center justify-center p-4 rounded-xl bg-gradient-to-br from-neutral-800 to-neutral-900 hover:from-blue-600/20 hover:to-purple-600/20 transition-all duration-300 cursor-pointer group border border-neutral-700 hover:border-blue-500/50"
+                  className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer group border border-slate-700/50 hover:border-primary/50 backdrop-blur-sm"
                 >
                   <skill.icon
                     className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-200"

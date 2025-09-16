@@ -1,38 +1,47 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Mail, MessageSquare, Send, CheckCircle } from "lucide-react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Mail, MessageSquare, Send, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Contact() {
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+    e.preventDefault();
+    setIsLoading(true);
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    setIsLoading(false)
-    setIsSubmitted(true)
+    setIsLoading(false);
+    setIsSubmitted(true);
 
     // Reset form after 3 seconds
     setTimeout(() => {
-      setIsSubmitted(false)
-    }, 3000)
-  }
+      setIsSubmitted(false);
+    }, 3000);
+  };
 
   return (
-    <section id="contact" className="py-20">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,8 +54,8 @@ export function Contact() {
             <h2 className="text-3xl sm:text-4xl font-bold">Get In Touch</h2>
           </div>
           <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Have a project in mind or just want to chat about technology? I'd love to hear from you. Let's build
-            something amazing together.
+            Have a project in mind or just want to chat about technology? I'd
+            love to hear from you. Let's build something amazing together.
           </p>
         </motion.div>
 
@@ -63,7 +72,10 @@ export function Contact() {
                   <Mail className="h-5 w-5" />
                   Send me a message
                 </CardTitle>
-                <CardDescription>Fill out the form below and I'll get back to you as soon as possible.</CardDescription>
+                <CardDescription>
+                  Fill out the form below and I'll get back to you as soon as
+                  possible.
+                </CardDescription>
               </CardHeader>
               <CardContent>
                 {isSubmitted ? (
@@ -73,8 +85,12 @@ export function Contact() {
                     className="text-center py-8"
                   >
                     <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">Message Sent!</h3>
-                    <p className="text-muted-foreground">Thank you for reaching out. I'll get back to you soon.</p>
+                    <h3 className="text-xl font-semibold mb-2">
+                      Message Sent!
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Thank you for reaching out. I'll get back to you soon.
+                    </p>
                   </motion.div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-6">
@@ -85,13 +101,22 @@ export function Contact() {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
-                        <Input id="email" type="email" placeholder="your.email@example.com" required />
+                        <Input
+                          id="email"
+                          type="email"
+                          placeholder="your.email@example.com"
+                          required
+                        />
                       </div>
                     </div>
 
                     <div className="space-y-2">
                       <Label htmlFor="subject">Subject</Label>
-                      <Input id="subject" placeholder="What's this about?" required />
+                      <Input
+                        id="subject"
+                        placeholder="What's this about?"
+                        required
+                      />
                     </div>
 
                     <div className="space-y-2">
@@ -104,7 +129,11 @@ export function Contact() {
                       />
                     </div>
 
-                    <Button type="submit" className="w-full" disabled={isLoading}>
+                    <Button
+                      type="submit"
+                      className="w-full"
+                      disabled={isLoading}
+                    >
                       {isLoading ? (
                         <>
                           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -125,5 +154,5 @@ export function Contact() {
         </div>
       </div>
     </section>
-  )
+  );
 }

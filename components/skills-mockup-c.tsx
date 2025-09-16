@@ -46,7 +46,7 @@ const coreSkills = [
     name: "Python",
     icon: SiPython,
     color: "#3776ab",
-    description: "Primary language for AI/ML development",
+    description: "Primary language for AI/ML",
   },
   {
     name: "TensorFlow",
@@ -126,7 +126,10 @@ const broaderSkills = [
 
 export function SkillsMockupC() {
   return (
-    <section id="skills" className="py-20">
+    <section
+      id="skills"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -171,7 +174,7 @@ export function SkillsMockupC() {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 hover:from-blue-600/30 hover:to-purple-600/30 transition-all duration-300 cursor-pointer border border-blue-500/30 hover:border-blue-400/50 hover:shadow-lg">
+                  <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer border border-slate-700/50 hover:border-primary/50 hover:shadow-lg backdrop-blur-sm">
                     <skill.icon
                       className="w-6 h-6 group-hover:scale-110 transition-transform duration-200"
                       style={{ color: skill.color }}
@@ -216,7 +219,7 @@ export function SkillsMockupC() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: index * 0.02 }}
                   viewport={{ once: true }}
-                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-neutral-700/50 text-sm hover:bg-neutral-600/50 transition-all duration-200 cursor-pointer group border border-neutral-600/50 hover:border-green-500/50"
+                  className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/50 text-sm hover:bg-slate-700/50 transition-all duration-200 cursor-pointer group border border-slate-700/50 hover:border-primary/50 backdrop-blur-sm"
                 >
                   <skill.icon
                     className="w-4 h-4 group-hover:scale-110 transition-transform duration-200"

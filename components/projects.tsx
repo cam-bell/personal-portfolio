@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, Zap, Brain } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const projects = [
   {
@@ -28,6 +29,7 @@ const projects = [
     githubUrl: "https://github.com/cam-bell/Capstone",
     liveUrl: "#",
     image: "/images/cloud-migration-dashboard.png",
+    category: "Full-Stack",
   },
   {
     title: "Corporate Project – BHSI Risk Classification System",
@@ -45,6 +47,7 @@ const projects = [
     githubUrl: "https://github.com/cam-bell/Capstone",
     liveUrl: "#",
     image: "/images/risk-assessment-top.png",
+    category: "AI/ML",
   },
   {
     title: "SignLearn – Real-Time ASL Detection Game",
@@ -62,6 +65,7 @@ const projects = [
     githubUrl: "https://github.com/cam-bell/Capstone",
     liveUrl: "#",
     image: "/images/sign-learn.png",
+    category: "Computer Vision",
   },
   {
     title: "NLP Review Analyzer – Cross-Platform Sentiment & Emotion Analysis",
@@ -80,6 +84,7 @@ const projects = [
     githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
     liveUrl: "#",
     image: "/images/review-analyzer.png",
+    category: "NLP",
   },
   {
     title: "Swimming Pool Detection from Aerial Imagery (YOLOv11)",
@@ -96,6 +101,7 @@ const projects = [
     githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
     liveUrl: "#",
     image: "/images/pool-detection.jpeg",
+    category: "Computer Vision",
   },
   {
     title: "MLOps – Diabetes Readmission Prediction Pipeline",
@@ -114,101 +120,200 @@ const projects = [
     githubUrl: "https://github.com/henryaschke/ML_AI_G_3",
     liveUrl: "#",
     image: "/images/mlops.png",
+    category: "MLOps",
   },
 ];
 
 export function Projects() {
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+
   return (
-    <section id="projects" className="py-20 bg-muted/50">
+    <section
+      id="projects"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="text-center mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
-            Featured Projects
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+            <Zap className="h-4 w-4" />
+            Featured Work
+          </div>
+          <h2 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-6 leading-tight">
+            Projects
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            A collection of projects that showcase my skills in software
-            development, data science, and problem-solving across various
-            domains.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            A showcase of cutting-edge projects spanning machine learning,
+            computer vision, NLP, and full-stack development. Each project
+            demonstrates modern AI engineering practices and production-ready
+            solutions.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div className="aspect-video bg-muted rounded-t-lg overflow-hidden">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <CardHeader className="flex-grow">
-                  <CardTitle className="text-xl">{project.title}</CardTitle>
-                  <CardDescription>{project.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="space-y-4 flex flex-col">
-                  <div className="flex flex-wrap gap-2">
-                    {project.techStack.map((tech) => (
-                      <Badge key={tech} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                  <div className="flex gap-2 mt-auto">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="flex-1 bg-transparent"
-                      asChild
-                    >
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => {
+            const isHovered = hoveredProject === project.title;
+
+            return (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                onHoverStart={() => setHoveredProject(project.title)}
+                onHoverEnd={() => setHoveredProject(null)}
+                className="group"
+              >
+                <Card
+                  className={`
+                    h-full flex flex-col overflow-hidden
+                    transition-all duration-500 ease-out
+                    ${
+                      isHovered
+                        ? "shadow-2xl shadow-primary/20 scale-[1.02] border-primary/20"
+                        : "shadow-lg hover:shadow-xl"
+                    }
+                  `}
+                >
+                  {/* Project Image with Overlay */}
+                  <div className="relative aspect-video bg-muted overflow-hidden">
+                    <img
+                      src={project.image || "/placeholder.svg"}
+                      alt={project.title}
+                      className={`
+                        w-full h-full object-cover transition-all duration-700
+                        ${isHovered ? "scale-110" : "scale-100"}
+                      `}
+                    />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    {/* Category Badge */}
+                    <div className="absolute top-3 right-3">
+                      <Badge
+                        variant="secondary"
+                        className="backdrop-blur-sm bg-background/80"
                       >
-                        <Github className="mr-2 h-4 w-4" />
-                        Code
-                      </a>
-                    </Button>
-                    <Button
-                      size="sm"
-                      className="flex-1"
-                      asChild={project.liveUrl !== "#"}
-                    >
-                      {project.liveUrl !== "#" ? (
+                        {project.category}
+                      </Badge>
+                    </div>
+                  </div>
+
+                  <CardHeader className="flex-grow space-y-3">
+                    <CardTitle className="text-xl leading-tight group-hover:text-primary transition-colors duration-300">
+                      {project.title}
+                    </CardTitle>
+
+                    {/* Tech Stack Badges - Simple style under title */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.techStack.slice(0, 8).map((tech) => (
+                        <Badge
+                          key={tech}
+                          variant="outline"
+                          className="text-xs font-medium"
+                        >
+                          {tech}
+                        </Badge>
+                      ))}
+                      {project.techStack.length > 8 && (
+                        <Badge variant="outline" className="text-xs">
+                          +{project.techStack.length - 8} more
+                        </Badge>
+                      )}
+                    </div>
+
+                    <CardDescription className="text-muted-foreground leading-relaxed">
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="space-y-4">
+                    {/* Action Buttons */}
+                    <div className="flex gap-3 pt-2">
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className={`
+                          flex-1 transition-all duration-300
+                          ${
+                            isHovered
+                              ? "bg-primary text-primary-foreground border-primary"
+                              : ""
+                          }
+                        `}
+                        asChild
+                      >
                         <a
-                          href={project.liveUrl}
+                          href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
+                          className="flex items-center justify-center"
                         >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
+                          <Github className="mr-2 h-4 w-4" />
+                          Code
                         </a>
-                      ) : (
-                        <>
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </>
-                      )}
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                      </Button>
+                      <Button
+                        size="sm"
+                        className={`
+                          flex-1 transition-all duration-300
+                          ${
+                            project.liveUrl === "#"
+                              ? "opacity-50 cursor-not-allowed"
+                              : "hover:shadow-lg hover:scale-105"
+                          }
+                        `}
+                        asChild={project.liveUrl !== "#"}
+                        disabled={project.liveUrl === "#"}
+                      >
+                        {project.liveUrl !== "#" ? (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center"
+                          >
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Live Demo
+                          </a>
+                        ) : (
+                          <span className="flex items-center justify-center">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Coming Soon
+                          </span>
+                        )}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
         </div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="text-center mt-16"
+        >
+          <p className="text-muted-foreground mb-6">
+            Interested in collaborating or learning more about these projects?
+          </p>
+          <Button size="lg" className="group">
+            <Brain className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+            View All Projects
+            <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
+        </motion.div>
       </div>
     </section>
   );

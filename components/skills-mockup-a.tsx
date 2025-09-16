@@ -143,7 +143,10 @@ export function SkillsMockupA() {
     : skillCategories;
 
   return (
-    <section id="skills" className="py-20 relative">
+    <section
+      id="skills"
+      className="py-20 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -231,7 +234,7 @@ export function SkillsMockupA() {
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full bg-gradient-to-br from-card to-secondary/20 border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 group backdrop-blur-sm">
+                <Card className="h-full bg-slate-900/50 backdrop-blur-sm border-slate-700/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 group">
                   <CardHeader className="pb-3">
                     <CardTitle className="flex items-center gap-2 text-lg text-card-foreground group-hover:text-primary transition-colors duration-300">
                       <category.icon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform duration-300" />
@@ -250,7 +253,7 @@ export function SkillsMockupA() {
                             delay: skillIndex * 0.05,
                           }}
                           viewport={{ once: true }}
-                          className="flex items-center gap-2 px-3 py-2 rounded-full bg-secondary/30 hover:scale-105 hover:shadow-lg hover:bg-primary/10 hover:border-primary/20 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                          className="flex items-center gap-2 px-3 py-2 rounded-full bg-slate-800/50 hover:scale-105 hover:shadow-lg hover:bg-primary/10 hover:border-primary/20 border border-slate-700/30 transition-all duration-300 cursor-pointer group relative overflow-hidden"
                         >
                           {/* Animated background effect */}
                           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -301,16 +304,9 @@ export function SkillsMockupA() {
               </div>
             </div>
             <div className="p-6 rounded-xl bg-gradient-to-br from-accent/20 to-transparent border border-border/50">
-              <div className="text-3xl font-bold text-foreground mb-2">
-                {selectedCategory
-                  ? filteredCategories[0]?.skills.length || 0
-                  : skillCategories.reduce(
-                      (acc, cat) => acc + cat.skills.length,
-                      0
-                    )}
-              </div>
+              <div className="text-3xl font-bold text-foreground mb-2">1+</div>
               <div className="text-sm text-muted-foreground">
-                {selectedCategory ? `${selectedCategory} Skills` : "All Skills"}
+                Years Experience
               </div>
             </div>
           </div>

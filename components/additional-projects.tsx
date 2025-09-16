@@ -9,8 +9,9 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Github, FileText } from "lucide-react";
-import { motion } from "framer-motion";
+import { Github, FileText, ExternalLink, Sparkles } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const additionalProjects = [
   {
@@ -86,117 +87,201 @@ const additionalProjects = [
 ];
 
 export function AdditionalProjects() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   return (
-    <section id="additional-projects" className="py-20 bg-muted/50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      ref={ref}
+      id="additional-projects"
+      className="py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden"
+    >
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
-            Additional Projects / Coursework
-          </h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
-            A selection of smaller projects, labs, and coursework demonstrating
-            breadth of skills and experimentation across software engineering,
-            AI/ML, and data science.
-          </p>
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={
+                isInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }
+              }
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-primary">
+                Additional Projects
+              </span>
+            </motion.div>
+
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent mb-6">
+              Coursework & Experiments
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+              A curated collection of smaller projects, labs, and coursework
+              showcasing
+              <span className="text-primary font-semibold">
+                {" "}
+                breadth of experimentation
+              </span>{" "}
+              across software engineering, AI/ML, and data science domains.
+            </p>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
           {additionalProjects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              animate={
+                isInView
+                  ? { opacity: 1, y: 0, scale: 1 }
+                  : { opacity: 0, y: 40, scale: 0.95 }
+              }
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: "easeOut",
+              }}
+              whileHover={{
+                y: -8,
+                transition: { duration: 0.3, ease: "easeOut" },
+              }}
+              className="group flex"
             >
-              <Card className="h-full hover:shadow-md transition-shadow duration-300 border-muted flex flex-col">
-                <CardHeader className="pb-3 flex-grow">
-                  <CardTitle className="text-lg leading-tight">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm leading-relaxed">
-                    {project.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0 space-y-3 flex flex-col">
-                  {/* Tech Stack Badges */}
-                  <div className="flex flex-wrap gap-1">
-                    {project.techStack?.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="text-xs px-2 py-0.5"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
+              <Card className="h-full bg-slate-900/50 backdrop-blur-sm border-slate-700/50 hover:border-primary/30 transition-all duration-500 flex flex-col relative overflow-hidden group-hover:shadow-2xl group-hover:shadow-primary/10">
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-2 mt-auto">
-                    {project.githubUrl && project.githubUrl !== "#" && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 text-xs bg-transparent"
-                        asChild
-                      >
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                {/* Animated Border */}
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm" />
+                <div className="absolute inset-[1px] rounded-lg bg-slate-900/50 backdrop-blur-sm" />
+
+                <div className="relative z-10 flex flex-col h-full">
+                  <CardHeader className="pb-6 flex-shrink-0">
+                    <CardTitle className="text-lg leading-tight font-semibold group-hover:text-primary transition-colors duration-300 mb-3">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-sm leading-relaxed text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300 min-h-[4.5rem]">
+                      {project.description}
+                    </CardDescription>
+                  </CardHeader>
+
+                  <CardContent className="pt-0 flex flex-col flex-grow">
+                    {/* Visual Filler Area - Subtle pattern for empty space */}
+                    <div className="flex-grow flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                      <div className="w-full h-full relative">
+                        {/* Subtle geometric pattern */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-accent/3 rounded-lg" />
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                          <div className="w-16 h-16 border border-primary/10 rounded-full flex items-center justify-center">
+                            <div className="w-8 h-8 border border-primary/20 rounded-full flex items-center justify-center">
+                              <div className="w-3 h-3 bg-primary/20 rounded-full" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Tech Stack Badges - Bottom aligned, just above buttons */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.techStack?.map((tech, techIndex) => (
+                        <motion.div
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={
+                            isInView
+                              ? { opacity: 1, scale: 1 }
+                              : { opacity: 0, scale: 0.8 }
+                          }
+                          transition={{
+                            duration: 0.3,
+                            delay: index * 0.1 + techIndex * 0.05 + 0.3,
+                          }}
                         >
-                          <Github className="mr-1 h-3 w-3" />
+                          <Badge
+                            variant="outline"
+                            className="text-xs px-3 py-1.5 bg-primary/5 border-primary/20 text-primary hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 group-hover:scale-105"
+                          >
+                            {tech}
+                          </Badge>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    {/* Action Buttons - Always at bottom */}
+                    <div className="flex gap-2">
+                      {project.githubUrl && project.githubUrl !== "#" ? (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 text-xs bg-transparent hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300 group-hover:scale-105"
+                          asChild
+                        >
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2"
+                          >
+                            <Github className="h-3 w-3" />
+                            Code
+                            <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </a>
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 text-xs bg-muted/50 border-muted text-muted-foreground cursor-not-allowed"
+                          disabled
+                        >
+                          <Github className="mr-2 h-3 w-3" />
                           Code
-                        </a>
-                      </Button>
-                    )}
-                    {project.githubUrl === "#" && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 text-xs bg-transparent"
-                        disabled
-                      >
-                        <Github className="mr-1 h-3 w-3" />
-                        Code
-                      </Button>
-                    )}
-                    {project.colabUrl && project.colabUrl !== "#" && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 text-xs bg-transparent"
-                        asChild
-                      >
-                        <a
-                          href={project.colabUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                        </Button>
+                      )}
+
+                      {project.colabUrl && project.colabUrl !== "#" ? (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 text-xs bg-transparent hover:bg-accent/10 hover:border-accent/30 hover:text-accent transition-all duration-300 group-hover:scale-105"
+                          asChild
                         >
-                          <FileText className="mr-1 h-3 w-3" />
+                          <a
+                            href={project.colabUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center justify-center gap-2"
+                          >
+                            <FileText className="h-3 w-3" />
+                            Colab
+                            <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          </a>
+                        </Button>
+                      ) : project.colabUrl === "#" ? (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1 text-xs bg-muted/50 border-muted text-muted-foreground cursor-not-allowed"
+                          disabled
+                        >
+                          <FileText className="mr-2 h-3 w-3" />
                           Colab
-                        </a>
-                      </Button>
-                    )}
-                    {project.colabUrl === "#" && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 text-xs bg-transparent"
-                        disabled
-                      >
-                        <FileText className="mr-1 h-3 w-3" />
-                        Colab
-                      </Button>
-                    )}
-                  </div>
-                </CardContent>
+                        </Button>
+                      ) : null}
+                    </div>
+                  </CardContent>
+                </div>
               </Card>
             </motion.div>
           ))}

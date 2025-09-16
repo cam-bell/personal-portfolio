@@ -1,12 +1,15 @@
-"use client"
+"use client";
 
-import { Card, CardContent } from "@/components/ui/card"
-import { Heart, Leaf, Sparkles, Coffee } from "lucide-react"
-import { motion } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card";
+import { Heart, Leaf, Sparkles, Coffee } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function About() {
   return (
-    <section id="about" className="py-20 bg-muted/50">
+    <section
+      id="about"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -14,9 +17,12 @@ export function About() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">About Me</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+            About Me
+          </h2>
           <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Beyond the code and data, here's what drives my passion for technology.
+            Beyond the code and data, here's what drives my passion for
+            technology.
           </p>
         </motion.div>
 
@@ -49,15 +55,19 @@ export function About() {
             >
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-lg leading-relaxed">
-                  I'm a software developer and data science enthusiast with a deep passion for creating technology that
-                  makes a positive impact. My journey began with curiosity about how things work, which led me to
-                  explore the fascinating intersection of code, data, and human behavior.
+                  I'm a software developer and data science enthusiast with a
+                  deep passion for creating technology that makes a positive
+                  impact. My journey began with curiosity about how things work,
+                  which led me to explore the fascinating intersection of code,
+                  data, and human behavior.
                 </p>
 
                 <p className="text-lg leading-relaxed">
-                  When I'm not coding, you'll find me exploring the latest developments in artificial intelligence,
-                  contributing to open-source projects, or experimenting with creative coding projects that blend art
-                  and technology. I believe that the best solutions come from understanding both the technical
+                  When I'm not coding, you'll find me exploring the latest
+                  developments in artificial intelligence, contributing to
+                  open-source projects, or experimenting with creative coding
+                  projects that blend art and technology. I believe that the
+                  best solutions come from understanding both the technical
                   possibilities and the human needs they serve.
                 </p>
               </div>
@@ -71,7 +81,8 @@ export function About() {
                       <h3 className="font-semibold">AI & Machine Learning</h3>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Fascinated by the potential of AI to solve complex problems and augment human capabilities.
+                      Fascinated by the potential of AI to solve complex
+                      problems and augment human capabilities.
                     </p>
                   </CardContent>
                 </Card>
@@ -83,7 +94,8 @@ export function About() {
                       <h3 className="font-semibold">Sustainability Tech</h3>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Passionate about using technology to address climate change and environmental challenges.
+                      Passionate about using technology to address climate
+                      change and environmental challenges.
                     </p>
                   </CardContent>
                 </Card>
@@ -95,7 +107,8 @@ export function About() {
                       <h3 className="font-semibold">Creative Coding</h3>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Exploring the artistic side of programming through generative art and interactive experiences.
+                      Exploring the artistic side of programming through
+                      generative art and interactive experiences.
                     </p>
                   </CardContent>
                 </Card>
@@ -107,7 +120,8 @@ export function About() {
                       <h3 className="font-semibold">Community Building</h3>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                      Active in tech communities, mentoring newcomers and organizing local meetups.
+                      Active in tech communities, mentoring newcomers and
+                      organizing local meetups.
                     </p>
                   </CardContent>
                 </Card>
@@ -117,5 +131,5 @@ export function About() {
         </div>
       </div>
     </section>
-  )
+  );
 }
