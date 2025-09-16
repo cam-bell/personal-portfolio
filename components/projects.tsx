@@ -61,7 +61,7 @@ const projects = [
     ],
     githubUrl: "https://github.com/cam-bell/Capstone",
     liveUrl: "#",
-    image: "/images/sign-learn.png",
+    image: "/placeholder.svg?height=200&width=400",
   },
   {
     title: "NLP Review Analyzer – Cross-Platform Sentiment & Emotion Analysis",
@@ -79,7 +79,7 @@ const projects = [
     ],
     githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
     liveUrl: "#",
-    image: "/images/review-analyzer.png",
+    image: "/placeholder.svg?height=200&width=400",
   },
   {
     title: "Swimming Pool Detection from Aerial Imagery (YOLOv11)",
@@ -95,7 +95,7 @@ const projects = [
     ],
     githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
     liveUrl: "#",
-    image: "/images/pool-detection.jpeg",
+    image: "/placeholder.svg?height=200&width=400",
   },
   {
     title: "MLOps – Diabetes Readmission Prediction Pipeline",
@@ -114,7 +114,7 @@ const projects = [
     ],
     githubUrl: "https://github.com/henryaschke/ML_AI_G_3",
     liveUrl: "#",
-    image: "/images/mlops.png",
+    image: "/placeholder.svg?height=200&width=400",
   },
 ];
 
