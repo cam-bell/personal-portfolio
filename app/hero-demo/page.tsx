@@ -5,6 +5,7 @@ import { Hero } from "@/components/hero";
 import { Hero3D } from "@/components/hero-3d";
 import { HeroMinimal } from "@/components/hero-minimal";
 import { HeroCyber } from "@/components/hero-cyber";
+import { HeroSpotlight } from "@/components/hero-spotlight";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -66,13 +67,24 @@ const heroVariations = [
     ],
     bestFor: "Gaming, tech startups, innovation",
   },
+  {
+    id: "spotlight",
+    name: "Interactive Spotlight",
+    description: "Mouse-Following Effects",
+    component: HeroSpotlight,
+    features: [
+      "Interactive mouse tracking",
+      "3D Spline integration",
+      "Floating tech icons",
+      "Smooth spring animations",
+      "Immersive card design",
+    ],
+    bestFor: "Interactive portfolios, creative agencies",
+  },
 ];
 
 export default function HeroDemo() {
   const [activeHero, setActiveHero] = useState("current");
-
-  const ActiveComponent =
-    heroVariations.find((h) => h.id === activeHero)?.component || Hero;
 
   return (
     <main className="min-h-screen bg-background">
@@ -84,8 +96,8 @@ export default function HeroDemo() {
               Hero Section Variations
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Four different approaches to showcase your AI/ML expertise. Each variation 
-              targets different audiences and use cases.
+              Five different approaches to showcase your AI/ML expertise. Each
+              variation targets different audiences and use cases.
             </p>
 
             {/* Hero Selector */}
@@ -103,9 +115,7 @@ export default function HeroDemo() {
                 >
                   <div className="text-left">
                     <div className="font-semibold">{hero.name}</div>
-                    <div className="text-xs opacity-80">
-                      {hero.description}
-                    </div>
+                    <div className="text-xs opacity-80">{hero.description}</div>
                   </div>
                 </Button>
               ))}
@@ -164,16 +174,21 @@ export default function HeroDemo() {
 
       {/* Active Hero Display */}
       <div className="min-h-screen">
-        <ActiveComponent />
+        {activeHero === "current" && <Hero key="current" />}
+        {activeHero === "3d" && <Hero3D key="3d" />}
+        {activeHero === "minimal" && <HeroMinimal key="minimal" />}
+        {activeHero === "cyber" && <HeroCyber key="cyber" />}
+        {activeHero === "spotlight" && <HeroSpotlight key="spotlight" />}
       </div>
 
       {/* Footer Note */}
       <section className="py-8 bg-neutral-100 dark:bg-neutral-800">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-muted-foreground">
-            💡 <strong>Tip:</strong> All variations use your modern typography system 
-            (Space Grotesk, Inter, JetBrains Mono) and are optimized for your AI Engineer 
-            brand. Choose the one that best matches your target audience and personal style.
+            💡 <strong>Tip:</strong> All variations use your modern typography
+            system (Space Grotesk, Inter, JetBrains Mono) and are optimized for
+            your AI Engineer brand. Choose the one that best matches your target
+            audience and personal style.
           </p>
         </div>
       </section>
