@@ -5,7 +5,7 @@ import { SkillsMockupC } from "@/components/skills-mockup-c";
 import { Projects } from "@/components/projects";
 import { AdditionalProjects } from "@/components/additional-projects";
 import { Experience } from "@/components/experience";
-import { ReadingList } from "@/components/reading-list";
+// import { ReadingList } from "@/components/reading-list";
 import { About } from "@/components/about";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
@@ -20,7 +20,7 @@ export default function Home() {
       <Projects />
       <AdditionalProjects />
       <Experience />
-      <ReadingList />
+      {/* <ReadingList /> */}
       <About />
       <Contact />
       <Footer />

@@ -1,8 +1,20 @@
 "use client";
 
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Code, Brain, Database, Layers, Cloud, Wrench } from "lucide-react";
-import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Code,
+  Brain,
+  Database,
+  Layers,
+  Cloud,
+  Wrench,
+  Filter,
+  Sparkles,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   SiPython,
   SiJavascript,
@@ -121,8 +133,17 @@ const skillCategories = [
 ];
 
 export function SkillsMockupA() {
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
+
+  const categoryTitles = skillCategories.map((cat) => cat.title);
+
+  const filteredCategories = selectedCategory
+    ? skillCategories.filter((cat) => cat.title === selectedCategory)
+    : skillCategories;
+
   return (
-    <section id="skills" className="py-20">
+    <section id="skills" className="py-20 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -130,57 +151,170 @@ export function SkillsMockupA() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
-            Skills & Technologies
-          </h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Technologies and tools I use to build AI-powered solutions, from
-            research to production deployment.
-          </p>
-        </motion.div>
+          <div className="text-center mb-8">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+              Skills & Technologies
+            </h2>
+            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+              Technologies and tools I use to build AI-powered solutions, from
+              research to production deployment.
+            </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, categoryIndex) => (
+            {/* Filter Toggle Button */}
             <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-gradient-to-br from-neutral-900 to-neutral-800 border-neutral-700 hover:border-neutral-600 transition-all duration-300 hover:shadow-lg">
-                <CardHeader className="pb-3">
-                  <CardTitle className="flex items-center gap-2 text-lg text-white">
-                    <category.icon className="h-5 w-5 text-blue-400" />
-                    {category.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {category.skills.map((skill, skillIndex) => (
-                      <motion.div
-                        key={skill.name}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3, delay: skillIndex * 0.05 }}
-                        viewport={{ once: true }}
-                        className="flex items-center gap-2 px-3 py-2 rounded-full bg-neutral-700/50 hover:scale-105 hover:shadow-md hover:bg-neutral-600/50 transition-all duration-200 cursor-pointer group"
-                      >
-                        <skill.icon
-                          className="w-5 h-5"
-                          style={{ color: skill.color }}
-                        />
-                        <span className="text-sm text-gray-200 group-hover:text-white transition-colors">
-                          {skill.name}
-                        </span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <Button
+                onClick={() => setShowFilters(!showFilters)}
+                variant="outline"
+                size="sm"
+                className="mb-6 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300"
+              >
+                <Filter className="w-4 h-4 mr-2" />
+                Filter Categories
+                <Sparkles className="w-4 h-4 ml-2" />
+              </Button>
             </motion.div>
-          ))}
-        </div>
+
+            {/* Filter Pills */}
+            <AnimatePresence>
+              {showFilters && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-wrap gap-2 justify-center mb-8"
+                >
+                  <Badge
+                    variant={selectedCategory === null ? "default" : "outline"}
+                    className="cursor-pointer hover:bg-primary/10 transition-colors duration-200"
+                    onClick={() => setSelectedCategory(null)}
+                  >
+                    All Categories
+                  </Badge>
+                  {categoryTitles.map((title) => (
+                    <Badge
+                      key={title}
+                      variant={
+                        selectedCategory === title ? "default" : "outline"
+                      }
+                      className="cursor-pointer hover:bg-primary/10 transition-colors duration-200"
+                      onClick={() => setSelectedCategory(title)}
+                    >
+                      {title}
+                    </Badge>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedCategory || "all"}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {filteredCategories.map((category, categoryIndex) => (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full bg-gradient-to-br from-card to-secondary/20 border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 group backdrop-blur-sm">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="flex items-center gap-2 text-lg text-card-foreground group-hover:text-primary transition-colors duration-300">
+                      <category.icon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform duration-300" />
+                      {category.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {category.skills.map((skill, skillIndex) => (
+                        <motion.div
+                          key={skill.name}
+                          initial={{ opacity: 0, scale: 0.9 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          transition={{
+                            duration: 0.3,
+                            delay: skillIndex * 0.05,
+                          }}
+                          viewport={{ once: true }}
+                          className="flex items-center gap-2 px-3 py-2 rounded-full bg-secondary/30 hover:scale-105 hover:shadow-lg hover:bg-primary/10 hover:border-primary/20 border border-transparent transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                        >
+                          {/* Animated background effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                          <skill.icon
+                            className="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform duration-300"
+                            style={{ color: skill.color }}
+                          />
+                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300 relative z-10">
+                            {skill.name}
+                          </span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Stats Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-2xl mx-auto">
+            <div className="p-6 rounded-xl bg-gradient-to-br from-primary/10 to-transparent border border-primary/20">
+              <div className="text-3xl font-bold text-primary mb-2">
+                {skillCategories.reduce(
+                  (acc, cat) => acc + cat.skills.length,
+                  0
+                )}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Total Technologies
+              </div>
+            </div>
+            <div className="p-6 rounded-xl bg-gradient-to-br from-secondary/20 to-transparent border border-border/50">
+              <div className="text-3xl font-bold text-foreground mb-2">
+                {skillCategories.length}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                Skill Categories
+              </div>
+            </div>
+            <div className="p-6 rounded-xl bg-gradient-to-br from-accent/20 to-transparent border border-border/50">
+              <div className="text-3xl font-bold text-foreground mb-2">
+                {selectedCategory
+                  ? filteredCategories[0]?.skills.length || 0
+                  : skillCategories.reduce(
+                      (acc, cat) => acc + cat.skills.length,
+                      0
+                    )}
+              </div>
+              <div className="text-sm text-muted-foreground">
+                {selectedCategory ? `${selectedCategory} Skills` : "All Skills"}
+              </div>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
