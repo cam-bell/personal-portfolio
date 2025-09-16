@@ -147,7 +147,7 @@ export function Projects() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full hover:shadow-lg transition-shadow duration-300">
+              <Card className="h-full hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 <div className="aspect-video bg-muted rounded-t-lg overflow-hidden">
                   <img
                     src={project.image || "/placeholder.svg"}
@@ -155,11 +155,11 @@ export function Projects() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <CardHeader>
+                <CardHeader className="flex-grow">
                   <CardTitle className="text-xl">{project.title}</CardTitle>
                   <CardDescription>{project.description}</CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-4 flex flex-col">
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.map((tech) => (
                       <Badge key={tech} variant="secondary" className="text-xs">
@@ -167,7 +167,7 @@ export function Projects() {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-2 mt-auto">
                     <Button
                       variant="outline"
                       size="sm"
