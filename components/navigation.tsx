@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Moon, Sun, Menu, X } from "lucide-react";
-import { useTheme } from "next-themes";
+// import { Moon, Sun, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
+// import { useTheme } from "next-themes";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  // const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -52,7 +53,8 @@ export function Navigation() {
                 {item.label}
               </button>
             ))}
-            <Button
+            {/* Theme toggle button - commented out for dark theme only */}
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -62,12 +64,13 @@ export function Navigation() {
               ) : (
                 <Moon className="h-5 w-5" />
               )}
-            </Button>
+            </Button> */}
           </div>
 
           {/* Mobile Navigation */}
           <div className="md:hidden flex items-center space-x-2">
-            <Button
+            {/* Theme toggle button - commented out for dark theme only */}
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -77,7 +80,7 @@ export function Navigation() {
               ) : (
                 <Moon className="h-5 w-5" />
               )}
-            </Button>
+            </Button> */}
             <Button
               variant="ghost"
               size="icon"
