@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import {
   Card,
   CardContent,
@@ -14,27 +14,56 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Mail, MessageSquare, Send, CheckCircle } from "lucide-react";
+import {
+  Mail,
+  MessageSquare,
+  Send,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
 import { motion } from "framer-motion";
+import { sendContactEmail, type ContactFormData } from "@/lib/email";
 
 export function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
+    setError(null);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const formData = new FormData(e.currentTarget);
+      const contactData: ContactFormData = {
+        name: formData.get("name") as string,
+        email: formData.get("email") as string,
+        subject: formData.get("subject") as string,
+        message: formData.get("message") as string,
+      };
 
-    setIsLoading(false);
-    setIsSubmitted(true);
+      await sendContactEmail(contactData);
 
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 3000);
+      setIsSubmitted(true);
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        // Reset the form using ref
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+      }, 3000);
+    } catch (err) {
+      setError(
+        "Failed to send message. Please try again or contact me directly at cameronsobell@gmail.com"
+      );
+      console.error("Error submitting contact form:", err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -92,19 +121,44 @@ export function Contact() {
                       Thank you for reaching out. I'll get back to you soon.
                     </p>
                   </motion.div>
+                ) : error ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-8"
+                  >
+                    <AlertCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
+                    <h3 className="text-xl font-semibold mb-2 text-red-600">
+                      Error Sending Message
+                    </h3>
+                    <p className="text-muted-foreground mb-4">{error}</p>
+                    <Button onClick={() => setError(null)} variant="outline">
+                      Try Again
+                    </Button>
+                  </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form
+                    ref={formRef}
+                    onSubmit={handleSubmit}
+                    className="space-y-6"
+                  >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <Label htmlFor="name">Name</Label>
-                        <Input id="name" placeholder="Your name" required />
+                        <Input
+                          id="name"
+                          name="name"
+                          placeholder="Your name"
+                          required
+                        />
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">Email</Label>
                         <Input
                           id="email"
+                          name="email"
                           type="email"
-                          placeholder="your.email@example.com"
+                          placeholder="Your email"
                           required
                         />
                       </div>
@@ -114,6 +168,7 @@ export function Contact() {
                       <Label htmlFor="subject">Subject</Label>
                       <Input
                         id="subject"
+                        name="subject"
                         placeholder="What's this about?"
                         required
                       />
@@ -123,6 +178,7 @@ export function Contact() {
                       <Label htmlFor="message">Message</Label>
                       <Textarea
                         id="message"
+                        name="message"
                         placeholder="Tell me about your project or just say hello..."
                         rows={5}
                         required
