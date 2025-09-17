@@ -60,7 +60,7 @@ const additionalProjects = [
     title: "Used Car Price Prediction – Multi-Country Regression",
     description:
       "Built a regression model to predict used car prices across 8 countries using 100K listings. Cleaned outliers, engineered features, and tuned tree-based models (Random Forest, Gradient Boosting) to reach R² = 0.867 and MAE ≈ €2,660.",
-    githubUrl: "#",
+    githubUrl: "https://github.com/cam-bell/used-car-price-prediction",
     colabUrl: null,
     techStack: [
       "Pandas",
@@ -74,7 +74,7 @@ const additionalProjects = [
     title: "Customer Churn Classifier – Gradient Boosting + SMOTE",
     description:
       "Built a churn prediction model using stratified 5-fold CV, SMOTE, and Gradient Boosting. Achieved 93.2% accuracy and F1 = 0.926, improving baseline accuracy by +8.2 percentage points.",
-    githubUrl: "#",
+    githubUrl: "https://github.com/cam-bell/customer-churn-prediction-trees",
     colabUrl: null,
     techStack: [
       "scikit-learn",
