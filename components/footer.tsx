@@ -1,10 +1,34 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Github, Linkedin, Twitter, Heart } from "lucide-react";
+import { Github, Linkedin, Mail, Heart, Copy, Check } from "lucide-react";
+import { useState } from "react";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleEmailClick = async () => {
+    const email = "cameronsobell@gmail.com";
+
+    try {
+      // Try to open email client
+      window.location.href = `mailto:${email}`;
+
+      // Fallback: copy to clipboard after a short delay
+      setTimeout(async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+          setEmailCopied(true);
+          setTimeout(() => setEmailCopied(false), 2000);
+        } catch (err) {
+          console.log("Clipboard copy failed:", err);
+        }
+      }, 1000);
+    } catch (err) {
+      console.log("Email client failed to open:", err);
+    }
+  };
 
   return (
     <footer className="bg-slate-950 border-t border-slate-800">
@@ -42,9 +66,21 @@ export function Footer() {
                 <span className="sr-only">GitHub</span>
               </a>
             </Button>
-            <Button variant="ghost" size="icon" className="hover:text-primary">
-              <Twitter className="h-5 w-5" />
-              <span className="sr-only">Twitter</span>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="hover:text-primary relative"
+              onClick={handleEmailClick}
+              title={emailCopied ? "Email copied!" : "Send email"}
+            >
+              {emailCopied ? (
+                <Check className="h-5 w-5 text-green-500" />
+              ) : (
+                <Mail className="h-5 w-5" />
+              )}
+              <span className="sr-only">
+                {emailCopied ? "Email copied to clipboard" : "Email"}
+              </span>
             </Button>
           </div>
 
@@ -52,17 +88,6 @@ export function Footer() {
           <div className="text-center space-y-2">
             <p className="text-sm text-muted-foreground">
               © {currentYear} Cameron Bell. All rights reserved.
-            </p>
-            <p className="text-xs text-muted-foreground flex items-center justify-center gap-1">
-              Built with <Heart className="h-3 w-3 text-red-500" /> using{" "}
-              <a
-                href="https://v0.dev"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-primary transition-colors"
-              >
-                V0.dev
-              </a>
             </p>
           </div>
 

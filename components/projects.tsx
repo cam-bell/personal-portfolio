@@ -240,7 +240,7 @@ export function Projects() {
                         variant="outline"
                         size="sm"
                         className={`
-                          flex-1 transition-all duration-300
+                          w-full transition-all duration-300
                           ${
                             isHovered
                               ? "bg-primary text-primary-foreground border-primary"
@@ -256,39 +256,26 @@ export function Projects() {
                           className="flex items-center justify-center"
                         >
                           <Github className="mr-2 h-4 w-4" />
-                          Code
+                          View Code
                         </a>
                       </Button>
+                      {/* TODO: Uncomment when live demos are ready
                       <Button
                         size="sm"
-                        className={`
-                          flex-1 transition-all duration-300
-                          ${
-                            project.liveUrl === "#"
-                              ? "opacity-50 cursor-not-allowed"
-                              : "hover:shadow-lg hover:scale-105"
-                          }
-                        `}
-                        asChild={project.liveUrl !== "#"}
-                        disabled={project.liveUrl === "#"}
+                        className="flex-1 transition-all duration-300 hover:shadow-lg hover:scale-105"
+                        asChild
                       >
-                        {project.liveUrl !== "#" ? (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center justify-center"
-                          >
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Live Demo
-                          </a>
-                        ) : (
-                          <span className="flex items-center justify-center">
-                            <ExternalLink className="mr-2 h-4 w-4" />
-                            Coming Soon
-                          </span>
-                        )}
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center"
+                        >
+                          <ExternalLink className="mr-2 h-4 w-4" />
+                          Live Demo
+                        </a>
                       </Button>
+                      */}
                     </div>
                   </CardContent>
                 </Card>

@@ -11,12 +11,14 @@ import {
   Code,
   Database,
   Brain,
+  Check,
 } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [emailCopied, setEmailCopied] = useState(false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, -50]);
   const opacity = useTransform(scrollY, [0, 300], [1, 0]);
@@ -34,6 +36,28 @@ export function Hero() {
     const element = document.querySelector("#projects");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const handleEmailClick = async () => {
+    const email = "cameronsobell@gmail.com";
+
+    try {
+      // Try to open email client
+      window.location.href = `mailto:${email}`;
+
+      // Fallback: copy to clipboard after a short delay
+      setTimeout(async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+          setEmailCopied(true);
+          setTimeout(() => setEmailCopied(false), 2000);
+        } catch (err) {
+          console.log("Clipboard copy failed:", err);
+        }
+      }, 1000);
+    } catch (err) {
+      console.log("Email client failed to open:", err);
     }
   };
 
@@ -206,50 +230,81 @@ export function Hero() {
             </motion.div>
 
             <div className="flex items-center gap-4">
-              {[
-                {
-                  href: "https://www.linkedin.com/in/cameronsobell/",
-                  icon: Linkedin,
-                  label: "LinkedIn",
-                },
-                {
-                  href: "https://github.com/cam-bell",
-                  icon: Github,
-                  label: "GitHub",
-                },
-                {
-                  href: "mailto:cameronsobell@gmail.com",
-                  icon: Mail,
-                  label: "Email",
-                },
-              ].map(({ href, icon: Icon, label }, index) => (
-                <motion.div
-                  key={label}
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1 + index * 0.1 }}
+              {/* LinkedIn Button */}
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1 }}
+              >
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-blue-400/50 hover:border-blue-400 hover:bg-blue-500/10 transition-all duration-300"
+                  asChild
                 >
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="border-blue-400/50 hover:border-blue-400 hover:bg-blue-500/10 transition-all duration-300"
-                    asChild
+                  <a
+                    href="https://www.linkedin.com/in/cameronsobell/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn"
                   >
-                    <a
-                      href={href}
-                      target={href.startsWith("mailto:") ? "_self" : "_blank"}
-                      rel={
-                        href.startsWith("mailto:") ? "" : "noopener noreferrer"
-                      }
-                      aria-label={label}
-                    >
-                      <Icon className="h-4 w-4" />
-                    </a>
-                  </Button>
-                </motion.div>
-              ))}
+                    <Linkedin className="h-4 w-4" />
+                  </a>
+                </Button>
+              </motion.div>
+
+              {/* GitHub Button */}
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.1 }}
+              >
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-blue-400/50 hover:border-blue-400 hover:bg-blue-500/10 transition-all duration-300"
+                  asChild
+                >
+                  <a
+                    href="https://github.com/cam-bell"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                  >
+                    <Github className="h-4 w-4" />
+                  </a>
+                </Button>
+              </motion.div>
+
+              {/* Email Button */}
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.2 }}
+              >
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="border-blue-400/50 hover:border-blue-400 hover:bg-blue-500/10 transition-all duration-300"
+                  onClick={handleEmailClick}
+                  title={emailCopied ? "Email copied!" : "Send email"}
+                  aria-label={
+                    emailCopied ? "Email copied to clipboard" : "Email"
+                  }
+                >
+                  {emailCopied ? (
+                    <Check className="h-4 w-4 text-green-500" />
+                  ) : (
+                    <Mail className="h-4 w-4" />
+                  )}
+                </Button>
+              </motion.div>
             </div>
           </motion.div>
 

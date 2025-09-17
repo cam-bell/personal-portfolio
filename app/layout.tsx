@@ -25,9 +25,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Alex Johnson - Software Developer & Data Science Enthusiast",
+  title: "Cameron Bell - AI Engineer & Software Developer",
   description:
-    "Personal portfolio of Alex Johnson, showcasing projects in software development and data science.",
+    "Personal portfolio of Cameron Bell, showcasing projects in software development and AI engineering.",
   generator: "v0.app",
 };
 

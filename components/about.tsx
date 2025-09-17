@@ -39,7 +39,7 @@ export function About() {
               <div className="aspect-square bg-muted rounded-2xl overflow-hidden mx-auto max-w-sm">
                 <img
                   src="/placeholder.svg?height=400&width=400"
-                  alt="Alex Johnson"
+                  alt="Cameron Bell"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -55,11 +55,11 @@ export function About() {
             >
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-lg leading-relaxed">
-                  I'm a software developer and data science enthusiast with a
-                  deep passion for creating technology that makes a positive
-                  impact. My journey began with curiosity about how things work,
-                  which led me to explore the fascinating intersection of code,
-                  data, and human behavior.
+                  I'm a software developer and AI engineer with a deep passion
+                  for creating technology that makes a positive impact. My
+                  journey began with curiosity about how things work, which led
+                  me to explore the fascinating intersection of code, data, and
+                  human behavior.
                 </p>
 
                 <p className="text-lg leading-relaxed">
