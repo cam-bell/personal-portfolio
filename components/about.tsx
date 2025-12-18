@@ -8,7 +8,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -17,10 +17,10 @@ export function About() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             About Me
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Beyond the code and data, here's what drives my passion for
             technology.
           </p>
@@ -54,7 +54,7 @@ export function About() {
               className="lg:col-span-2 space-y-6"
             >
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <p className="text-lg leading-relaxed">
+                <p className="text-lg leading-7">
                   I'm a software developer and AI engineer with a deep passion
                   for creating technology that makes a positive impact. My
                   journey began with curiosity about how things work, which led
@@ -62,7 +62,7 @@ export function About() {
                   human behavior.
                 </p>
 
-                <p className="text-lg leading-relaxed">
+                <p className="text-lg leading-7">
                   When I'm not coding, you'll find me exploring the latest
                   developments in artificial intelligence, contributing to
                   open-source projects, or experimenting with creative coding
@@ -80,7 +80,7 @@ export function About() {
                       <Sparkles className="h-5 w-5 text-blue-500" />
                       <h3 className="font-semibold">AI & Machine Learning</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-slate-300">
                       Fascinated by the potential of AI to solve complex
                       problems and augment human capabilities.
                     </p>
@@ -93,7 +93,7 @@ export function About() {
                       <Leaf className="h-5 w-5 text-green-500" />
                       <h3 className="font-semibold">Sustainability Tech</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-slate-300">
                       Passionate about using technology to address climate
                       change and environmental challenges.
                     </p>
@@ -106,7 +106,7 @@ export function About() {
                       <Heart className="h-5 w-5 text-purple-500" />
                       <h3 className="font-semibold">Creative Coding</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-slate-300">
                       Exploring the artistic side of programming through
                       generative art and interactive experiences.
                     </p>
@@ -119,7 +119,7 @@ export function About() {
                       <Coffee className="h-5 w-5 text-orange-500" />
                       <h3 className="font-semibold">Community Building</h3>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-slate-300">
                       Active in tech communities, mentoring newcomers and
                       organizing local meetups.
                     </p>

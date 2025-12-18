@@ -162,7 +162,7 @@ export function Hero() {
 
           {/* Subtitle with Typewriter Effect */}
           <motion.h2
-            className="text-xl sm:text-2xl lg:text-3xl text-muted-foreground mb-8 font-sans font-medium tracking-wide"
+            className="text-xl sm:text-2xl lg:text-3xl text-slate-300 mb-8 font-sans font-medium tracking-wide"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -324,7 +324,7 @@ export function Hero() {
           >
             <motion.button
               onClick={scrollToProjects}
-              className="group flex flex-col items-center gap-2 text-muted-foreground hover:text-white transition-colors duration-300"
+              className="group flex flex-col items-center gap-2 text-slate-300 hover:text-white transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >

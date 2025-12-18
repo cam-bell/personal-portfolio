@@ -1,9 +1,15 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { BookOpen, Star } from "lucide-react"
-import { motion } from "framer-motion"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { BookOpen, Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const books = [
   {
@@ -51,7 +57,7 @@ const books = [
     note: "Concise yet comprehensive overview of ML concepts. Perfect for quick reference and review.",
     category: "Machine Learning",
   },
-]
+];
 
 export function ReadingList() {
   return (
@@ -65,10 +71,11 @@ export function ReadingList() {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <BookOpen className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl sm:text-4xl font-bold">Reading List</h2>
+            <h2 className="text-4xl md:text-5xl font-bold">Reading List</h2>
           </div>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Books that have shaped my thinking and continue to inspire my growth as a developer and data scientist.
+          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
+            Books that have shaped my thinking and continue to inspire my growth
+            as a developer and data scientist.
           </p>
         </motion.div>
 
@@ -90,8 +97,12 @@ export function ReadingList() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <CardTitle className="text-lg leading-tight">{book.title}</CardTitle>
-                  <CardDescription className="text-sm">{book.author}</CardDescription>
+                  <CardTitle className="text-lg leading-tight">
+                    {book.title}
+                  </CardTitle>
+                  <CardDescription className="text-sm">
+                    {book.author}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-center justify-between">
@@ -100,8 +111,8 @@ export function ReadingList() {
                         book.status === "Currently Reading"
                           ? "default"
                           : book.status === "Completed"
-                            ? "secondary"
-                            : "outline"
+                          ? "secondary"
+                          : "outline"
                       }
                       className="text-xs"
                     >
@@ -118,14 +129,18 @@ export function ReadingList() {
                         <Star
                           key={i}
                           className={`h-4 w-4 ${
-                            i < book.rating ? "fill-yellow-400 text-yellow-400" : "text-muted-foreground"
+                            i < book.rating
+                              ? "fill-yellow-400 text-yellow-400"
+                              : "text-slate-400"
                           }`}
                         />
                       ))}
                     </div>
                   )}
 
-                  <p className="text-sm text-muted-foreground leading-relaxed">{book.note}</p>
+                  <p className="text-sm text-slate-300 leading-7">
+                    {book.note}
+                  </p>
                 </CardContent>
               </Card>
             </motion.div>
@@ -133,5 +148,5 @@ export function ReadingList() {
         </div>
       </div>
     </section>
-  )
+  );
 }

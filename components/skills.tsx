@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Code, Database, Wrench, Layers } from "lucide-react"
-import { motion } from "framer-motion"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Code, Database, Wrench, Layers } from "lucide-react";
+import { motion } from "framer-motion";
 
 const skillCategories = [
   {
@@ -54,20 +54,20 @@ const skillCategories = [
       { name: "Elasticsearch", level: "Intermediate" },
     ],
   },
-]
+];
 
 const getLevelColor = (level: string) => {
   switch (level) {
     case "Expert":
-      return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300"
+      return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300";
     case "Advanced":
-      return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
+      return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300";
     case "Intermediate":
-      return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+      return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300";
     default:
-      return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300"
+      return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300";
   }
-}
+};
 
 export function Skills() {
   return (
@@ -79,9 +79,12 @@ export function Skills() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">Skills & Tools</h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life, from concept to deployment.
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+            Skills & Tools
+          </h2>
+          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
+            Technologies and tools I use to bring ideas to life, from concept to
+            deployment.
           </p>
         </motion.div>
 
@@ -112,8 +115,13 @@ export function Skills() {
                         viewport={{ once: true }}
                         className="flex items-center justify-between p-3 rounded-lg border bg-card hover:shadow-sm transition-shadow"
                       >
-                        <span className="font-medium text-sm">{skill.name}</span>
-                        <Badge variant="secondary" className={`text-xs ${getLevelColor(skill.level)}`}>
+                        <span className="font-medium text-sm">
+                          {skill.name}
+                        </span>
+                        <Badge
+                          variant="secondary"
+                          className={`text-xs ${getLevelColor(skill.level)}`}
+                        >
                           {skill.level}
                         </Badge>
                       </motion.div>
@@ -126,5 +134,5 @@ export function Skills() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -69,7 +69,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -80,9 +80,9 @@ export function Contact() {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <MessageSquare className="h-8 w-8 text-primary" />
-            <h2 className="text-3xl sm:text-4xl font-bold">Get In Touch</h2>
+            <h2 className="text-4xl md:text-5xl font-bold">Get In Touch</h2>
           </div>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Have a project in mind or just want to chat about technology? I'd
             love to hear from you. Let's build something amazing together.
           </p>
@@ -117,7 +117,7 @@ export function Contact() {
                     <h3 className="text-xl font-semibold mb-2">
                       Message Sent!
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-slate-300">
                       Thank you for reaching out. I'll get back to you soon.
                     </p>
                   </motion.div>
@@ -131,7 +131,7 @@ export function Contact() {
                     <h3 className="text-xl font-semibold mb-2 text-red-600">
                       Error Sending Message
                     </h3>
-                    <p className="text-muted-foreground mb-4">{error}</p>
+                    <p className="text-slate-300 mb-4">{error}</p>
                     <Button onClick={() => setError(null)} variant="outline">
                       Try Again
                     </Button>

@@ -128,7 +128,7 @@ export function SkillsMockupC() {
   return (
     <section
       id="skills"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -137,10 +137,10 @@ export function SkillsMockupC() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Skills & Technologies
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             A strategic overview of my technical capabilities, organized by
             depth of expertise and focus areas.
           </p>
@@ -158,7 +158,7 @@ export function SkillsMockupC() {
               <h3 className="text-2xl font-semibold mb-2 text-blue-400">
                 Core Expertise
               </h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-slate-300 max-w-2xl mx-auto">
                 Technologies I use daily and have deep experience with. These
                 form the foundation of my AI engineering capabilities.
               </p>
@@ -204,7 +204,7 @@ export function SkillsMockupC() {
               <h3 className="text-2xl font-semibold mb-2 text-green-400">
                 Broader Exposure
               </h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-slate-300 max-w-2xl mx-auto">
                 Additional technologies I've worked with and can quickly adapt
                 to new projects. Demonstrates versatility and continuous
                 learning.
@@ -245,25 +245,19 @@ export function SkillsMockupC() {
               <div className="text-3xl font-bold text-blue-400 mb-2">
                 {coreSkills.length}
               </div>
-              <div className="text-sm text-muted-foreground">
-                Core Technologies
-              </div>
+              <div className="text-sm text-slate-300">Core Technologies</div>
             </div>
             <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-600/10 to-emerald-600/10 border border-green-500/20">
               <div className="text-3xl font-bold text-green-400 mb-2">
                 {broaderSkills.length}
               </div>
-              <div className="text-sm text-muted-foreground">
-                Additional Skills
-              </div>
+              <div className="text-sm text-slate-300">Additional Skills</div>
             </div>
             <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-600/10 to-pink-600/10 border border-purple-500/20">
               <div className="text-3xl font-bold text-purple-400 mb-2">
                 {coreSkills.length + broaderSkills.length}
               </div>
-              <div className="text-sm text-muted-foreground">
-                Total Technologies
-              </div>
+              <div className="text-sm text-slate-300">Total Technologies</div>
             </div>
           </motion.div>
         </div>

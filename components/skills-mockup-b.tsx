@@ -148,7 +148,7 @@ export function SkillsMockupB() {
   return (
     <section
       id="skills"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      className="py-20 bg-gradient-to-br from-slate-950 via-indigo-950/20 to-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -157,10 +157,10 @@ export function SkillsMockupB() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Skills & Technologies
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Interactive showcase of my technical toolkit. Filter by category to
             explore specific areas.
           </p>
@@ -225,7 +225,7 @@ export function SkillsMockupB() {
 
           {/* Stats */}
           <motion.div
-            className="text-center text-sm text-muted-foreground"
+            className="text-center text-sm text-slate-300"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}

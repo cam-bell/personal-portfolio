@@ -145,7 +145,7 @@ export function SkillsMockupA() {
   return (
     <section
       id="skills"
-      className="py-20 relative bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      className="py-20 relative bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -155,10 +155,10 @@ export function SkillsMockupA() {
           viewport={{ once: true }}
         >
           <div className="text-center mb-8">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
-            <p className="text-lg text-muted-foreground mb-6 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
               Technologies and tools I use to build AI-powered solutions, from
               research to production deployment.
             </p>
@@ -262,7 +262,7 @@ export function SkillsMockupA() {
                             className="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform duration-300"
                             style={{ color: skill.color }}
                           />
-                          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300 relative z-10">
+                          <span className="text-sm text-slate-300 group-hover:text-foreground transition-colors duration-300 relative z-10">
                             {skill.name}
                           </span>
                         </motion.div>
@@ -291,23 +291,17 @@ export function SkillsMockupA() {
                   0
                 )}
               </div>
-              <div className="text-sm text-muted-foreground">
-                Total Technologies
-              </div>
+              <div className="text-sm text-slate-300">Total Technologies</div>
             </div>
             <div className="p-6 rounded-xl bg-gradient-to-br from-secondary/20 to-transparent border border-border/50">
               <div className="text-3xl font-bold text-foreground mb-2">
                 {skillCategories.length}
               </div>
-              <div className="text-sm text-muted-foreground">
-                Skill Categories
-              </div>
+              <div className="text-sm text-slate-300">Skill Categories</div>
             </div>
             <div className="p-6 rounded-xl bg-gradient-to-br from-accent/20 to-transparent border border-border/50">
               <div className="text-3xl font-bold text-foreground mb-2">1+</div>
-              <div className="text-sm text-muted-foreground">
-                Years Experience
-              </div>
+              <div className="text-sm text-slate-300">Years Experience</div>
             </div>
           </div>
         </motion.div>

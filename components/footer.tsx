@@ -86,7 +86,7 @@ export function Footer() {
 
           {/* Copyright and Credits */}
           <div className="text-center space-y-2">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-slate-300">
               © {currentYear} Cameron Bell. All rights reserved.
             </p>
           </div>
