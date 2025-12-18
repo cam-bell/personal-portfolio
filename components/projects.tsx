@@ -126,6 +126,9 @@ const getTechDetails = (techName: string) => {
     "W&B": { icon: null, color: "#ffbe00", category: "MLOps" },
     Pandas: { icon: SiPandas as any, color: "#150458", category: "Data" },
     NumPy: { icon: SiNumpy as any, color: "#013243", category: "Data" },
+    Gradio: { icon: null, color: "#ff6b6b", category: "AI/ML" },
+    "OpenAI Agents SDK": { icon: null, color: "#10a37f", category: "AI/ML" },
+    asyncio: { icon: null, color: "#3776ab", category: "Language" },
   };
 
   return (
@@ -211,6 +214,16 @@ const getTechCategoryColor = (techName: string): string => {
 };
 
 const projects = [
+  {
+    title: "Deep Research Workflow",
+    description:
+      "Built multi-agent research system implementing 5 production agentic patterns (Prompt Chaining, Routing, Parallelization, Orchestrator-Worker, Evaluator-Optimizer) with intelligent query classification routing to 4 adaptive workflows, reducing API costs by 30-50% and improving output quality by 40-60% on complex queries through iterative evaluation. Implemented async parallel search execution via asyncio.as_completed reducing research time by 50% (15s average for simple queries), quality assurance loop with automated revision (max 3 iterations), and email delivery via SendGrid with Jinja2 templating.",
+    techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
+    githubUrl: "#",
+    liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
+    image: "/images/deep_research_workflow.png",
+    category: "AI/ML",
+  },
   {
     title: "Cloud Cost & Sustainability Advisor",
     description:
