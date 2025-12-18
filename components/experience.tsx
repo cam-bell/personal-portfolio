@@ -33,7 +33,7 @@ const experiences = [
   {
     title: "Datathon Participant",
     company: "EDP - Energy Forecasting",
-    location: "Remote",
+    location: "IE University",
     period: "Nov 2024",
     description:
       "Built and compared time-series models on 118k+ energy observations, reducing forecasting error by 47% vs baseline.",
@@ -57,13 +57,41 @@ const experiences = [
       "Completed multi-company tech programme; built IoT/AI prototype with Figma wireframes, cloud blueprints, and QA checklists.",
     technologies: ["Figma", "IoT", "AI Prototyping", "Cloud Architecture"],
   },
+  {
+    title: "Innovation Intern",
+    company: "United Utilities",
+    location: "Warrington, United Kingdom",
+    period: "Aug 2022 – Sep 2022",
+    description:
+      "Standardised 27 SOP/process assets with reusable templates. Delivered senior-level presentations to align stakeholders on innovation strategy.",
+    technologies: [
+      "Process Improvement",
+      "SOP Documentation",
+      "Stakeholder Management",
+      "Strategic Presentations",
+    ],
+  },
+  {
+    title: "Financial Advisory Intern",
+    company: "Hargreaves Lansdown",
+    location: "Bristol, United Kingdom",
+    period: "Jun 2022 – Jul 2022",
+    description:
+      "Streamlined advisory review workflows, improving efficiency and data accuracy. Presented intern-led survey to Executive Committee, shaping employer branding strategy.",
+    technologies: [
+      "Workflow Optimization",
+      "Data Analysis",
+      "Executive Presentations",
+      "Financial Services",
+    ],
+  },
 ];
 
 export function Experience() {
   return (
     <section
       id="experience"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/90 to-slate-950"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -72,10 +100,10 @@ export function Experience() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
             Work & Experience
           </h2>
-          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             My professional journey in software development and data science,
             from freelancing to leading development teams.
           </p>
@@ -107,11 +135,11 @@ export function Experience() {
                 >
                   <Card>
                     <CardHeader>
-                      <CardTitle className="text-xl">{exp.title}</CardTitle>
-                      <CardDescription className="text-lg font-medium text-primary">
+                      <CardTitle>{exp.title}</CardTitle>
+                      <CardDescription className="text-base md:text-lg font-medium text-primary">
                         {exp.company}
                       </CardDescription>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-muted-foreground">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-sm text-slate-300">
                         <div className="flex items-center gap-1">
                           <Calendar className="h-4 w-4" />
                           {exp.period}
@@ -123,7 +151,7 @@ export function Experience() {
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-muted-foreground">{exp.description}</p>
+                      <p className="text-slate-300">{exp.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {exp.technologies.map((tech) => (
                           <Badge
