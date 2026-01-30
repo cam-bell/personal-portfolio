@@ -219,7 +219,8 @@ const projects = [
     description:
       "Built multi-agent research system implementing 5 production agentic patterns (Prompt Chaining, Routing, Parallelization, Orchestrator-Worker, Evaluator-Optimizer) with intelligent query classification routing to 4 adaptive workflows, reducing API costs by 30-50% and improving output quality by 40-60% on complex queries through iterative evaluation. Implemented async parallel search execution via asyncio.as_completed reducing research time by 50% (15s average for simple queries), quality assurance loop with automated revision (max 3 iterations), and email delivery via SendGrid with Jinja2 templating.",
     techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
-    githubUrl: "#",
+    githubUrl:
+      "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
     liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
     image: "/images/deep_research_workflow.png",
     category: "AI/ML",
