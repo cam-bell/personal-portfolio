@@ -538,7 +538,11 @@ export function Projects() {
                         <motion.div
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="w-full"
+                          className={
+                            project.liveUrl && project.liveUrl !== "#"
+                              ? "flex-1"
+                              : "w-full"
+                          }
                         >
                           <Button
                             variant="outline"
@@ -564,23 +568,29 @@ export function Projects() {
                             </a>
                           </Button>
                         </motion.div>
-                        {/* TODO: Uncomment when live demos are ready
-                      <Button
-                        size="sm"
-                        className="flex-1 transition-all duration-300 hover:shadow-lg hover:scale-105"
-                        asChild
-                      >
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center"
-                        >
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </a>
-                      </Button>
-                      */}
+                        {project.liveUrl && project.liveUrl !== "#" && (
+                          <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="flex-1"
+                          >
+                            <Button
+                              size="sm"
+                              className="w-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                              asChild
+                            >
+                              <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center"
+                              >
+                                <ExternalLink className="mr-2 h-4 w-4" />
+                                Live Demo
+                              </a>
+                            </Button>
+                          </motion.div>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
