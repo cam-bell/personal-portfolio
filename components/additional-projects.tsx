@@ -80,7 +80,8 @@ const additionalProjects = [
     title: "Breast Cancer Detection",
     description:
       "Developed a full scikit-learn pipeline to classify breast cancer cases with 94.2% test accuracy. Tuned `k` using cross-validation and visualized error curves for model complexity.",
-    githubUrl: "#",
+    githubUrl:
+      "https://github.com/cam-bell/applied-ml-classification/blob/main/notebooks/breast_cancer_knn.ipynb",
     colabUrl: null,
     domain: "Healthcare",
     techStack: [
@@ -95,9 +96,9 @@ const additionalProjects = [
     title: "Diabetes Prediction",
     description:
       "Trained and benchmarked XGBoost and Logistic Regression on an imbalanced diabetes dataset. Achieved 75.3% with XGBoost and 81.2% with Logistic Regression, recommending the simpler model.",
-    githubUrl: "#",
-    colabUrl:
-      "https://drive.google.com/file/d/1XI0x9UFGnQegQHe4h_1nH0p_U8rE8mTu/view?usp=sharing",
+    githubUrl:
+      "https://github.com/cam-bell/applied-ml-classification/blob/main/notebooks/diabetes_xgboost_vs_logreg.ipynb",
+    colabUrl: null,
     domain: "Healthcare",
     techStack: [
       "XGBoost",
