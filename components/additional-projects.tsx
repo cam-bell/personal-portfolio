@@ -63,7 +63,7 @@ const additionalProjects = [
     title: "Gapminder Global Trends",
     description:
       "Analyzed 50+ years of global development data using visual analytics, linear regression, and clustering. Uncovered patterns across GDP, life expectancy, and population trends with animated storytelling.",
-    githubUrl: "#",
+    githubUrl: "https://github.com/cam-bell/gapminder-lifeexp-analysis",
     colabUrl: null,
     domain: "Analytics",
     techStack: [
@@ -96,7 +96,8 @@ const additionalProjects = [
     description:
       "Trained and benchmarked XGBoost and Logistic Regression on an imbalanced diabetes dataset. Achieved 75.3% with XGBoost and 81.2% with Logistic Regression, recommending the simpler model.",
     githubUrl: "#",
-    colabUrl: null,
+    colabUrl:
+      "https://drive.google.com/file/d/1XI0x9UFGnQegQHe4h_1nH0p_U8rE8mTu/view?usp=sharing",
     domain: "Healthcare",
     techStack: [
       "XGBoost",
@@ -109,7 +110,8 @@ const additionalProjects = [
     title: "Used Car Price Prediction",
     description:
       "Built a regression model to predict used car prices across 8 countries using 100K listings. Cleaned outliers, engineered features, and tuned tree-based models (Random Forest, Gradient Boosting) to reach R² = 0.867 and MAE ≈ €2,660.",
-    githubUrl: "https://github.com/cam-bell/used-car-price-prediction",
+    githubUrl:
+      "https://github.com/cam-bell/applied-ml-regression/tree/main/projects/used_car_pricing",
     colabUrl: null,
     domain: "Business",
     techStack: [
