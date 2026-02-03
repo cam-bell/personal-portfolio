@@ -47,7 +47,7 @@ const particles = [
 
 const statChips = [
   "6+ AI/ML systems built",
-  "Hours → minutes Decision Time Automation",
+  "Hours → minutes Decision time automation",
   "30-50% LLM cost reduction via intelligent agent routing",
 ];
 
@@ -473,9 +473,7 @@ export function Hero() {
                         <span className="mr-2 inline-flex items-center rounded-full border border-cyan-200/30 bg-cyan-500/10 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-cyan-100">
                           {emphasis}
                         </span>
-                        <span className="align-middle">
-                          {rest.join(" ")}
-                        </span>
+                        <span className="align-middle">{rest.join(" ")}</span>
                       </motion.div>
                     );
                   })}
