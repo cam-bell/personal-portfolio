@@ -261,6 +261,25 @@ const projects = [
     category: "AI/ML",
   },
   {
+    title: "Real-Time Fraud Detection - Streaming ML Pipeline",
+    description:
+      "End-to-end streaming fraud detection with online feature engineering, real-time scoring, sliding-window metrics, drift detection, alerting, and a Streamlit dashboard for monitoring model performance and operational KPIs.",
+    techStack: [
+      "Python",
+      "Streamlit",
+      "scikit-learn",
+      "XGBoost",
+      "pandas",
+      "NumPy",
+      "Plotly",
+      "SciPy",
+    ],
+    githubUrl: "https://github.com/cam-bell/real-time-fraud-detection",
+    liveUrl: "",
+    image: "/images/fraud-streaming.png",
+    category: "AI/ML",
+  },
+  {
     title: "ASL Detection Game",
     description:
       "Built a computer vision game that teaches American Sign Language using YOLOv8 and a 1,000+ image dataset. Achieved 90% mAP@0.5 with real-time webcam detection, live feedback, and 2 gamified modes. Deployed with React, FastAPI, and Roboflow pipeline.",
