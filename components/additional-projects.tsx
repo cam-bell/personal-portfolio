@@ -184,9 +184,10 @@ export function AdditionalProjects() {
               showcasing
               <span className="text-primary font-semibold">
                 {" "}
-                breadth of experimentation
+                breadth of experimentation, fundamentals and statistical
+                reasoning
               </span>{" "}
-              across software engineering, AI/ML, and data science domains.
+              across AI/ML and data science domains.
             </p>
           </div>
         </motion.div>

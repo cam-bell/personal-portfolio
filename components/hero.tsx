@@ -178,7 +178,7 @@ export function Hero() {
               |
             </motion.span>
             <span className="inline-block">
-              Machine Learning & Data Science
+              Agentic AI, LLM Orchestration & Machine Learning
             </span>
             <br />
             <span className="text-lg sm:text-xl text-blue-200/80 font-sans font-light">
@@ -193,23 +193,38 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Passionate about building{" "}
+            I build multi-agent systems that orchestrate LLMs, tools and data
+            pipelines to solve real operational problems. Recent work includes
+            multi-agent risk classification system, autonomous research
+            workflows, and LLM-driven trading simulations.
+            <br />
+            <br /> Experienced with{" "}
             <motion.span
               className="text-blue-300 font-mono font-semibold bg-blue-500/10 px-2 py-1 rounded"
               whileHover={{ scale: 1.05 }}
             >
-              intelligent systems
+              agent orchestration,
             </motion.span>{" "}
-            that bridge cutting-edge AI research with real-world applications.
-            Skilled in developing{" "}
             <motion.span
-              className="text-blue-300 font-mono font-semibold bg-blue-500/10 px-2 py-1 rounded"
+              className="text-green-300 font-mono font-semibold bg-green-500/10 px-2 py-1 rounded"
               whileHover={{ scale: 1.05 }}
             >
-              machine learning models
-            </motion.span>
-            , data pipelines, and full-stack AI solutions that drive business
-            impact.
+              structured LLM outputs,
+            </motion.span>{" "}
+            <motion.span
+              className="text-yellow-300 font-mono font-semibold bg-orange-500/10 px-2 py-1 rounded"
+              whileHover={{ scale: 1.05 }}
+            >
+              observability,
+            </motion.span>{" "}
+            and{" "}
+            <motion.span
+              className="text-red-300 font-mono font-semibold bg-blue-500/10 px-2 py-1 rounded"
+              whileHover={{ scale: 1.05 }}
+            >
+              full-stack deployment
+            </motion.span>{" "}
+            .
           </motion.p>
 
           {/* Enhanced CTA Buttons */}

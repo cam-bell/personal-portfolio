@@ -215,34 +215,6 @@ const getTechCategoryColor = (techName: string): string => {
 
 const projects = [
   {
-    title: "Deep Research Workflow",
-    description:
-      "Built multi-agent research system implementing 5 production agentic patterns (Prompt Chaining, Routing, Parallelization, Orchestrator-Worker, Evaluator-Optimizer) with intelligent query classification routing to 4 adaptive workflows, reducing API costs by 30-50% and improving output quality by 40-60% on complex queries through iterative evaluation. Implemented async parallel search execution via asyncio.as_completed reducing research time by 50% (15s average for simple queries), quality assurance loop with automated revision (max 3 iterations), and email delivery via SendGrid with Jinja2 templating.",
-    techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
-    githubUrl:
-      "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
-    liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
-    image: "/images/deep_research_workflow.png",
-    category: "AI/ML",
-  },
-  {
-    title: "Cloud Cost & Sustainability Advisor",
-    description:
-      "A web platform that helps small and medium-sized enterprises (SMEs) migrate to the cloud by comparing pricing and carbon emissions across AWS, GCP, and Azure. Includes real-time cloud service data, usage-based calculators, and sustainability insights.",
-    techStack: [
-      "React",
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "Google Cloud",
-      "Docker",
-    ],
-    githubUrl: "https://github.com/cam-bell/Capstone",
-    liveUrl: "#",
-    image: "/images/cloud-migration-dashboard.png",
-    category: "Full-Stack",
-  },
-  {
     title: "BHSI Risk Classification System",
     description:
       "Built a risk classification microservice for Berkshire Hathaway Specialty Insurance to automate D&O policy assessments.",
@@ -277,6 +249,79 @@ const projects = [
     githubUrl: "https://github.com/cam-bell/real-time-fraud-detection",
     liveUrl: "",
     image: "/images/fraud-streaming.png",
+    category: "AI/ML",
+  },
+  {
+    title: "Autonomous Trading System",
+    description:
+      "Built an autonomous trading system that uses LLM-driven trading simulations to optimize portfolio performance. The system uses a multi-agent architecture to orchestrate LLMs, tools and data pipelines to solve real operational problems.",
+    techStack: ["Python", "MCP", "OpenAI Agents SDK", "Gradio", "SQLite"],
+    githubUrl: "#",
+    liveUrl: "",
+    image: "/images/trading.webp",
+    category: "AI/ML",
+  },
+  {
+    title: "Deep Research Workflow",
+    description:
+      "Built multi-agent research system implementing 5 production agentic patterns (Prompt Chaining, Routing, Parallelization, Orchestrator-Worker, Evaluator-Optimizer) with intelligent query classification routing to 4 adaptive workflows, reducing API costs by 30-50% and improving output quality by 40-60% on complex queries through iterative evaluation. Implemented async parallel search execution via asyncio.as_completed reducing research time by 50% (15s average for simple queries), quality assurance loop with automated revision (max 3 iterations), and email delivery via SendGrid with Jinja2 templating.",
+    techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
+    githubUrl:
+      "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
+    liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
+    image: "/images/deep_research_workflow.png",
+    category: "AI/ML",
+  },
+  {
+    title: "Cloud Cost & Sustainability Advisor",
+    description:
+      "A web platform that helps small and medium-sized enterprises (SMEs) migrate to the cloud by comparing pricing and carbon emissions across AWS, GCP, and Azure. Includes real-time cloud service data, usage-based calculators, and sustainability insights.",
+    techStack: [
+      "React",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Google Cloud",
+      "Docker",
+    ],
+    githubUrl: "https://github.com/cam-bell/Capstone",
+    liveUrl: "#",
+    image: "/images/cloud-migration-dashboard.png",
+    category: "Full-Stack",
+  },
+  {
+    title: "LangGraph Autonomous Task Agent",
+    description:
+      "Built an autonomous task execution agent using LangGraph state management, capable of planning, executing, and evaluating complex tasks with conditional routing and feedback loops. The system demonstrates computer-use capabilities through browser automation, long-term memory, and retrieval-augmented reasoning.",
+    techStack: [
+      "Python",
+      "LangGraph",
+      "Playwright",
+      "FAISS",
+      "SQLite",
+      "Serper",
+    ],
+    githubUrl: "#",
+    liveUrl: "",
+    image: "/images/langgraph.jpg",
+    category: "AI/ML",
+  },
+  {
+    title: "Multi-Model Sales Agent System",
+    description:
+      "Designed a multi-agent sales automation system orchestrating multiple LLM providers to generate, validate, and deliver personalised sales emails. The system demonstrates safe agent collaboration patterns, structured outputs, and cross-provider orchestration with guardrails for policy compliance.",
+    techStack: [
+      "Python",
+      "OpenAI Agents SDK",
+      "DeepSeek",
+      "Gemini",
+      "Groq",
+      "SendGrid",
+      "Pydantic",
+    ],
+    githubUrl: "#",
+    liveUrl: "",
+    image: "/images/sdr.webp",
     category: "AI/ML",
   },
   {
