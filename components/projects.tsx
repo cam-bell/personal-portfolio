@@ -20,6 +20,8 @@ import {
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type React from "react";
+import Link from "next/link";
+import { tier1Projects, tier2Projects } from "@/lib/projects-data";
 import {
   SiPython,
   SiReact,
@@ -213,210 +215,247 @@ const getTechCategoryColor = (techName: string): string => {
   );
 };
 
-const projects = [
-  {
-    title: "BHSI Risk Classification System",
-    description:
-      "Designed and deployed a production risk classification system for Berkshire Hathaway Specialty Insurance, using multi-agent LLM orchestration and hybrid rule-based logic to automate D&O policy assessments and reduce manual underwriting review from hours to minutes.",
-    techStack: [
-      "Python",
-      "FastAPI",
-      "BigQuery",
-      "Google Cloud",
-      "Gemini Pro",
-      "LangChain",
-      "Vector Search",
-    ],
-    githubUrl: "https://github.com/cam-bell/bhsi-risk-assessment-platform",
-    liveUrl: "#",
-    image: "/images/risk-assessment-top.png",
-    category: "AI/ML",
-  },
-  {
-    title: "Real-Time Fraud Detection Pipeline",
-    description:
-      "Built an end-to-end streaming fraud detection system with real-time feature engineering, online inference, performance monitoring, and drift detection. Includes alerting and an interactive dashboard for tracking model accuracy and operational KPIs over time.",
-    techStack: [
-      "Python",
-      "scikit-learn",
-      "XGBoost",
-      "Streamlit",
-      "pandas",
-      "NumPy",
-      "Plotly",
-    ],
-    githubUrl: "https://github.com/cam-bell/real-time-fraud-detection",
-    liveUrl: "",
-    image: "/images/fraud-streaming.png",
-    category: "AI/ML",
-  },
-  {
-    title: "Autonomous Trading System",
-    description:
-      "Built an autonomous trading system that uses LLM-driven trading simulations to optimize portfolio performance. The system uses a multi-agent architecture to orchestrate LLMs, tools and data pipelines to solve real operational problems.",
-    techStack: ["Python", "MCP", "OpenAI Agents SDK", "Gradio", "SQLite"],
-    githubUrl: "#",
-    liveUrl: "",
-    image: "/images/trading.webp",
-    category: "AI/ML",
-  },
-  {
-    title: "Deep Research Workflow",
-    description:
-      "Built a multi-agent research system implementing production agentic patterns including routing, parallel execution, and evaluator–optimizer loops. The system reduces API cost and latency through async orchestration while improving output quality via iterative evaluation.",
-    techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
-    githubUrl:
-      "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
-    liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
-    image: "/images/deep_research_workflow.png",
-    category: "AI/ML",
-  },
-  {
-    title: "Cloud Cost & Sustainability Advisor",
-    description:
-      "Built a full-stack decision-support platform to help SMEs plan cloud migrations by forecasting costs, assessing risk, and comparing carbon impact across AWS, GCP, and Azure using hybrid ML models and semantic retrieval.",
-    techStack: [
-      "React",
-      "TypeScript",
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "Google Cloud",
-      "Docker",
-    ],
-    githubUrl: "https://github.com/cam-bell/Capstone",
-    liveUrl: "#",
-    image: "/images/cloud-migration-dashboard.png",
-    category: "Full-Stack",
-  },
-  {
-    title: "AI-Powered Crypto Risk Dashboard",
-    description:
-      "Developed a real-time crypto portfolio risk analysis platform combining traditional financial metrics with ML-driven insights. The system aggregates on-chain and market data to assess volatility, concentration risk, and correlations, delivering proactive alerts and AI-generated portfolio reports.",
-    techStack: [
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "TimescaleDB",
-      "Next.js",
-      "LangChain",
-      "OpenAI",
-      "Docker",
-    ],
-    githubUrl: "#",
-    liveUrl: "",
-    image: "/images/crypto.png",
-    category: "AI/ML",
-  },
-  {
-    title: "LangGraph Autonomous Task Agent",
-    description:
-      "Built an autonomous task execution agent using LangGraph state management, capable of planning, executing, and evaluating complex tasks with conditional routing and feedback loops. The system demonstrates computer-use capabilities through browser automation, long-term memory, and retrieval-augmented reasoning.",
-    techStack: [
-      "Python",
-      "LangGraph",
-      "Playwright",
-      "FAISS",
-      "SQLite",
-      "Serper",
-    ],
-    githubUrl: "#",
-    liveUrl: "",
-    image: "/images/langgraph.jpg",
-    category: "AI/ML",
-  },
-  {
-    title: "Multi-Model Sales Agent System",
-    description:
-      "Designed a multi-agent sales automation system orchestrating multiple LLM providers to generate, validate, and deliver personalised sales emails. The system demonstrates safe agent collaboration patterns, structured outputs, and cross-provider orchestration with guardrails for policy compliance.",
-    techStack: [
-      "Python",
-      "OpenAI Agents SDK",
-      "DeepSeek",
-      "Gemini",
-      "Groq",
-      "SendGrid",
-      "Pydantic",
-    ],
-    githubUrl: "#",
-    liveUrl: "",
-    image: "/images/sdr.webp",
-    category: "AI/ML",
-  },
-  {
-    title: "ASL Detection Game",
-    description:
-      "Built a computer vision game that teaches American Sign Language using YOLOv8 and a 1,000+ image dataset. Achieved 90% mAP@0.5 with real-time webcam detection, live feedback, and 2 gamified modes. Deployed with React, FastAPI, and Roboflow pipeline.",
-    techStack: [
-      "YOLOv8",
-      "Python",
-      "FastAPI",
-      "React",
-      "TypeScript",
-      "Roboflow",
-      "OpenCV",
-    ],
-    githubUrl: "https://github.com/sophiaecl/ASL-CV-Backend",
-    liveUrl: "#",
-    image: "/images/sign-learn.png",
-    category: "Computer Vision",
-  },
-  {
-    title: "Multilingual Review Analyzer",
-    description:
-      "Built a multilingual NLP system that analyzes reviews from IMDb, Trustpilot, Steam, and Google Play. Uses HuggingFace transformers and KeyBERT for sentiment, emotion, and keyword extraction with 0% error rate across 239 reviews.",
-    techStack: [
-      "Python",
-      "HuggingFace",
-      "spaCy",
-      "KeyBERT",
-      "LaBSE",
-      "VADER",
-      "BERT",
-      "RoBERTa",
-    ],
-    githubUrl: "https://github.com/felixhommels/reviews-group-nlp",
-    liveUrl: "#",
-    image: "/images/review-analyzer.png",
-    category: "NLP",
-  },
-  {
-    title: "Swimming Pool Detection",
-    description:
-      "Built a YOLOv11 object detection model to identify swimming pools from aerial images. Achieved 95.5% mAP after 30 epochs using transfer learning on a custom-labeled dataset with GroundingDINO + Roboflow.",
-    techStack: [
-      "YOLOv11",
-      "GroundingDINO",
-      "Roboflow",
-      "Object Detection",
-      "Python",
-      "OpenCV",
-    ],
-    githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
-    liveUrl: "#",
-    image: "/images/pool-detection.jpeg",
-    category: "Computer Vision",
-  },
-  {
-    title: "Diabetes Readmission Prediction",
-    description:
-      "Built a modular, production-ready MLOps system for hospital readmission prediction using CI/CD, Hydra, MLflow, and W&B. Deployed a FastAPI service with real-time inference and Dockerized environment.",
-    techStack: [
-      "Python",
-      "scikit-learn",
-      "MLflow",
-      "Hydra",
-      "W&B",
-      "Docker",
-      "GitHub Actions",
-      "Pytest",
-    ],
-    githubUrl: "https://github.com/kollie/mlops-project-ci",
-    liveUrl: "#",
-    image: "/images/mlops.png",
-    category: "MLOps",
-  },
-];
+const ProjectCard = ({
+  project,
+  index,
+  variant,
+  isHovered,
+  isTechStackExpanded,
+  onHoverStart,
+  onHoverEnd,
+  onToggleTechStack,
+}: {
+  project: (typeof tier1Projects)[number];
+  index: number;
+  variant: "primary" | "secondary";
+  isHovered: boolean;
+  isTechStackExpanded: boolean;
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
+  onToggleTechStack: (e: React.MouseEvent) => void;
+}) => {
+  const primaryTech = project.techStack.slice(0, 5);
+  const additionalTech = project.techStack.slice(5);
+  const isSecondary = variant === "secondary";
+
+  return (
+    <motion.div
+      key={project.title}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      onHoverStart={onHoverStart}
+      onHoverEnd={onHoverEnd}
+      className={`group cursor-pointer h-full flex ${
+        isSecondary ? "md:scale-[0.98]" : ""
+      }`}
+    >
+      <div className="relative h-full flex-1">
+        {isHovered && (
+          <motion.div
+            className={`absolute -inset-[2px] rounded-lg bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 blur-md opacity-60 pointer-events-none ${
+              isSecondary ? "opacity-40" : ""
+            }`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.6, 0.4, 0.6] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            style={{ zIndex: 0 }}
+          />
+        )}
+        <Card
+          className={`
+            h-full flex flex-col overflow-hidden relative z-[1]
+            backdrop-blur-md bg-slate-900/50 border-slate-700/50
+            transition-all duration-500 ease-out
+            ${
+              isHovered
+                ? isSecondary
+                  ? "shadow-xl shadow-primary/10 scale-[1.02] border-primary/30"
+                  : "shadow-2xl shadow-primary/20 scale-[1.05] border-primary/40"
+                : "shadow-lg hover:shadow-xl hover:border-slate-600/50"
+            }
+          `}
+        >
+          <div
+            className={`relative ${
+              isSecondary ? "aspect-[16/9]" : "aspect-[16/10]"
+            } bg-slate-900/60 overflow-hidden rounded-lg`}
+          >
+            <img
+              src={project.image || "/placeholder.svg"}
+              alt={project.title}
+              className="w-full h-full object-contain object-center brightness-105 contrast-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+            <div className="absolute top-3 right-3 z-10 flex flex-col items-end gap-2">
+              <Badge
+                variant="secondary"
+                className="backdrop-blur-md bg-background/80 border-slate-700/50"
+              >
+                {project.category}
+              </Badge>
+              {project.status && (
+                <Badge
+                  variant="outline"
+                  className="backdrop-blur-md bg-background/70 border-amber-400/40 text-amber-200 text-xs px-2 py-0.5"
+                >
+                  {project.status}
+                </Badge>
+              )}
+              {project.label && (
+                <Badge
+                  variant="outline"
+                  className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
+                >
+                  {project.label}
+                </Badge>
+              )}
+            </div>
+
+            <motion.div
+              className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none"
+              initial={{ y: 10 }}
+              whileHover={{ y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="text-white text-sm font-medium flex items-center gap-2 drop-shadow-lg">
+                  <ExternalLink className="h-4 w-4" />
+                  View Project Details
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <CardHeader
+            className={`space-y-2.5 ${isSecondary ? "pb-3 pt-3" : "pb-4 pt-4"} flex-shrink-0`}
+          >
+            <CardTitle
+              className={`leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2 ${
+                isSecondary ? "text-lg" : ""
+              }`}
+            >
+              {project.title}
+            </CardTitle>
+
+            <div className="space-y-2">
+              <div className="flex flex-wrap gap-2">
+                {primaryTech.map((tech) => (
+                  <EnhancedTechBadge key={tech} tech={tech} />
+                ))}
+              </div>
+
+              {additionalTech.length > 0 && (
+                <div className="space-y-2">
+                  <motion.button
+                    onClick={onToggleTechStack}
+                    className="flex items-center gap-1 text-xs text-slate-400 hover:text-primary transition-colors duration-200"
+                  >
+                    {isTechStackExpanded ? (
+                      <>
+                        <ChevronUp className="h-3 w-3" />
+                        Show less
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="h-3 w-3" />+
+                        {additionalTech.length} more technologies
+                      </>
+                    )}
+                  </motion.button>
+
+                  {isTechStackExpanded && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      transition={{ duration: 0.2 }}
+                      className="flex flex-wrap gap-2 pt-1"
+                    >
+                      {additionalTech.map((tech) => (
+                        <EnhancedTechBadge key={tech} tech={tech} />
+                      ))}
+                    </motion.div>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <CardDescription className="text-slate-300 leading-6 text-sm line-clamp-3">
+              {project.description}
+            </CardDescription>
+          </CardHeader>
+
+          <div className="flex-grow" />
+
+          <CardContent className={`space-y-4 flex-shrink-0 ${isSecondary ? "pt-0" : ""}`}>
+            <div className="flex gap-3 pt-2">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={
+                  project.liveUrl && project.liveUrl !== "#" ? "flex-1" : "w-full"
+                }
+              >
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className={`
+                    w-full transition-all duration-300
+                    ${
+                      isHovered
+                        ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20"
+                        : "hover:bg-primary/10 hover:border-primary/50"
+                    }
+                  `}
+                  asChild
+                >
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center"
+                  >
+                    <Github className="mr-2 h-4 w-4" />
+                    View Code
+                  </a>
+                </Button>
+              </motion.div>
+              {project.liveUrl && project.liveUrl !== "#" && (
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex-1"
+                >
+                  <Button
+                    size="sm"
+                    className="w-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+                    asChild
+                  >
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center"
+                    >
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      Live Demo
+                    </a>
+                  </Button>
+                </motion.div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </motion.div>
+  );
+};
 
 export function Projects() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
@@ -469,218 +508,78 @@ export function Projects() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          {projects.map((project, index) => {
-            const isHovered = hoveredProject === project.title;
-            const isTechStackExpanded = expandedTechStack === project.title;
-            const primaryTech = project.techStack.slice(0, 5);
-            const additionalTech = project.techStack.slice(5);
+        <div className="space-y-10">
+          <div className="text-left">
+            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+              Tier 1 — Core Identity
+            </h3>
+            <p className="text-slate-300 max-w-3xl">
+              LLM-powered systems and applied ML platforms with orchestration,
+              reliability, and ML-in-the-loop workflows.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            {tier1Projects.map((project, index) => {
+              const isHovered = hoveredProject === project.title;
+              const isTechStackExpanded = expandedTechStack === project.title;
 
-            return (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                onHoverStart={() => setHoveredProject(project.title)}
-                onHoverEnd={() => setHoveredProject(null)}
-                className="group cursor-pointer h-full flex"
-              >
-                <div className="relative h-full flex-1">
-                  {/* Animated gradient border pulse on hover - positioned outside card */}
-                  {isHovered && (
-                    <motion.div
-                      className="absolute -inset-[2px] rounded-lg bg-gradient-to-r from-primary/40 via-accent/40 to-primary/40 blur-md opacity-60 pointer-events-none"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 0.6, 0.4, 0.6] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      style={{ zIndex: 0 }}
-                    />
-                  )}
-                  <Card
-                    className={`
-                      h-full flex flex-col overflow-hidden relative z-[1]
-                      backdrop-blur-md bg-slate-900/50 border-slate-700/50
-                      transition-all duration-500 ease-out
-                      ${
-                        isHovered
-                          ? "shadow-2xl shadow-primary/20 scale-[1.05] border-primary/40"
-                          : "shadow-lg hover:shadow-xl hover:border-slate-600/50"
-                      }
-                    `}
-                  >
-                    {/* Project Image with Overlay */}
-                    <div className="relative aspect-[16/10] bg-slate-800/50 overflow-hidden">
-                      <img
-                        src={project.image || "/placeholder.svg"}
-                        alt={project.title}
-                        className={`
-                        w-full h-full object-contain brightness-105 contrast-105 transition-all duration-700
-                        ${isHovered ? "scale-105" : "scale-100"}
-                      `}
-                      />
-                      {/* Gradient Overlay - lighter for better image visibility */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              return (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  variant="primary"
+                  isHovered={isHovered}
+                  isTechStackExpanded={isTechStackExpanded}
+                  onHoverStart={() => setHoveredProject(project.title)}
+                  onHoverEnd={() => setHoveredProject(null)}
+                  onToggleTechStack={(e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    setExpandedTechStack(
+                      isTechStackExpanded ? null : project.title
+                    );
+                  }}
+                />
+              );
+            })}
+          </div>
+        </div>
 
-                      {/* Category Badge */}
-                      <div className="absolute top-3 right-3 z-10">
-                        <Badge
-                          variant="secondary"
-                          className="backdrop-blur-md bg-background/80 border-slate-700/50"
-                        >
-                          {project.category}
-                        </Badge>
-                      </div>
+        <div className="mt-14 space-y-8">
+          <div className="text-left">
+            <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+              Tier 2 — Supporting Depth
+            </h3>
+            <p className="text-slate-400 max-w-3xl">
+              Strong supporting projects that add breadth without diluting the
+              core systems narrative.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+            {tier2Projects.map((project, index) => {
+              const isHovered = hoveredProject === project.title;
+              const isTechStackExpanded = expandedTechStack === project.title;
 
-                      {/* Hover overlay with View Project hint */}
-                      <motion.div
-                        className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 pointer-events-none"
-                        initial={{ y: 10 }}
-                        whileHover={{ y: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <div className="text-white text-sm font-medium flex items-center gap-2 drop-shadow-lg">
-                            <ExternalLink className="h-4 w-4" />
-                            View Project Details
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-
-                    <CardHeader className="space-y-2.5 pb-4 pt-4 flex-shrink-0">
-                      <CardTitle className="leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2">
-                        {project.title}
-                      </CardTitle>
-
-                      {/* Tech Stack Badges - Limited to 5 primary, expandable for more */}
-                      <div className="space-y-2">
-                        <div className="flex flex-wrap gap-2">
-                          {primaryTech.map((tech) => (
-                            <EnhancedTechBadge key={tech} tech={tech} />
-                          ))}
-                        </div>
-
-                        {/* Expandable additional technologies */}
-                        {additionalTech.length > 0 && (
-                          <div className="space-y-2">
-                            <motion.button
-                              onClick={(e: React.MouseEvent) => {
-                                e.stopPropagation();
-                                setExpandedTechStack(
-                                  isTechStackExpanded ? null : project.title
-                                );
-                              }}
-                              className="flex items-center gap-1 text-xs text-slate-400 hover:text-primary transition-colors duration-200"
-                            >
-                              {isTechStackExpanded ? (
-                                <>
-                                  <ChevronUp className="h-3 w-3" />
-                                  Show less
-                                </>
-                              ) : (
-                                <>
-                                  <ChevronDown className="h-3 w-3" />+
-                                  {additionalTech.length} more technologies
-                                </>
-                              )}
-                            </motion.button>
-
-                            {isTechStackExpanded && (
-                              <motion.div
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                transition={{ duration: 0.2 }}
-                                className="flex flex-wrap gap-2 pt-1"
-                              >
-                                {additionalTech.map((tech) => (
-                                  <EnhancedTechBadge key={tech} tech={tech} />
-                                ))}
-                              </motion.div>
-                            )}
-                          </div>
-                        )}
-                      </div>
-
-                      <CardDescription className="text-slate-300 leading-6 text-sm line-clamp-3">
-                        {project.description}
-                      </CardDescription>
-                    </CardHeader>
-
-                    {/* Spacer to push buttons to bottom */}
-                    <div className="flex-grow" />
-
-                    <CardContent className="space-y-4 flex-shrink-0">
-                      {/* Action Buttons */}
-                      <div className="flex gap-3 pt-2">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className={
-                            project.liveUrl && project.liveUrl !== "#"
-                              ? "flex-1"
-                              : "w-full"
-                          }
-                        >
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className={`
-                            w-full transition-all duration-300
-                            ${
-                              isHovered
-                                ? "bg-primary text-primary-foreground border-primary shadow-lg shadow-primary/20"
-                                : "hover:bg-primary/10 hover:border-primary/50"
-                            }
-                          `}
-                            asChild
-                          >
-                            <a
-                              href={project.githubUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex items-center justify-center"
-                            >
-                              <Github className="mr-2 h-4 w-4" />
-                              View Code
-                            </a>
-                          </Button>
-                        </motion.div>
-                        {project.liveUrl && project.liveUrl !== "#" && (
-                          <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="flex-1"
-                          >
-                            <Button
-                              size="sm"
-                              className="w-full transition-all duration-300 hover:shadow-lg hover:scale-105"
-                              asChild
-                            >
-                              <a
-                                href={project.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center"
-                              >
-                                <ExternalLink className="mr-2 h-4 w-4" />
-                                Live Demo
-                              </a>
-                            </Button>
-                          </motion.div>
-                        )}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              </motion.div>
-            );
-          })}
+              return (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  index={index}
+                  variant="secondary"
+                  isHovered={isHovered}
+                  isTechStackExpanded={isTechStackExpanded}
+                  onHoverStart={() => setHoveredProject(project.title)}
+                  onHoverEnd={() => setHoveredProject(null)}
+                  onToggleTechStack={(e: React.MouseEvent) => {
+                    e.stopPropagation();
+                    setExpandedTechStack(
+                      isTechStackExpanded ? null : project.title
+                    );
+                  }}
+                />
+              );
+            })}
+          </div>
         </div>
 
         {/* Bottom CTA */}
@@ -694,10 +593,12 @@ export function Projects() {
           <p className="text-slate-300 mb-6">
             Interested in collaborating or learning more about these projects?
           </p>
-          <Button size="lg" className="group">
-            <Brain className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-            View All Projects
-            <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          <Button size="lg" className="group" asChild>
+            <Link href="/projects">
+              <Brain className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
+              View All Projects
+              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </Button>
         </motion.div>
       </div>

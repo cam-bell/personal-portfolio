@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { courseworkProjects } from "@/lib/projects-data";
 
 // Icon mapping function based on project keywords
 const getProjectIcon = (title: string) => {
@@ -52,93 +53,13 @@ const getDomainColor = (domain: string) => {
     Analytics: "bg-blue-500/20 border-blue-500/40 text-blue-400",
     Healthcare: "bg-green-500/20 border-green-500/40 text-green-400",
     Business: "bg-purple-500/20 border-purple-500/40 text-purple-400",
+    CV: "bg-amber-500/20 border-amber-500/40 text-amber-400",
+    NLP: "bg-violet-500/20 border-violet-500/40 text-violet-400",
   };
   return (
     domainColors[domain] || "bg-slate-500/20 border-slate-500/40 text-slate-400"
   );
 };
-
-const additionalProjects = [
-  {
-    title: "Gapminder Global Trends",
-    description:
-      "Analyzed 50+ years of global development data using visual analytics, linear regression, and clustering. Uncovered patterns across GDP, life expectancy, and population trends with animated storytelling.",
-    githubUrl: "https://github.com/cam-bell/gapminder-lifeexp-analysis",
-    colabUrl: null,
-    domain: "Analytics",
-    techStack: [
-      "Pandas",
-      "Seaborn",
-      "plotly",
-      "Regression",
-      "Clustering",
-      "Visual storytelling",
-      "K-Means",
-    ],
-  },
-  {
-    title: "Breast Cancer Detection",
-    description:
-      "Developed a full scikit-learn pipeline to classify breast cancer cases with 94.2% test accuracy. Tuned `k` using cross-validation and visualized error curves for model complexity.",
-    githubUrl:
-      "https://github.com/cam-bell/applied-ml-classification/blob/main/notebooks/breast_cancer_knn.ipynb",
-    colabUrl: null,
-    domain: "Healthcare",
-    techStack: [
-      "KNN",
-      "scikit-learn",
-      "Classification",
-      "Pipelines",
-      "Data Preprocessing",
-    ],
-  },
-  {
-    title: "Diabetes Prediction",
-    description:
-      "Trained and benchmarked XGBoost and Logistic Regression on an imbalanced diabetes dataset. Achieved 75.3% with XGBoost and 81.2% with Logistic Regression, recommending the simpler model.",
-    githubUrl:
-      "https://github.com/cam-bell/applied-ml-classification/blob/main/notebooks/diabetes_xgboost_vs_logreg.ipynb",
-    colabUrl: null,
-    domain: "Healthcare",
-    techStack: [
-      "XGBoost",
-      "Logistic Regression",
-      "Model Comparison",
-      "GridSearchCV",
-    ],
-  },
-  {
-    title: "Used Car Price Prediction",
-    description:
-      "Built a regression model to predict used car prices across 8 countries using 100K listings. Cleaned outliers, engineered features, and tuned tree-based models (Random Forest, Gradient Boosting) to reach R² = 0.867 and MAE ≈ €2,660.",
-    githubUrl:
-      "https://github.com/cam-bell/applied-ml-regression/tree/main/projects/used_car_pricing",
-    colabUrl: null,
-    domain: "Business",
-    techStack: [
-      "Pandas",
-      "scikit-learn",
-      "Random Forest",
-      "Gradient Boosting",
-      "ANOVA",
-    ],
-  },
-  {
-    title: "Customer Churn Prediction",
-    description:
-      "Built a churn prediction model using stratified 5-fold CV, SMOTE, and Gradient Boosting. Achieved 93.2% accuracy and F1 = 0.926, improving baseline accuracy by +8.2 percentage points.",
-    githubUrl: "https://github.com/cam-bell/customer-churn-prediction-trees",
-    colabUrl: null,
-    domain: "Business",
-    techStack: [
-      "scikit-learn",
-      "SMOTE",
-      "Gradient Boosting",
-      "Classification",
-      "Stratified CV",
-    ],
-  },
-];
 
 export function AdditionalProjects() {
   const ref = useRef(null);
@@ -193,7 +114,7 @@ export function AdditionalProjects() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {additionalProjects.map((project, index) => {
+          {courseworkProjects.map((project, index) => {
             const ProjectIcon = getProjectIcon(project.title);
 
             return (
