@@ -217,10 +217,10 @@ const projects = [
   {
     title: "BHSI Risk Classification System",
     description:
-      "Built a risk classification microservice for Berkshire Hathaway Specialty Insurance to automate D&O policy assessments.",
+      "Designed and deployed a production risk classification system for Berkshire Hathaway Specialty Insurance, using multi-agent LLM orchestration and hybrid rule-based logic to automate D&O policy assessments and reduce manual underwriting review from hours to minutes.",
     techStack: [
-      "FastAPI",
       "Python",
+      "FastAPI",
       "BigQuery",
       "Google Cloud",
       "Gemini Pro",
@@ -233,18 +233,17 @@ const projects = [
     category: "AI/ML",
   },
   {
-    title: "Real-Time Fraud Detection - Streaming ML Pipeline",
+    title: "Real-Time Fraud Detection Pipeline",
     description:
-      "End-to-end streaming fraud detection with online feature engineering, real-time scoring, sliding-window metrics, drift detection, alerting, and a Streamlit dashboard for monitoring model performance and operational KPIs.",
+      "Built an end-to-end streaming fraud detection system with real-time feature engineering, online inference, performance monitoring, and drift detection. Includes alerting and an interactive dashboard for tracking model accuracy and operational KPIs over time.",
     techStack: [
       "Python",
-      "Streamlit",
       "scikit-learn",
       "XGBoost",
+      "Streamlit",
       "pandas",
       "NumPy",
       "Plotly",
-      "SciPy",
     ],
     githubUrl: "https://github.com/cam-bell/real-time-fraud-detection",
     liveUrl: "",
@@ -264,7 +263,7 @@ const projects = [
   {
     title: "Deep Research Workflow",
     description:
-      "Built multi-agent research system implementing 5 production agentic patterns (Prompt Chaining, Routing, Parallelization, Orchestrator-Worker, Evaluator-Optimizer) with intelligent query classification routing to 4 adaptive workflows, reducing API costs by 30-50% and improving output quality by 40-60% on complex queries through iterative evaluation. Implemented async parallel search execution via asyncio.as_completed reducing research time by 50% (15s average for simple queries), quality assurance loop with automated revision (max 3 iterations), and email delivery via SendGrid with Jinja2 templating.",
+      "Built a multi-agent research system implementing production agentic patterns including routing, parallel execution, and evaluator–optimizer loops. The system reduces API cost and latency through async orchestration while improving output quality via iterative evaluation.",
     techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
     githubUrl:
       "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
@@ -275,9 +274,10 @@ const projects = [
   {
     title: "Cloud Cost & Sustainability Advisor",
     description:
-      "A web platform that helps small and medium-sized enterprises (SMEs) migrate to the cloud by comparing pricing and carbon emissions across AWS, GCP, and Azure. Includes real-time cloud service data, usage-based calculators, and sustainability insights.",
+      "Built a full-stack decision-support platform to help SMEs plan cloud migrations by forecasting costs, assessing risk, and comparing carbon impact across AWS, GCP, and Azure using hybrid ML models and semantic retrieval.",
     techStack: [
       "React",
+      "TypeScript",
       "Python",
       "FastAPI",
       "PostgreSQL",
@@ -288,6 +288,25 @@ const projects = [
     liveUrl: "#",
     image: "/images/cloud-migration-dashboard.png",
     category: "Full-Stack",
+  },
+  {
+    title: "AI-Powered Crypto Risk Dashboard",
+    description:
+      "Developed a real-time crypto portfolio risk analysis platform combining traditional financial metrics with ML-driven insights. The system aggregates on-chain and market data to assess volatility, concentration risk, and correlations, delivering proactive alerts and AI-generated portfolio reports.",
+    techStack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "TimescaleDB",
+      "Next.js",
+      "LangChain",
+      "OpenAI",
+      "Docker",
+    ],
+    githubUrl: "#",
+    liveUrl: "",
+    image: "/images/crypto.png",
+    category: "AI/ML",
   },
   {
     title: "LangGraph Autonomous Task Agent",
