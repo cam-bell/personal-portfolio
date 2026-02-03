@@ -121,3 +121,24 @@ html {
 .animate-spotlight {
   animation: spotlight 2s ease-out 0.75s forwards;
 }
+
+@keyframes aurora-drift {
+  0% {
+    transform: translateX(-6%) translateY(-2%) rotate(0deg);
+  }
+  50% {
+    transform: translateX(6%) translateY(2%) rotate(6deg);
+  }
+  100% {
+    transform: translateX(-6%) translateY(-2%) rotate(0deg);
+  }
+}
+
+.animate-aurora {
+  animation: aurora-drift 18s ease-in-out infinite;
+}
+
+.hero-noise {
+  background-image: url("data:image/svg+xml,%3Csvg width='180' height='180' viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
