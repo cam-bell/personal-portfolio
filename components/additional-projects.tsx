@@ -73,6 +73,8 @@ export function AdditionalProjects() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="absolute inset-0 bg-aurora-soft opacity-70 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
 
@@ -97,7 +99,7 @@ export function AdditionalProjects() {
               </span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground via-foreground to-foreground/80 bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-aurora mb-6">
               Coursework & Experiments
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-7">
@@ -137,7 +139,7 @@ export function AdditionalProjects() {
                 }}
                 className="group flex"
               >
-                <Card className="h-full bg-slate-900/50 backdrop-blur-sm border-slate-700/50 hover:border-primary/30 transition-all duration-500 flex flex-col relative overflow-hidden group-hover:shadow-2xl group-hover:shadow-primary/10">
+                <Card className="h-full glass-card backdrop-blur-xl border border-white/10 hover:border-primary/30 transition-all duration-500 flex flex-col relative overflow-hidden group-hover:shadow-2xl group-hover:shadow-primary/10">
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 

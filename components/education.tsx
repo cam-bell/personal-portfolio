@@ -67,6 +67,8 @@ export function Education() {
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
       <motion.div
         className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
         initial={{ opacity: 0 }}
@@ -82,7 +84,7 @@ export function Education() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-aurora">
             Education
           </h2>
           <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
@@ -102,7 +104,7 @@ export function Education() {
               transition={{ duration: 0.6, delay: index * 0.2 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-slate-900/50 backdrop-blur-sm border-slate-700/50 hover:border-primary/30 transition-all duration-500">
+              <Card className="glass-card backdrop-blur-xl border border-white/10 hover:border-primary/30 transition-all duration-500 shadow-glass">
                 <CardHeader className="pb-1.5">
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">

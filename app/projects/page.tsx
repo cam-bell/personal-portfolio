@@ -33,13 +33,15 @@ export default function ProjectsPage() {
     <main className="min-h-screen bg-slate-950">
       <section className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+        <div className="absolute inset-0 bg-aurora opacity-70 pointer-events-none" />
+        <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Layers className="h-4 w-4" />
               Projects Archive
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-6 leading-normal pb-1">
+            <h1 className="text-4xl md:text-5xl font-bold text-aurora mb-6 leading-normal pb-1">
               Applied AI Systems
             </h1>
             <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-7">
@@ -58,8 +60,8 @@ export default function ProjectsPage() {
                 onClick={() => setActiveFilter(filter)}
                 className={
                   activeFilter === filter
-                    ? "shadow-lg shadow-primary/20"
-                    : "border-slate-700/60 text-slate-300 hover:text-white"
+                    ? "shadow-lg shadow-primary/30"
+                    : "border-white/10 text-slate-300 hover:text-white hover:border-white/30"
                 }
               >
                 {filter}
@@ -71,7 +73,7 @@ export default function ProjectsPage() {
             {filteredProjects.map((project) => (
               <Card
                 key={`${project.title}-${project.tier ?? "misc"}`}
-                className="h-full flex flex-col overflow-hidden backdrop-blur-md bg-slate-900/60 border-slate-700/50"
+                className="h-full flex flex-col overflow-hidden glass-card backdrop-blur-xl border border-white/10 shadow-glass"
               >
                 <div className="relative aspect-[16/10] bg-slate-900/60 overflow-hidden rounded-lg">
                   <img

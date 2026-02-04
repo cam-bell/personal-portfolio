@@ -221,36 +221,25 @@ export function Hero() {
               Cameron Bell
             </motion.h1>
 
-            <motion.h2
-              className="text-xl sm:text-2xl lg:text-3xl text-slate-200/90 mb-8 font-sans font-medium leading-relaxed"
+            <motion.div
+              className="text-slate-200/90 mb-8 font-sans leading-relaxed"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <span className="inline-block font-mono text-blue-200">
-                AI Engineer
-              </span>
-              <motion.span
-                className="mx-2 text-blue-300 font-mono"
-                animate={
-                  shouldReduceMotion ? { opacity: 1 } : { opacity: [0, 1, 0] }
-                }
-                transition={
-                  shouldReduceMotion
-                    ? undefined
-                    : { duration: 1.6, repeat: Infinity }
-                }
-              >
-                |
-              </motion.span>
-              <span className="inline-block">
-                Agentic AI, LLM Orchestration & Machine Learning
-              </span>
-              <br />
-              <span className="text-lg sm:text-xl text-blue-100/80 font-sans font-light">
+              <div className="flex flex-wrap items-center gap-3 text-xl sm:text-2xl lg:text-3xl font-medium">
+                <span className="inline-flex items-center rounded-full border border-cyan-200/20 bg-cyan-500/10 px-4 py-1 text-sm sm:text-base font-mono uppercase tracking-[0.28em] text-cyan-100/90">
+                  AI Engineer
+                </span>
+                <span className="inline-flex h-2 w-2 rounded-full bg-cyan-300/70" />
+                <span className="text-slate-100/85 tracking-wide">
+                  Agentic AI · LLM Orchestration · ML
+                </span>
+              </div>
+              <div className="mt-3 text-base sm:text-lg text-blue-100/70 font-sans font-light">
                 MSc Computer Science & Business Technology
-              </span>
-            </motion.h2>
+              </div>
+            </motion.div>
 
             <motion.div
               className="max-w-3xl lg:max-w-none mb-10 font-sans text-slate-200/85"

@@ -145,9 +145,11 @@ export function SkillsMockupA() {
   return (
     <section
       id="skills"
-      className="py-20 relative bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950"
+      className="py-20 relative bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950 overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -155,7 +157,7 @@ export function SkillsMockupA() {
           viewport={{ once: true }}
         >
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-primary bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-aurora">
               Skills & Technologies
             </h2>
             <p className="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
@@ -234,7 +236,7 @@ export function SkillsMockupA() {
                 transition={{ duration: 0.5, delay: categoryIndex * 0.1 }}
                 viewport={{ once: true }}
               >
-                <Card className="h-full bg-slate-900/50 backdrop-blur-sm border-slate-700/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 group">
+                <Card className="h-full glass-card backdrop-blur-xl border border-white/10 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/10 group">
                   <CardHeader className="pb-3">
                     <CardTitle className="flex items-center gap-2 text-lg text-card-foreground group-hover:text-primary transition-colors duration-300">
                       <category.icon className="h-5 w-5 text-primary group-hover:scale-110 transition-transform duration-300" />

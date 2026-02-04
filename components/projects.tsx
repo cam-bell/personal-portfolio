@@ -270,14 +270,14 @@ const ProjectCard = ({
         <Card
           className={`
             h-full flex flex-col overflow-hidden relative z-[1]
-            backdrop-blur-md bg-slate-900/50 border-slate-700/50
+            backdrop-blur-xl glass-card border border-white/10 shadow-glass
             transition-all duration-500 ease-out
             ${
               isHovered
                 ? isSecondary
                   ? "shadow-xl shadow-primary/10 scale-[1.02] border-primary/30"
                   : "shadow-2xl shadow-primary/20 scale-[1.05] border-primary/40"
-                : "shadow-lg hover:shadow-xl hover:border-slate-600/50"
+                : "hover:shadow-xl hover:border-slate-600/50"
             }
           `}
         >
@@ -470,6 +470,8 @@ export function Projects() {
     >
       {/* Parallax background layers */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
+      <div className="absolute inset-0 bg-aurora opacity-70 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
       <motion.div
         className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
         initial={{ y: 0 }}
@@ -510,7 +512,7 @@ export function Projects() {
 
         <div className="space-y-10">
           <div className="text-left">
-            <h3 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+            <h3 className="text-2xl md:text-3xl font-semibold text-aurora mb-3">
               Tier 1 — Core Identity
             </h3>
             <p className="text-slate-300 max-w-3xl">
@@ -547,7 +549,7 @@ export function Projects() {
 
         <div className="mt-14 space-y-8">
           <div className="text-left">
-            <h3 className="text-xl md:text-2xl font-semibold text-white mb-2">
+            <h3 className="text-xl md:text-2xl font-semibold text-aurora mb-2">
               Tier 2 — Supporting Depth
             </h3>
             <p className="text-slate-400 max-w-3xl">

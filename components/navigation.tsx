@@ -4,12 +4,16 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
   const { scrollYProgress } = useScroll();
+  const pathname = usePathname();
+  const router = useRouter();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -47,17 +51,27 @@ export function Navigation() {
   const navItems = [
     { href: "#home", label: "Home" },
     { href: "#skills", label: "Skills" },
-    { href: "#projects", label: "Projects" },
+    { href: "#projects", label: "Projects", route: "/projects" },
     { href: "#additional-projects", label: "Coursework" },
     { href: "#experience", label: "Experience" },
     { href: "#education", label: "Education" },
     { href: "#contact", label: "Contact" },
   ];
 
-  const scrollToSection = (href: string) => {
+  const scrollToSection = (href: string, route?: string) => {
+    if (route && pathname === "/projects") {
+      setIsOpen(false);
+      return;
+    }
+
+    if (pathname !== "/") {
+      router.push(`/${href}`);
+      setIsOpen(false);
+      return;
+    }
+
     const element = document.querySelector(href);
     if (element) {
-      // Account for fixed navbar height
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - 80;
       window.scrollTo({
@@ -71,22 +85,30 @@ export function Navigation() {
   if (!mounted) return null;
 
   return (
-    <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-md border-b z-50">
+    <nav className="fixed top-0 w-full bg-background/70 backdrop-blur-xl border-b border-white/10 z-50 shadow-aurora">
       {/* Scroll Progress Indicator */}
       <motion.div className="h-1 bg-primary origin-left" style={{ scaleX }} />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
-          <div className="text-xl font-bold">Cameron Bell</div>
+          <Link
+            href="/"
+            className="text-xl font-bold text-aurora hover:text-white transition-colors"
+          >
+            Cameron Bell
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => {
-              const isActive = activeSection === item.href;
+              const isActive =
+                pathname === "/projects"
+                  ? item.label === "Projects"
+                  : activeSection === item.href;
               return (
                 <button
                   key={item.href}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => scrollToSection(item.href, item.route)}
                   className={`
                     relative text-sm font-medium transition-colors duration-200
                     ${
@@ -148,11 +170,14 @@ export function Navigation() {
             >
               <div className="py-4 border-t">
                 {navItems.map((item, index) => {
-                  const isActive = activeSection === item.href;
+                  const isActive =
+                    pathname === "/projects"
+                      ? item.label === "Projects"
+                      : activeSection === item.href;
                   return (
                     <motion.button
                       key={item.href}
-                      onClick={() => scrollToSection(item.href)}
+                      onClick={() => scrollToSection(item.href, item.route)}
                       initial={{ x: -20, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
                       exit={{ x: -20, opacity: 0 }}

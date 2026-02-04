@@ -91,16 +91,18 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/90 to-slate-950"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/90 to-slate-950 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-aurora">
             Work & Experience
           </h2>
           <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
@@ -133,7 +135,7 @@ export function Experience() {
                     index % 2 === 0 ? "md:pr-8" : "md:pl-8"
                   } ml-12 md:ml-0`}
                 >
-                  <Card>
+                  <Card className="glass-card border border-white/10 shadow-glass backdrop-blur-xl">
                     <CardHeader>
                       <CardTitle>{exp.title}</CardTitle>
                       <CardDescription className="text-base md:text-lg font-medium text-primary">

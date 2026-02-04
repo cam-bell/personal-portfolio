@@ -31,9 +31,11 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-slate-950 border-t border-slate-800">
+    <footer className="bg-slate-950 border-t border-white/10 relative overflow-hidden">
+      <div className="absolute inset-0 bg-aurora-soft opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-50 pointer-events-none" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col items-center space-y-6">
+        <div className="flex flex-col items-center space-y-6 relative z-10">
           {/* Social Links */}
           <div className="flex items-center gap-4">
             <Button

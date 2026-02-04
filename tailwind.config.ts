@@ -74,6 +74,14 @@ const config: Config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      boxShadow: {
+        aurora: "0 0 40px rgba(99, 102, 241, 0.25)",
+        glass: "0 24px 60px rgba(15, 23, 42, 0.45)",
+      },
+      backgroundImage: {
+        aurora:
+          "radial-gradient(circle at 20% 20%, rgba(99,102,241,0.25), transparent 55%), radial-gradient(circle at 80% 0%, rgba(34,197,94,0.18), transparent 45%), radial-gradient(circle at 50% 80%, rgba(56,189,248,0.2), transparent 50%)",
+      },
       keyframes: {
         "accordion-down": {
           from: {

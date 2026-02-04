@@ -69,9 +69,11 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950"
+      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -80,7 +82,9 @@ export function Contact() {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <MessageSquare className="h-8 w-8 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold">Get In Touch</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-aurora">
+              Get In Touch
+            </h2>
           </div>
           <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
             Have a project in mind or just want to chat about technology? I'd
@@ -95,7 +99,7 @@ export function Contact() {
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <Card>
+            <Card className="glass-card border border-white/10 shadow-glass backdrop-blur-xl">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Mail className="h-5 w-5" />
