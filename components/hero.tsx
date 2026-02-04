@@ -46,9 +46,18 @@ const particles = [
 ];
 
 const statChips = [
-  "6+ AI/ML systems built",
-  "Hours → minutes Decision time automation",
-  "30-50% LLM cost reduction via intelligent agent routing",
+  {
+    badge: "6+",
+    text: "AI/ML systems built",
+  },
+  {
+    badge: "Hours→Minutes",
+    text: "Decision time automation",
+  },
+  {
+    badge: "30–50%",
+    text: "LLM cost reduction via intelligent agent routing",
+  },
 ];
 
 export function Hero() {
@@ -460,23 +469,20 @@ export function Hero() {
                 </div>
 
                 <div className="grid w-full gap-3">
-                  {statChips.map((chip) => {
-                    const [emphasis, ...rest] = chip.split(" ");
-                    return (
-                      <motion.div
-                        key={chip}
-                        className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm text-slate-100/85 shadow-[0_12px_36px_rgba(15,23,42,0.35)]"
-                        whileHover={
-                          shouldReduceMotion ? undefined : { scale: 1.02 }
-                        }
-                      >
-                        <span className="mr-2 inline-flex items-center rounded-full border border-cyan-200/30 bg-cyan-500/10 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-cyan-100">
-                          {emphasis}
-                        </span>
-                        <span className="align-middle">{rest.join(" ")}</span>
-                      </motion.div>
-                    );
-                  })}
+                  {statChips.map((chip) => (
+                    <motion.div
+                      key={chip.badge}
+                      className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left text-sm text-slate-100/85 shadow-[0_12px_36px_rgba(15,23,42,0.35)]"
+                      whileHover={
+                        shouldReduceMotion ? undefined : { scale: 1.02 }
+                      }
+                    >
+                      <span className="mr-2 inline-flex items-center rounded-full border border-cyan-200/30 bg-cyan-500/10 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-cyan-100">
+                        {chip.badge}
+                      </span>
+                      <span className="align-middle">{chip.text}</span>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </motion.div>
