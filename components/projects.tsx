@@ -221,18 +221,22 @@ const ProjectCard = ({
   variant,
   isHovered,
   isTechStackExpanded,
+  isDescriptionExpanded,
   onHoverStart,
   onHoverEnd,
   onToggleTechStack,
+  onToggleDescription,
 }: {
   project: (typeof tier1Projects)[number];
   index: number;
   variant: "primary" | "secondary";
   isHovered: boolean;
   isTechStackExpanded: boolean;
+  isDescriptionExpanded: boolean;
   onHoverStart: () => void;
   onHoverEnd: () => void;
   onToggleTechStack: (e: React.MouseEvent) => void;
+  onToggleDescription: () => void;
 }) => {
   const primaryTech = project.techStack.slice(0, 5);
   const additionalTech = project.techStack.slice(5);
@@ -283,12 +287,14 @@ const ProjectCard = ({
         >
           <div
             className={`relative ${
-              isSecondary ? "aspect-[16/9]" : "aspect-[16/10]"
+              isSecondary ? "aspect-[16/8]" : "aspect-[16/10]"
             } bg-slate-900/60 overflow-hidden rounded-lg`}
           >
             <img
               src={project.image || "/placeholder.svg"}
               alt={project.title}
+              loading={isSecondary ? "lazy" : "eager"}
+              decoding="async"
               className="w-full h-full object-contain object-center brightness-105 contrast-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -386,9 +392,29 @@ const ProjectCard = ({
               )}
             </div>
 
-            <CardDescription className="text-slate-300 leading-6 text-sm line-clamp-3">
-              {project.description}
-            </CardDescription>
+            <motion.div layout>
+              <CardDescription
+                className={`text-slate-300 leading-6 text-sm ${
+                  isDescriptionExpanded
+                    ? ""
+                    : isSecondary
+                      ? "line-clamp-3"
+                      : "line-clamp-4"
+                }`}
+              >
+                {project.description}
+              </CardDescription>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleDescription();
+                }}
+                className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
+              >
+                {isDescriptionExpanded ? "Show less" : "Read more"}
+              </button>
+            </motion.div>
           </CardHeader>
 
           <div className="flex-grow" />
@@ -462,6 +488,9 @@ export function Projects() {
   const [expandedTechStack, setExpandedTechStack] = useState<string | null>(
     null
   );
+  const [expandedDescriptions, setExpandedDescriptions] = useState<
+    Record<string, boolean>
+  >({});
 
   return (
     <section
@@ -513,7 +542,7 @@ export function Projects() {
         <div className="space-y-10">
           <div className="text-left">
             <h3 className="text-2xl md:text-3xl font-semibold text-aurora mb-3">
-              Tier 1 — Core Identity
+              Featured Projects — Pillar Work
             </h3>
             <p className="text-slate-300 max-w-3xl">
               LLM-powered systems and applied ML platforms with orchestration,
@@ -533,6 +562,9 @@ export function Projects() {
                   variant="primary"
                   isHovered={isHovered}
                   isTechStackExpanded={isTechStackExpanded}
+                  isDescriptionExpanded={
+                    !!expandedDescriptions[project.title]
+                  }
                   onHoverStart={() => setHoveredProject(project.title)}
                   onHoverEnd={() => setHoveredProject(null)}
                   onToggleTechStack={(e: React.MouseEvent) => {
@@ -541,16 +573,39 @@ export function Projects() {
                       isTechStackExpanded ? null : project.title
                     );
                   }}
+                  onToggleDescription={() =>
+                    setExpandedDescriptions((prev) => ({
+                      ...prev,
+                      [project.title]: !prev[project.title],
+                    }))
+                  }
                 />
               );
             })}
           </div>
         </div>
 
-        <div className="mt-14 space-y-8">
+        <div className="mt-10 flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 shadow-glass">
+          <div>
+            <p className="text-sm uppercase tracking-[0.2em] text-slate-400">
+              Want the full archive?
+            </p>
+            <p className="text-lg font-semibold text-white">
+              Browse every project, with filters and full write-ups.
+            </p>
+          </div>
+          <Button size="sm" className="group" asChild>
+            <Link href="/projects">
+              View all projects
+              <ExternalLink className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
+        </div>
+
+        <div className="mt-12 space-y-8">
           <div className="text-left">
             <h3 className="text-xl md:text-2xl font-semibold text-aurora mb-2">
-              Tier 2 — Supporting Depth
+              More Projects — Supporting Depth
             </h3>
             <p className="text-slate-400 max-w-3xl">
               Strong supporting projects that add breadth without diluting the
@@ -570,6 +625,9 @@ export function Projects() {
                   variant="secondary"
                   isHovered={isHovered}
                   isTechStackExpanded={isTechStackExpanded}
+                  isDescriptionExpanded={
+                    !!expandedDescriptions[project.title]
+                  }
                   onHoverStart={() => setHoveredProject(project.title)}
                   onHoverEnd={() => setHoveredProject(null)}
                   onToggleTechStack={(e: React.MouseEvent) => {
@@ -578,6 +636,12 @@ export function Projects() {
                       isTechStackExpanded ? null : project.title
                     );
                   }}
+                  onToggleDescription={() =>
+                    setExpandedDescriptions((prev) => ({
+                      ...prev,
+                      [project.title]: !prev[project.title],
+                    }))
+                  }
                 />
               );
             })}

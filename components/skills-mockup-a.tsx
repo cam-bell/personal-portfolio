@@ -145,7 +145,7 @@ export function SkillsMockupA() {
   return (
     <section
       id="skills"
-      className="py-20 relative bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950 overflow-hidden"
+      className="py-14 relative bg-gradient-to-br from-slate-950 via-blue-950/20 to-slate-950 overflow-hidden"
     >
       <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
       <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />

@@ -21,7 +21,7 @@ import {
   Users,
 } from "lucide-react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { courseworkProjects } from "@/lib/projects-data";
 
 // Icon mapping function based on project keywords
@@ -64,12 +64,19 @@ const getDomainColor = (domain: string) => {
 export function AdditionalProjects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [showAll, setShowAll] = useState(false);
+  const [expandedDescriptions, setExpandedDescriptions] = useState<
+    Record<string, boolean>
+  >({});
+  const visibleProjects = showAll
+    ? courseworkProjects
+    : courseworkProjects.slice(0, 6);
 
   return (
     <section
       ref={ref}
       id="additional-projects"
-      className="py-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden"
+      className="py-14 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
@@ -116,7 +123,7 @@ export function AdditionalProjects() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {courseworkProjects.map((project, index) => {
+          {visibleProjects.map((project, index) => {
             const ProjectIcon = getProjectIcon(project.title);
 
             return (
@@ -190,9 +197,32 @@ export function AdditionalProjects() {
                       <CardTitle className="text-lg leading-tight font-semibold group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2">
                         {project.title}
                       </CardTitle>
-                      <CardDescription className="text-sm leading-6 text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300 line-clamp-4">
-                        {project.description}
-                      </CardDescription>
+                      <motion.div layout>
+                        <CardDescription
+                          className={`text-sm leading-6 text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300 ${
+                            expandedDescriptions[project.title]
+                              ? ""
+                              : "line-clamp-3"
+                          }`}
+                        >
+                          {project.description}
+                        </CardDescription>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setExpandedDescriptions((prev) => ({
+                              ...prev,
+                              [project.title]: !prev[project.title],
+                            }));
+                          }}
+                          className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
+                        >
+                          {expandedDescriptions[project.title]
+                            ? "Show less"
+                            : "Read more"}
+                        </button>
+                      </motion.div>
                     </CardHeader>
 
                     <CardContent className="pt-0 flex flex-col flex-grow">
@@ -290,6 +320,16 @@ export function AdditionalProjects() {
               </motion.div>
             );
           })}
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Button
+            variant="outline"
+            onClick={() => setShowAll((prev) => !prev)}
+            className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+          >
+            {showAll ? "Show fewer experiments" : "Browse all experiments"}
+          </Button>
         </div>
       </div>
     </section>

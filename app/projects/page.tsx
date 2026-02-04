@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Layers } from "lucide-react";
+import { motion } from "framer-motion";
 
 const filters = [
   "All",
@@ -19,6 +20,9 @@ const filters = [
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [expandedDescriptions, setExpandedDescriptions] = useState<
+    Record<string, boolean>
+  >({});
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") {
@@ -79,6 +83,8 @@ export default function ProjectsPage() {
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain object-center brightness-105 contrast-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
@@ -121,9 +127,31 @@ export default function ProjectsPage() {
                   <CardTitle className="text-lg leading-tight">
                     {project.title}
                   </CardTitle>
-                  <CardDescription className="text-sm leading-6 text-slate-300 line-clamp-3">
-                    {project.description}
-                  </CardDescription>
+                  <motion.div layout>
+                    <CardDescription
+                      className={`text-sm leading-6 text-slate-300 ${
+                        expandedDescriptions[project.title]
+                          ? ""
+                          : "line-clamp-3"
+                      }`}
+                    >
+                      {project.description}
+                    </CardDescription>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setExpandedDescriptions((prev) => ({
+                          ...prev,
+                          [project.title]: !prev[project.title],
+                        }))
+                      }
+                      className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
+                    >
+                      {expandedDescriptions[project.title]
+                        ? "Show less"
+                        : "View details"}
+                    </button>
+                  </motion.div>
                 </CardHeader>
 
                 <CardContent className="pt-0 flex flex-col flex-grow">
