@@ -77,26 +77,26 @@ export const tier1Projects: Project[] = [
     tier: "Tier 1",
     tags: ["LLM/Agentic"],
   },
-  {
-    title: "Discharge Summary Copilot",
-    preview:
-      "LLM copilot drafting structured discharge notes with guardrails and reviewer feedback.",
-    description:
-      "Designed an LLM copilot that drafts structured discharge summaries with retrieval, guardrails, and evaluator feedback. Emphasizes reliability, auditability, and ML-in-the-loop review for clinical workflows.",
-    techStack: [
-      "Python",
-      "LLM Orchestration",
-      "Evaluation",
-      "FastAPI",
-      "Observability",
-    ],
-    githubUrl: "#",
-    liveUrl: "",
-    image: "/placeholder.svg",
-    category: "AI/ML",
-    tier: "Tier 1",
-    tags: ["LLM/Agentic", "Applied ML"],
-  },
+  // {
+  //   title: "Discharge Summary Copilot",
+  //   preview:
+  //     "LLM copilot drafting structured discharge notes with guardrails and reviewer feedback.",
+  //   description:
+  //     "Designed an LLM copilot that drafts structured discharge summaries with retrieval, guardrails, and evaluator feedback. Emphasizes reliability, auditability, and ML-in-the-loop review for clinical workflows.",
+  //   techStack: [
+  //     "Python",
+  //     "LLM Orchestration",
+  //     "Evaluation",
+  //     "FastAPI",
+  //     "Observability",
+  //   ],
+  //   githubUrl: "#",
+  //   liveUrl: "",
+  //   image: "/placeholder.svg",
+  //   category: "AI/ML",
+  //   tier: "Tier 1",
+  //   tags: ["LLM/Agentic", "Applied ML"],
+  // },
   {
     title: "Deep Research Workflow",
     preview:
