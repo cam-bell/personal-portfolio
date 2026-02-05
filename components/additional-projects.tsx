@@ -82,13 +82,10 @@ const getSecondaryBadgeColor = (domain: string) => {
 export function AdditionalProjects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [showAll, setShowAll] = useState(false);
   const [activeProject, setActiveProject] = useState(
     null as (typeof courseworkProjects)[number] | null,
   );
-  const visibleProjects = showAll
-    ? courseworkProjects
-    : courseworkProjects.slice(0, 6);
+  const visibleProjects = courseworkProjects;
 
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const { canPrev, canNext, scrollNext, scrollPrev, onKeyDown } =
@@ -389,16 +386,6 @@ export function AdditionalProjects() {
           >
             <ChevronRight className="h-4 w-4" />
           </button>
-        </div>
-
-        <div className="mt-8 flex justify-center">
-          <Button
-            variant="outline"
-            onClick={() => setShowAll((prev) => !prev)}
-            className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
-          >
-            {showAll ? "Show fewer experiments" : "Browse all experiments"}
-          </Button>
         </div>
       </div>
 
