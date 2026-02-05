@@ -263,9 +263,9 @@ export function AdditionalProjects() {
                         </button>
                       </CardHeader>
 
-                      <CardContent className="pt-0 flex flex-col flex-grow">
-                        {/* Tech Stack Badges - Bottom aligned, just above buttons */}
-                        <div className="flex flex-wrap gap-2 mb-3">
+                      <CardContent className="pt-0 flex flex-col flex-grow justify-between">
+                        {/* Tech Stack Badges - Top-aligned and centered */}
+                        <div className="flex flex-wrap justify-center items-center gap-2 mb-3 min-h-[56px]">
                           {project.techStack?.map((tech, techIndex) => (
                             <motion.div
                               key={tech}
@@ -291,7 +291,7 @@ export function AdditionalProjects() {
                         </div>
 
                         {/* Action Buttons - Always at bottom */}
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 mt-auto">
                           {project.githubUrl && project.githubUrl !== "#" ? (
                             <Button
                               variant="outline"

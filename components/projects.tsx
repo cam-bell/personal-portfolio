@@ -343,8 +343,8 @@ const ProjectCard = ({
           >
             <CardTitle
               className={`leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2 ${
-                isSecondary ? "text-base" : "text-lg"
-              }`}
+                !isSecondary ? "text-center min-h-[56px]" : ""
+              } ${isSecondary ? "text-base" : "text-lg"}`}
             >
               {project.title}
             </CardTitle>
@@ -392,7 +392,9 @@ const ProjectCard = ({
             </div>
 
             <motion.div layout>
-              <CardDescription className="text-slate-300 leading-6 text-sm line-clamp-2">
+              <CardDescription className={`text-slate-300 leading-6 text-sm line-clamp-2 ${
+                !isSecondary ? "min-h-[48px]" : ""
+              }`}>
                 {project.preview ?? project.description}
               </CardDescription>
               <button

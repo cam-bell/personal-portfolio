@@ -231,7 +231,7 @@ export const tier2Projects: Project[] = [
 
 export const courseworkProjects: Project[] = [
   {
-    title: "Customer Churn Prediction",
+    title: "Customer Churn Modelling",
     preview:
       "Churn model using SMOTE + gradient boosting with strong F1 performance.",
     primaryBadge: "Classification",
@@ -255,7 +255,7 @@ export const courseworkProjects: Project[] = [
     tags: ["Applied ML"],
   },
   {
-    title: "Breast Cancer Detection",
+    title: "Breast Cancer Classification",
     preview:
       "Scikit-learn pipeline for breast cancer classification with tuned KNN.",
     primaryBadge: "Classification",
@@ -280,7 +280,7 @@ export const courseworkProjects: Project[] = [
     tags: ["Applied ML"],
   },
   {
-    title: "Diabetes Prediction",
+    title: "Diabetes Risk Classification",
     preview:
       "Model comparison on imbalanced data to select a simpler, robust classifier.",
     primaryBadge: "Classification",
@@ -329,7 +329,7 @@ export const courseworkProjects: Project[] = [
     tags: ["Applied ML"],
   },
   {
-    title: "Multilingual Review Analyzer",
+    title: "Multilingual Sentiment & Keyword Analyzer",
     preview:
       "Multilingual sentiment + keyword extraction with transformer-based NLP.",
     primaryBadge: "NLP",
@@ -344,7 +344,6 @@ export const courseworkProjects: Project[] = [
       "LaBSE",
       "VADER",
       "BERT",
-      "RoBERTa",
     ],
     githubUrl: "https://github.com/felixhommels/reviews-group-nlp",
     liveUrl: "#",
