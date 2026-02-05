@@ -20,9 +20,9 @@ const filters = [
 
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
-  const [expandedDescriptions, setExpandedDescriptions] = useState<
-    Record<string, boolean>
-  >({});
+  const [activeProject, setActiveProject] = useState(
+    null as (typeof allProjects)[number] | null
+  );
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === "All") {
@@ -79,7 +79,7 @@ export default function ProjectsPage() {
                 key={`${project.title}-${project.tier ?? "misc"}`}
                 className="h-full flex flex-col overflow-hidden glass-card backdrop-blur-xl border border-white/10 shadow-glass"
               >
-                <div className="relative aspect-[16/10] bg-slate-900/60 overflow-hidden rounded-lg">
+                <div className="relative aspect-[16/8] bg-slate-900/60 overflow-hidden rounded-lg">
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
@@ -123,39 +123,24 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <CardHeader className="pb-3 pt-4 flex-shrink-0">
-                  <CardTitle className="text-lg leading-tight">
+                <CardHeader className="pb-2 pt-3 flex-shrink-0">
+                  <CardTitle className="text-base leading-tight">
                     {project.title}
                   </CardTitle>
-                  <motion.div layout>
-                    <CardDescription
-                      className={`text-sm leading-6 text-slate-300 ${
-                        expandedDescriptions[project.title]
-                          ? ""
-                          : "line-clamp-3"
-                      }`}
-                    >
-                      {project.description}
-                    </CardDescription>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setExpandedDescriptions((prev) => ({
-                          ...prev,
-                          [project.title]: !prev[project.title],
-                        }))
-                      }
-                      className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
-                    >
-                      {expandedDescriptions[project.title]
-                        ? "Show less"
-                        : "View details"}
-                    </button>
-                  </motion.div>
+                  <CardDescription className="text-sm leading-6 text-slate-300 line-clamp-2">
+                    {project.preview ?? project.description}
+                  </CardDescription>
+                  <button
+                    type="button"
+                    onClick={() => setActiveProject(project)}
+                    className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
+                  >
+                    View details
+                  </button>
                 </CardHeader>
 
                 <CardContent className="pt-0 flex flex-col flex-grow">
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-2 mb-3">
                     {project.techStack.map((tech) => (
                       <Badge
                         key={tech}
@@ -172,7 +157,7 @@ export default function ProjectsPage() {
                       <Button
                         variant="outline"
                         size="sm"
-                        className="flex-1 text-xs"
+                        className="flex-1 text-[11px]"
                         asChild
                       >
                         <a
@@ -198,7 +183,7 @@ export default function ProjectsPage() {
                     )}
 
                     {project.liveUrl && project.liveUrl !== "#" ? (
-                      <Button size="sm" className="flex-1 text-xs" asChild>
+                      <Button size="sm" className="flex-1 text-[11px]" asChild>
                         <a
                           href={project.liveUrl}
                           target="_blank"
@@ -217,6 +202,120 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
+
+      {activeProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            type="button"
+            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+            aria-label="Close project details"
+            onClick={() => setActiveProject(null)}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="relative w-full max-w-3xl glass-card border border-white/10 shadow-glass rounded-2xl p-6"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <Badge
+                    variant="secondary"
+                    className="backdrop-blur-md bg-background/80 border-slate-700/50"
+                  >
+                    {activeProject.category}
+                  </Badge>
+                  {activeProject.tier && (
+                    <Badge
+                      variant="outline"
+                      className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
+                    >
+                      {activeProject.tier}
+                    </Badge>
+                  )}
+                  {activeProject.label && (
+                    <Badge
+                      variant="outline"
+                      className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
+                    >
+                      {activeProject.label}
+                    </Badge>
+                  )}
+                  {activeProject.status && (
+                    <Badge
+                      variant="outline"
+                      className="backdrop-blur-md bg-background/70 border-amber-400/40 text-amber-200 text-xs px-2 py-0.5"
+                    >
+                      {activeProject.status}
+                    </Badge>
+                  )}
+                </div>
+                <h3 className="text-2xl font-semibold text-white mb-2">
+                  {activeProject.title}
+                </h3>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setActiveProject(null)}
+                className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+              >
+                Close
+              </Button>
+            </div>
+
+            <p className="text-slate-300 leading-7 mt-2">
+              {activeProject.description}
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {activeProject.techStack.map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="text-xs px-2 py-1 bg-primary/5 border-primary/20 text-primary"
+                >
+                  {tech}
+                </Badge>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {activeProject.githubUrl && activeProject.githubUrl !== "#" ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+                  asChild
+                >
+                  <a
+                    href={activeProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="mr-2 h-4 w-4" />
+                    View Code
+                  </a>
+                </Button>
+              ) : null}
+              {activeProject.liveUrl && activeProject.liveUrl !== "#" ? (
+                <Button size="sm" asChild>
+                  <a
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Live Demo
+                  </a>
+                </Button>
+              ) : null}
+            </div>
+          </motion.div>
+        </div>
+      )}
     </main>
   );
 }

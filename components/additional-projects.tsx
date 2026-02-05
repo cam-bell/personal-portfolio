@@ -65,9 +65,9 @@ export function AdditionalProjects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [showAll, setShowAll] = useState(false);
-  const [expandedDescriptions, setExpandedDescriptions] = useState<
-    Record<string, boolean>
-  >({});
+  const [activeProject, setActiveProject] = useState(
+    null as (typeof courseworkProjects)[number] | null,
+  );
   const visibleProjects = showAll
     ? courseworkProjects
     : courseworkProjects.slice(0, 6);
@@ -107,7 +107,7 @@ export function AdditionalProjects() {
             </motion.div>
 
             <h2 className="text-4xl md:text-5xl font-bold text-aurora mb-6">
-              Coursework & Experiments
+              Applied Machine Learning Case Studies
             </h2>
             <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-7">
               A curated collection of smaller projects, labs, and coursework
@@ -156,7 +156,7 @@ export function AdditionalProjects() {
 
                   <div className="relative z-10 flex flex-col h-full">
                     {/* Icon Header with Pattern Background */}
-                    <div className="relative h-24 overflow-hidden">
+                    <div className="relative h-20 overflow-hidden">
                       {/* Pattern Background */}
                       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 opacity-50" />
                       <div
@@ -173,7 +173,7 @@ export function AdditionalProjects() {
                           <Badge
                             variant="outline"
                             className={`text-xs px-2 py-0.5 backdrop-blur-md border ${getDomainColor(
-                              project.domain
+                              project.domain,
                             )}`}
                           >
                             {project.domain}
@@ -193,41 +193,28 @@ export function AdditionalProjects() {
                       </div>
                     </div>
 
-                    <CardHeader className="pb-4 pt-6 flex-shrink-0">
-                      <CardTitle className="text-lg leading-tight font-semibold group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2">
+                    <CardHeader className="pb-3 pt-4 flex-shrink-0">
+                      <CardTitle className="text-base leading-tight font-semibold group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2">
                         {project.title}
                       </CardTitle>
-                      <motion.div layout>
-                        <CardDescription
-                          className={`text-sm leading-6 text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300 ${
-                            expandedDescriptions[project.title]
-                              ? ""
-                              : "line-clamp-3"
-                          }`}
-                        >
-                          {project.description}
-                        </CardDescription>
-                        <button
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setExpandedDescriptions((prev) => ({
-                              ...prev,
-                              [project.title]: !prev[project.title],
-                            }));
-                          }}
-                          className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
-                        >
-                          {expandedDescriptions[project.title]
-                            ? "Show less"
-                            : "Read more"}
-                        </button>
-                      </motion.div>
+                      <CardDescription className="text-sm leading-6 text-muted-foreground group-hover:text-foreground/80 transition-colors duration-300 line-clamp-2">
+                        {project.preview ?? project.description}
+                      </CardDescription>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveProject(project);
+                        }}
+                        className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
+                      >
+                        View details
+                      </button>
                     </CardHeader>
 
                     <CardContent className="pt-0 flex flex-col flex-grow">
                       {/* Tech Stack Badges - Bottom aligned, just above buttons */}
-                      <div className="flex flex-wrap gap-2 mb-4">
+                      <div className="flex flex-wrap gap-2 mb-3">
                         {project.techStack?.map((tech, techIndex) => (
                           <motion.div
                             key={tech}
@@ -258,7 +245,7 @@ export function AdditionalProjects() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="flex-1 text-xs bg-transparent hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300 group-hover:scale-105"
+                            className="flex-1 text-[11px] bg-transparent hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all duration-300 group-hover:scale-105"
                             asChild
                           >
                             <a
@@ -288,7 +275,7 @@ export function AdditionalProjects() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="flex-1 text-xs bg-transparent hover:bg-accent/10 hover:border-accent/30 hover:text-accent transition-all duration-300 group-hover:scale-105"
+                            className="flex-1 text-[11px] bg-transparent hover:bg-accent/10 hover:border-accent/30 hover:text-accent transition-all duration-300 group-hover:scale-105"
                             asChild
                           >
                             <a
@@ -306,7 +293,7 @@ export function AdditionalProjects() {
                           <Button
                             variant="outline"
                             size="sm"
-                            className="flex-1 text-xs bg-muted/50 border-muted text-muted-foreground cursor-not-allowed"
+                            className="flex-1 text-[11px] bg-muted/50 border-muted text-muted-foreground cursor-not-allowed"
                             disabled
                           >
                             <FileText className="mr-2 h-3 w-3" />
@@ -332,6 +319,98 @@ export function AdditionalProjects() {
           </Button>
         </div>
       </div>
+
+      {activeProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            type="button"
+            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+            aria-label="Close project details"
+            onClick={() => setActiveProject(null)}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="relative w-full max-w-2xl glass-card border border-white/10 shadow-glass rounded-2xl p-6"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  {activeProject.domain && (
+                    <Badge
+                      variant="outline"
+                      className={`text-xs px-2 py-0.5 backdrop-blur-md border ${getDomainColor(
+                        activeProject.domain,
+                      )}`}
+                    >
+                      {activeProject.domain}
+                    </Badge>
+                  )}
+                </div>
+                <h3 className="text-2xl font-semibold text-white mb-2">
+                  {activeProject.title}
+                </h3>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setActiveProject(null)}
+                className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+              >
+                Close
+              </Button>
+            </div>
+
+            <p className="text-slate-300 leading-7 mt-2">
+              {activeProject.description}
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {activeProject.techStack?.map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="text-xs px-2 py-1 bg-primary/5 border-primary/20 text-primary"
+                >
+                  {tech}
+                </Badge>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {activeProject.githubUrl && activeProject.githubUrl !== "#" ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+                  asChild
+                >
+                  <a
+                    href={activeProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Code
+                  </a>
+                </Button>
+              ) : null}
+              {activeProject.colabUrl && activeProject.colabUrl !== "#" ? (
+                <Button size="sm" asChild>
+                  <a
+                    href={activeProject.colabUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Colab
+                  </a>
+                </Button>
+              ) : null}
+            </div>
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }

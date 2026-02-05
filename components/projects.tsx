@@ -221,22 +221,20 @@ const ProjectCard = ({
   variant,
   isHovered,
   isTechStackExpanded,
-  isDescriptionExpanded,
   onHoverStart,
   onHoverEnd,
   onToggleTechStack,
-  onToggleDescription,
+  onOpenDetails,
 }: {
   project: (typeof tier1Projects)[number];
   index: number;
   variant: "primary" | "secondary";
   isHovered: boolean;
   isTechStackExpanded: boolean;
-  isDescriptionExpanded: boolean;
   onHoverStart: () => void;
   onHoverEnd: () => void;
   onToggleTechStack: (e: React.MouseEvent) => void;
-  onToggleDescription: () => void;
+  onOpenDetails: () => void;
 }) => {
   const primaryTech = project.techStack.slice(0, 5);
   const additionalTech = project.techStack.slice(5);
@@ -287,7 +285,7 @@ const ProjectCard = ({
         >
           <div
             className={`relative ${
-              isSecondary ? "aspect-[16/8]" : "aspect-[16/10]"
+              isSecondary ? "aspect-[16/7]" : "aspect-[16/9]"
             } bg-slate-900/60 overflow-hidden rounded-lg`}
           >
             <img
@@ -340,11 +338,11 @@ const ProjectCard = ({
           </div>
 
           <CardHeader
-            className={`space-y-2.5 ${isSecondary ? "pb-3 pt-3" : "pb-4 pt-4"} flex-shrink-0`}
+            className={`space-y-2 ${isSecondary ? "pb-2 pt-2" : "pb-3 pt-3"} flex-shrink-0`}
           >
             <CardTitle
               className={`leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2 ${
-                isSecondary ? "text-lg" : ""
+                isSecondary ? "text-base" : "text-lg"
               }`}
             >
               {project.title}
@@ -394,33 +392,27 @@ const ProjectCard = ({
 
             <motion.div layout>
               <CardDescription
-                className={`text-slate-300 leading-6 text-sm ${
-                  isDescriptionExpanded
-                    ? ""
-                    : isSecondary
-                      ? "line-clamp-3"
-                      : "line-clamp-4"
-                }`}
+                className="text-slate-300 leading-6 text-sm line-clamp-2"
               >
-                {project.description}
+                {project.preview ?? project.description}
               </CardDescription>
               <button
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  onToggleDescription();
+                  onOpenDetails();
                 }}
                 className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
               >
-                {isDescriptionExpanded ? "Show less" : "Read more"}
+                View details
               </button>
             </motion.div>
           </CardHeader>
 
           <div className="flex-grow" />
 
-          <CardContent className={`space-y-4 flex-shrink-0 ${isSecondary ? "pt-0" : ""}`}>
-            <div className="flex gap-3 pt-2">
+          <CardContent className={`space-y-3 flex-shrink-0 ${isSecondary ? "pt-0" : ""}`}>
+            <div className="flex gap-3 pt-1.5">
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -488,9 +480,9 @@ export function Projects() {
   const [expandedTechStack, setExpandedTechStack] = useState<string | null>(
     null
   );
-  const [expandedDescriptions, setExpandedDescriptions] = useState<
-    Record<string, boolean>
-  >({});
+  const [activeProject, setActiveProject] = useState<
+    (typeof tier1Projects)[number] | null
+  >(null);
 
   return (
     <section
@@ -562,9 +554,6 @@ export function Projects() {
                   variant="primary"
                   isHovered={isHovered}
                   isTechStackExpanded={isTechStackExpanded}
-                  isDescriptionExpanded={
-                    !!expandedDescriptions[project.title]
-                  }
                   onHoverStart={() => setHoveredProject(project.title)}
                   onHoverEnd={() => setHoveredProject(null)}
                   onToggleTechStack={(e: React.MouseEvent) => {
@@ -573,12 +562,7 @@ export function Projects() {
                       isTechStackExpanded ? null : project.title
                     );
                   }}
-                  onToggleDescription={() =>
-                    setExpandedDescriptions((prev) => ({
-                      ...prev,
-                      [project.title]: !prev[project.title],
-                    }))
-                  }
+                  onOpenDetails={() => setActiveProject(project)}
                 />
               );
             })}
@@ -625,9 +609,6 @@ export function Projects() {
                   variant="secondary"
                   isHovered={isHovered}
                   isTechStackExpanded={isTechStackExpanded}
-                  isDescriptionExpanded={
-                    !!expandedDescriptions[project.title]
-                  }
                   onHoverStart={() => setHoveredProject(project.title)}
                   onHoverEnd={() => setHoveredProject(null)}
                   onToggleTechStack={(e: React.MouseEvent) => {
@@ -636,12 +617,7 @@ export function Projects() {
                       isTechStackExpanded ? null : project.title
                     );
                   }}
-                  onToggleDescription={() =>
-                    setExpandedDescriptions((prev) => ({
-                      ...prev,
-                      [project.title]: !prev[project.title],
-                    }))
-                  }
+                  onOpenDetails={() => setActiveProject(project)}
                 />
               );
             })}
@@ -668,6 +644,112 @@ export function Projects() {
           </Button>
         </motion.div>
       </div>
+
+      {activeProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            type="button"
+            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+            aria-label="Close project details"
+            onClick={() => setActiveProject(null)}
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.98 }}
+            transition={{ duration: 0.2 }}
+            className="relative w-full max-w-3xl glass-card border border-white/10 shadow-glass rounded-2xl p-6"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className="flex flex-wrap items-center gap-2 mb-3">
+                  <Badge
+                    variant="secondary"
+                    className="backdrop-blur-md bg-background/80 border-slate-700/50"
+                  >
+                    {activeProject.category}
+                  </Badge>
+                  {activeProject.status && (
+                    <Badge
+                      variant="outline"
+                      className="backdrop-blur-md bg-background/70 border-amber-400/40 text-amber-200 text-xs px-2 py-0.5"
+                    >
+                      {activeProject.status}
+                    </Badge>
+                  )}
+                  {activeProject.label && (
+                    <Badge
+                      variant="outline"
+                      className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
+                    >
+                      {activeProject.label}
+                    </Badge>
+                  )}
+                </div>
+                <h3 className="text-2xl font-semibold text-white mb-2">
+                  {activeProject.title}
+                </h3>
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setActiveProject(null)}
+                className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+              >
+                Close
+              </Button>
+            </div>
+
+            <p className="text-slate-300 leading-7 mt-2">
+              {activeProject.description}
+            </p>
+
+            <div className="mt-5 flex flex-wrap gap-2">
+              {activeProject.techStack.map((tech) => (
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="text-xs px-2 py-1 bg-primary/5 border-primary/20 text-primary"
+                >
+                  {tech}
+                </Badge>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {activeProject.githubUrl && activeProject.githubUrl !== "#" ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+                  asChild
+                >
+                  <a
+                    href={activeProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github className="mr-2 h-4 w-4" />
+                    View Code
+                  </a>
+                </Button>
+              ) : null}
+              {activeProject.liveUrl && activeProject.liveUrl !== "#" ? (
+                <Button size="sm" asChild>
+                  <a
+                    href={activeProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ExternalLink className="mr-2 h-4 w-4" />
+                    Live Demo
+                  </a>
+                </Button>
+              ) : null}
+            </div>
+          </motion.div>
+        </div>
+      )}
     </section>
   );
 }
