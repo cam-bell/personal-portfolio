@@ -125,7 +125,7 @@ export function AdditionalProjects() {
               </span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-aurora mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-aurora mb-6 pb-2">
               Applied Machine Learning Case Studies
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">

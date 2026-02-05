@@ -45,6 +45,8 @@ import {
   SiNumpy,
   SiPandas,
   SiRoboflow,
+  SiStreamlit,
+  SiGraphql,
 } from "react-icons/si";
 
 // Technology mapping with icons and brand colors
@@ -53,27 +55,52 @@ const getTechDetails = (techName: string) => {
     string,
     { icon: any; color: string; category: string }
   > = {
-    React: { icon: SiReact as any, color: "#61dafb", category: "Frontend" },
+    // Languages
     Python: { icon: SiPython as any, color: "#3776ab", category: "Language" },
-    FastAPI: { icon: SiFastapi as any, color: "#009688", category: "Backend" },
-    PostgreSQL: {
-      icon: SiPostgresql as any,
-      color: "#336791",
-      category: "Database",
-    },
-    "Google Cloud": {
-      icon: SiGooglecloud as any,
-      color: "#4285f4",
-      category: "Cloud",
-    },
-    Docker: { icon: SiDocker as any, color: "#2496ed", category: "DevOps" },
     TypeScript: {
       icon: SiTypescript as any,
       color: "#3178c6",
       category: "Language",
     },
-    YOLOv8: { icon: SiOpencv as any, color: "#ff6b6b", category: "AI/ML" },
-    YOLOv11: { icon: SiOpencv as any, color: "#ff6b6b", category: "AI/ML" },
+    JavaScript: {
+      icon: SiJavascript as any,
+      color: "#f7df1e",
+      category: "Language",
+    },
+
+    // Backend / API
+    FastAPI: { icon: SiFastapi as any, color: "#009688", category: "Backend" },
+
+    // Frontend
+    React: { icon: SiReact as any, color: "#61dafb", category: "Frontend" },
+    "Next.js": { icon: SiReact, color: "#FFFFFF", category: "Frontend" },
+
+    // Cloud / Infra
+    "Google Cloud": {
+      icon: SiGooglecloud as any,
+      color: "#4285f4",
+      category: "Cloud",
+    },
+    AWS: { icon: SiAmazon as any, color: "#ff9900", category: "Cloud" },
+    Docker: { icon: SiDocker as any, color: "#2496ed", category: "DevOps" },
+    BigQuery: {
+      icon: SiGooglebigquery as any,
+      color: "#4285f4",
+      category: "Database",
+    },
+    PostgreSQL: {
+      icon: SiPostgresql as any,
+      color: "#336791",
+      category: "Database",
+    },
+    TimescaleDB: { icon: SiPostgresql, color: "#336791", category: "Database" },
+    "GitHub Actions": {
+      icon: SiGithubactions as any,
+      color: "#2088ff",
+      category: "DevOps",
+    },
+
+    // Ai / ML
     HuggingFace: {
       icon: SiHuggingface as any,
       color: "#ff9a00",
@@ -85,53 +112,81 @@ const getTechDetails = (techName: string) => {
       color: "#ff6f00",
       category: "AI/ML",
     },
-    OpenCV: { icon: SiOpencv as any, color: "#5c3ee8", category: "AI/ML" },
-    Roboflow: { icon: SiRoboflow as any, color: "#ff3d00", category: "AI/ML" },
-    LangChain: {
-      icon: SiLangchain as any,
-      color: "#1c3c3c",
-      category: "AI/ML",
-    },
-    MLflow: { icon: SiMlflow as any, color: "#0194e2", category: "MLOps" },
     "scikit-learn": {
       icon: SiScikitlearn as any,
       color: "#f7931e",
       category: "AI/ML",
     },
-    AWS: { icon: SiAmazon as any, color: "#ff9900", category: "Cloud" },
-    JavaScript: {
-      icon: SiJavascript as any,
-      color: "#f7df1e",
-      category: "Language",
-    },
-    BigQuery: {
-      icon: SiGooglebigquery as any,
-      color: "#4285f4",
-      category: "Database",
-    },
-    "GitHub Actions": {
-      icon: SiGithubactions as any,
-      color: "#2088ff",
-      category: "DevOps",
-    },
-    "Gemini Pro": { icon: null, color: "#4285f4", category: "AI/ML" },
+    Pandas: { icon: SiPandas as any, color: "#FFD43B", category: "Data" },
+    NumPy: { icon: SiNumpy as any, color: "#013243", category: "Data" },
+    Plotly: { icon: SiPandas, color: "#2D2D6B", category: "Data Viz" },
     "Vector Search": { icon: null, color: "#6366f1", category: "AI/ML" },
-    "Object Detection": { icon: null, color: "#ef4444", category: "AI/ML" },
+    FAISS: {
+      icon: null, // custom import/Iconify SVG
+      color: "#4A2FBD", // deep purple to convey vector search + research
+      category: "AI/ML",
+    },
+    Streamlit: {
+      icon: SiStreamlit as any, // from react-icons / simple-icons
+      color: "#FF4B4B", // official Streamlit brand colour:contentReference[oaicite:0]{index=0}
+      category: "AI/ML",
+    },
+
+    // Agent / LLM Infrastructure
+    "OpenAI Agents SDK": { icon: null, color: "#10a37f", category: "AI/ML" },
+    LangChain: {
+      icon: SiLangchain as any,
+      color: "#1c3c3c",
+      category: "AI/ML",
+    },
+    LangGraph: {
+      icon: SiGraphql as any, // use graph/network icon (e.g., react-icons/si SiGraph or FaProjectDiagram)
+      color: "#0A66C2", // blueish to match “graph / orchestration” semantics
+      category: "AI/ML",
+    },
+    DeepSeek: { icon: null, color: "#FF6B6B", category: "AI/ML" },
+    Gemini: { icon: null, color: "#4285F4", category: "AI/ML" },
+    "Gemini Pro": { icon: null, color: "#4285f4", category: "AI/ML" },
+    Groq: { icon: null, color: "#2088FF", category: "AI/ML" },
+    Serper: { icon: null, color: "#09A3D5", category: "AI/ML" },
+
+    // ML Orchestration / Patterns
+    MCP: { icon: null, color: "#7F3FBF", category: "AI/ML" },
+    Gradio: { icon: null, color: "#ff6b6b", category: "AI/ML" },
+    asyncio: { icon: null, color: "#3776ab", category: "Language" },
+
+    // NLP
     spaCy: { icon: null, color: "#09a3d5", category: "NLP" },
     KeyBERT: { icon: null, color: "#8b5cf6", category: "NLP" },
     BERT: { icon: null, color: "#8b5cf6", category: "NLP" },
     RoBERTa: { icon: null, color: "#8b5cf6", category: "NLP" },
     VADER: { icon: null, color: "#f59e0b", category: "NLP" },
     LaBSE: { icon: null, color: "#3b82f6", category: "NLP" },
+
+    // Vision
+    YOLOv8: { icon: SiOpencv as any, color: "#ff6b6b", category: "AI/ML" },
+    YOLOv11: { icon: SiOpencv as any, color: "#ff6b6b", category: "AI/ML" },
+    OpenCV: { icon: SiOpencv as any, color: "#5c3ee8", category: "AI/ML" },
+    Roboflow: { icon: SiRoboflow as any, color: "#ff3d00", category: "AI/ML" },
+    "Object Detection": { icon: null, color: "#ef4444", category: "AI/ML" },
     GroundingDINO: { icon: null, color: "#f97316", category: "AI/ML" },
-    Pytest: { icon: null, color: "#0ea5e9", category: "Testing" },
+
+    // MLOps
+    MLflow: { icon: SiMlflow as any, color: "#0194e2", category: "MLOps" },
     Hydra: { icon: null, color: "#8b5cf6", category: "MLOps" },
     "W&B": { icon: null, color: "#ffbe00", category: "MLOps" },
-    Pandas: { icon: SiPandas as any, color: "#150458", category: "Data" },
-    NumPy: { icon: SiNumpy as any, color: "#013243", category: "Data" },
-    Gradio: { icon: null, color: "#ff6b6b", category: "AI/ML" },
-    "OpenAI Agents SDK": { icon: null, color: "#10a37f", category: "AI/ML" },
-    asyncio: { icon: null, color: "#3776ab", category: "Language" },
+
+    // Sales & APIs
+    SendGrid: { icon: null, color: "#0088CC", category: "API" },
+    Pydantic: { icon: null, color: "#4C51BF", category: "API" },
+
+    // Testing
+    Pytest: { icon: null, color: "#0ea5e9", category: "Testing" },
+    Playwright: {
+      icon: null,
+      color: "#F23030", // official Playwright brand red:contentReference[oaicite:1]{index=1}
+      category: "Testing",
+    },
   };
 
   return (
@@ -161,15 +216,11 @@ const EnhancedTechBadge = ({ tech }: { tech: string }) => {
           ${hasIcon ? "pl-2 pr-2.5" : ""}
           ${categoryColor || ""}
         `}
-        style={
-          hasIcon
-            ? {
-                borderColor: `${techDetails.color}40`,
-                color: techDetails.color,
-                backgroundColor: `${techDetails.color}08`,
-              }
-            : undefined
-        }
+        style={{
+          borderColor: `${techDetails.color}40`,
+          color: techDetails.color,
+          backgroundColor: `${techDetails.color}08`,
+        }}
       >
         <div className="flex items-center gap-1.5">
           {hasIcon && (
@@ -392,9 +443,11 @@ const ProjectCard = ({
             </div>
 
             <motion.div layout>
-              <CardDescription className={`text-slate-300 leading-6 text-sm line-clamp-2 ${
-                !isSecondary ? "min-h-[48px]" : ""
-              }`}>
+              <CardDescription
+                className={`text-slate-300 leading-6 text-sm line-clamp-2 ${
+                  !isSecondary ? "min-h-[48px]" : ""
+                }`}
+              >
                 {project.preview ?? project.description}
               </CardDescription>
               <button

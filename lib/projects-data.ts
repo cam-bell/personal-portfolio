@@ -51,7 +51,7 @@ export const tier1Projects: Project[] = [
       "scikit-learn",
       "XGBoost",
       "Streamlit",
-      "pandas",
+      "Pandas",
       "NumPy",
       "Plotly",
     ],
