@@ -13,11 +13,6 @@ import {
   Wrench,
   Filter,
   Sparkles,
-  ShieldCheck,
-  Zap,
-  Binary,
-  PlugZap,
-  Link,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -37,7 +32,6 @@ import {
   SiNumpy,
   SiHuggingface,
   SiOpenai,
-  SiOpencv,
   SiFastapi,
   SiNodedotjs,
   SiExpress,
@@ -57,61 +51,58 @@ import {
   SiDvc,
   SiWeightsandbiases,
   SiLangchain,
-  SiStreamlit,
-  SiGraphql,
-  SiPytest,
 } from "react-icons/si";
 import { MatplotlibIcon } from "./icons/MatplotlibIcon";
 import { SeabornIcon } from "./icons/SeabornIcon";
 
 const skillCategories = [
   {
-    title: "Agentic Orchestration",
+    title: "Programming Languages",
     icon: Code,
     skills: [
-      { name: "LangChain", icon: SiLangchain, color: "#2c6262" },
-      { name: "LangGraph", icon: SiGraphql, color: "#0A66C2" },
-      { name: "MCP", icon: PlugZap, color: "#0A66C2" },
-      { name: "Pydantic", icon: ShieldCheck, color: "#4C51BF" },
-      { name: "Asyncio", icon: Zap, color: "#3776ab" },
+      { name: "Python", icon: SiPython, color: "#3776ab" },
+      { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
+      { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
+      { name: "SQL", icon: SiMysql, color: "#4479a1" },
     ],
   },
   {
-    title: "Core AI & Machine Learning",
+    title: "AI/ML & Data Science",
     icon: Brain,
     skills: [
       { name: "TensorFlow", icon: SiTensorflow, color: "#ff6f00" },
       { name: "PyTorch", icon: SiPytorch, color: "#ee4c2c" },
-      { name: "Hugging Face", icon: SiHuggingface, color: "#ff9a00" },
-      { name: "OpenCV", icon: SiOpencv, color: "#5c3ee8" },
       { name: "Scikit-learn", icon: SiScikitlearn, color: "#f7931e" },
+      { name: "Pandas", icon: SiPandas, color: "#150458" },
+      { name: "NumPy", icon: SiNumpy, color: "#013243" },
+      { name: "Matplotlib", icon: MatplotlibIcon, color: "#11557c" },
+      { name: "Seaborn", icon: SeabornIcon, color: "#4a7c7e" },
       { name: "MLflow", icon: SiMlflow, color: "#0194e2" },
-      { name: "Pandas", icon: SiPandas, color: "#FFD43B" },
-      { name: "NumPy", icon: SiNumpy, color: "#115d77" },
+      { name: "Hugging Face", icon: SiHuggingface, color: "#ff9a00" },
+      { name: "LangChain", icon: SiLangchain, color: "#1c3c3c" },
+      { name: "OpenAI APIs", icon: SiOpenai, color: "#412991" },
     ],
   },
   {
-    title: "Data & Vector Engineering",
+    title: "Data Engineering & Databases",
     icon: Database,
     skills: [
       { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
       { name: "Redis", icon: SiRedis, color: "#dc382d" },
+      { name: "SQLite", icon: SiSqlite, color: "#003b57" },
+      { name: "MySQL", icon: SiMysql, color: "#4479a1" },
       { name: "BigQuery", icon: SiGooglebigquery, color: "#4285f4" },
-      { name: "TimescaleDB", icon: SiPostgresql, color: "#336791" },
-      { name: "FAISS", icon: Binary, color: "#4A2FBD" },
-      { name: "SQL", icon: SiSqlite, color: "#4479a1" },
+      { name: "Firebase", icon: SiFirebase, color: "#ffca28" },
     ],
   },
   {
-    title: "Languages & Frameworks",
+    title: "Frameworks & Libraries",
     icon: Layers,
     skills: [
-      { name: "Python", icon: SiPython, color: "#3776ab" },
       { name: "FastAPI", icon: SiFastapi, color: "#009688" },
-      { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
       { name: "Node.js/Express", icon: SiNodedotjs, color: "#339933" },
-      { name: "Streamlit", icon: SiStreamlit, color: "#FF4B4B" },
       { name: "React/Next.js", icon: SiReact, color: "#61dafb" },
+      { name: "Vue.js", icon: SiVuedotjs, color: "#4fc08d" },
     ],
   },
   {
@@ -122,8 +113,9 @@ const skillCategories = [
       { name: "GCP", icon: SiGooglecloud, color: "#4285f4" },
       { name: "Docker", icon: SiDocker, color: "#2496ed" },
       { name: "GitHub Actions", icon: SiGithubactions, color: "#2088ff" },
-      { name: "DVC", icon: SiDvc, color: "#13adc7" },
+      { name: "Vercel", icon: SiVercel, color: "#000000" },
       { name: "MLflow", icon: SiMlflow, color: "#0194e2" },
+      { name: "DVC", icon: SiDvc, color: "#13adc7" },
       { name: "Weights & Biases", icon: SiWeightsandbiases, color: "#ffbe00" },
     ],
   },
@@ -132,9 +124,10 @@ const skillCategories = [
     icon: Wrench,
     skills: [
       { name: "Git/GitHub", icon: SiGit, color: "#f05032" },
-      { name: "Pytest", icon: SiPytest, color: "#0ea5e9" },
+      { name: "VS Code", icon: SiJupyter, color: "#007acc" },
       { name: "Jupyter", icon: SiJupyter, color: "#f37626" },
       { name: "Postman", icon: SiPostman, color: "#ff6c37" },
+      { name: "Figma", icon: SiFigma, color: "#f24e1e" },
     ],
   },
 ];
