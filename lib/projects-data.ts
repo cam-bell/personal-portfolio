@@ -29,7 +29,7 @@ export const tier1Projects: Project[] = [
   {
     title: "BHSI Risk Classification System",
     preview:
-      "Automated D&O risk scoring with LLM orchestration + hybrid rules for underwriter triage.",
+      "Automated D&O risk scoring with LLM orchestration + hybrid rules for underwriters.",
     description:
       "Designed and deployed a production risk classification system for Berkshire Hathaway Specialty Insurance, using multi-agent LLM orchestration and hybrid rule-based logic to automate D&O policy assessments and reduce manual underwriting review from hours to minutes.",
     techStack: [
@@ -64,21 +64,47 @@ export const tier1Projects: Project[] = [
     preview:
       "Multi-agent research pipeline with routing, eval loops, and async orchestration.",
     description:
-      "Built a multi-agent research system implementing production agentic patterns including routing, parallel execution, and evaluator–optimizer loops. The system reduces API cost and latency through async orchestration while improving output quality via iterative evaluation.",
-    techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
+      "Production-style multi-agent research system implementing async orchestration, intelligent routing, and automated evaluation loops to optimise research quality and API cost.",
+    techStack: [
+      "Python",
+      "OpenAI Agents SDK",
+      "asyncio",
+      "Pydantic",
+      "Gradio",
+      "SendGrid",
+      "Jinja2",
+    ],
     githubUrl: "https://github.com/cam-bell/deep-research-workflow",
     liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
     image: "/images/deep_research_workflow.png",
     category: "AI/ML",
     tier: "Tier 1",
     tags: ["LLM/Agentic"],
+    highlights: {
+      problem:
+        "Business research tasks require synthesising information across multiple sources and perspectives, while manual workflows are slow and naive LLM pipelines are costly without quality validation.",
+      solution:
+        "A multi-agent architecture that decomposes queries, runs parallel research tasks, synthesises findings, and validates outputs with iterative evaluator loops before final delivery.",
+      architecture:
+        "Seven specialised agents coordinate Clarify -> Router -> Planner -> Parallel Search -> Writer -> Evaluator -> Email. Async orchestration and structured Pydantic schemas provide type-safe agent communication with cost-aware evaluation gating.",
+      metrics: [
+        "7 specialised agents orchestrated via OpenAI Agents SDK",
+        "5 production agentic workflow patterns implemented",
+        "4 adaptive workflows based on query complexity",
+        "30-50% API cost reduction on simple research queries",
+        "40-60% output quality improvement on complex analytical tasks",
+        "~50% latency reduction through async parallel execution",
+        "~15 second average response time for simple research tasks",
+        "Average query cost reduced (~$0.15 -> ~$0.10)",
+      ],
+    },
   },
   {
     title: "Autonomous Trading System",
     preview:
       "LLM-driven trading simulations and multi-agent orchestration for portfolio decisions.",
     description:
-      "Built an autonomous trading system that uses LLM-driven trading simulations to optimize portfolio performance. The system uses a multi-agent architecture to orchestrate LLMs, tools and data pipelines to solve real operational problems.",
+      "Autonomous multi-agent financial analysis platform coordinating specialised AI traders and researchers to analyse markets, generate signals, and simulate trading strategies through concurrent agent orchestration.",
     techStack: ["Python", "MCP", "OpenAI Agents SDK", "Gradio", "SQLite"],
     githubUrl: "https://github.com/cam-bell/autonomous-trading-system",
     liveUrl:
@@ -88,6 +114,21 @@ export const tier1Projects: Project[] = [
     category: "AI/ML",
     tier: "Tier 1",
     tags: ["LLM/Agentic"],
+    highlights: {
+      problem:
+        "Financial trading decisions require synthesising large volumes of market data, news signals, and technical indicators; manual analysis is slow and single-agent systems miss multi-perspective reasoning.",
+      solution:
+        "A multi-agent trading floor model where specialised AI agents concurrently research markets, generate signals, evaluate risk, and simulate portfolio decisions with structured logging.",
+      architecture:
+        "Research Agents -> Market Intelligence -> Trader Agents -> Risk Evaluation -> Trade Decision -> Portfolio State -> Logging & Monitoring -> Dashboard. Execution runs in concurrent agent cycles with shared market intelligence.",
+      metrics: [
+        "4 concurrent autonomous AI traders",
+        "6 MCP servers per trader cycle (3 research + 3 trading tools)",
+        "24 concurrent MCP instances during active execution",
+        "Parallel agent execution architecture",
+        "Structured trade logs and portfolio simulation",
+      ],
+    },
   },
   // {
   //   title: "Discharge Summary Copilot",
@@ -181,18 +222,18 @@ export const tier2Projects: Project[] = [
     tags: ["Applied ML", "LLM/Agentic"],
   },
   {
-    title: "LangGraph Autonomous Task Agent",
+    title: "LangGraph Autonomous Task Agent (Sidekick)",
     preview:
-      "Task agent with conditional routing, feedback loops, and tool-based execution.",
+      "Autonomous task execution agent built with LangGraph for web browsing, extraction, and iterative reasoning with persistent memory.",
     description:
-      "Built an autonomous task execution agent using LangGraph state management, capable of planning, executing, and evaluating complex tasks with conditional routing and feedback loops. The system demonstrates computer-use capabilities through browser automation, long-term memory, and retrieval-augmented reasoning.",
+      "Autonomous task execution agent built with LangGraph that performs web browsing, information extraction, and iterative reasoning using tool-based agents with persistent memory and evaluation loops.",
     techStack: [
       "Python",
       "LangGraph",
       "Playwright",
-      "FAISS",
       "SQLite",
-      "Serper",
+      "RAG",
+      "Gradio",
     ],
     githubUrl: "https://github.com/cam-bell/langgraph-sidekick-agent/tree/main",
     liveUrl: "https://huggingface.co/spaces/cameronbell/sidekick",
@@ -200,6 +241,21 @@ export const tier2Projects: Project[] = [
     category: "AI/ML",
     tier: "Tier 2",
     tags: ["LLM/Agentic"],
+    highlights: {
+      problem:
+        "Many AI assistants rely on static knowledge or simple retrieval, but complex tasks require active tool use, web interaction, and iterative refinement across multiple steps.",
+      solution:
+        "A tool-using autonomous LangGraph agent that decomposes requests into steps, performs automated browsing and extraction, stores intermediate context in memory, and iteratively evaluates completion.",
+      architecture:
+        "Sidekick orchestrator runs a LangGraph StateGraph with Worker, ToolNode, and Evaluator nodes. Tool layer integrates Playwright browser automation, web sources, file tools, notifications, and persistent memory/checkpointing for stateful execution.",
+      metrics: [
+        "LangGraph-based stateful agent orchestration",
+        "Playwright browser automation for real-world data access",
+        "Persistent task memory stored in SQLite",
+        "RAG-enabled context retrieval across task steps",
+        "Iterative evaluation loop for improved task completion",
+      ],
+    },
   },
   {
     title: "Multi-Model Sales Agent System",
