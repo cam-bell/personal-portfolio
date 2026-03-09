@@ -151,6 +151,44 @@ export const tier1Projects: Project[] = [
   //   tags: ["LLM/Agentic", "Applied ML"],
   // },
   {
+    title: "Market Intelligence System",
+    preview:
+      "Financial intelligence platform combining FinBERT sentiment, quantitative risk scoring, and multi-agent orchestration.",
+    description:
+      "Financial market intelligence platform combining transformer-based sentiment analysis, quantitative risk modelling, and multi-agent orchestration to generate structured market risk assessments.",
+    techStack: [
+      "Python",
+      "CrewAI",
+      "FinBERT",
+      "Pydantic",
+      "NumPy",
+      "pandas",
+      "matplotlib",
+      "seaborn",
+    ],
+    githubUrl: "https://github.com/cam-bell/market-intelligence-system",
+    liveUrl: "",
+    image: "/images/market-intelligence.jpeg",
+    category: "AI/ML",
+    tier: "Tier 1",
+    tags: ["Applied ML", "LLM/Agentic"],
+    highlights: {
+      problem:
+        "Market participants must synthesize news, volatility, social sentiment, and macro signals, but manual analysis is slow and isolated sources miss full market context.",
+      solution:
+        "A unified multi-agent pipeline ingests market data, applies FinBERT financial sentiment classification, computes quantitative risk indicators, and generates structured market intelligence reports.",
+      architecture:
+        "Data Ingestion Agents -> Sentiment Analysis Agent -> Risk Analysis Engine -> Signal Aggregation Layer -> Intelligence Generator. Async ingestion and Pydantic-validated pipelines combine text sentiment and statistical risk modelling.",
+      metrics: [
+        "6 specialized agents orchestrating ingestion and analysis",
+        "FinBERT transformer model integration for financial sentiment",
+        "21-day annualized volatility calculations",
+        "Z-score anomaly detection for unusual trading activity",
+        "Weighted multi-signal risk scoring model",
+      ],
+    },
+  },
+  {
     title: "Real-Time Fraud Detection Pipeline",
     preview:
       "Streaming fraud detection with live features, drift monitoring, and KPI dashboards.",
@@ -227,14 +265,7 @@ export const tier2Projects: Project[] = [
       "Autonomous task execution agent built with LangGraph for web browsing, extraction, and iterative reasoning with persistent memory.",
     description:
       "Autonomous task execution agent built with LangGraph that performs web browsing, information extraction, and iterative reasoning using tool-based agents with persistent memory and evaluation loops.",
-    techStack: [
-      "Python",
-      "LangGraph",
-      "Playwright",
-      "SQLite",
-      "RAG",
-      "Gradio",
-    ],
+    techStack: ["Python", "LangGraph", "Playwright", "SQLite", "RAG", "Gradio"],
     githubUrl: "https://github.com/cam-bell/langgraph-sidekick-agent/tree/main",
     liveUrl: "https://huggingface.co/spaces/cameronbell/sidekick",
     image: "/images/langgraph.jpg",
