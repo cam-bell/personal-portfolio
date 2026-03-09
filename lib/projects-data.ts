@@ -41,26 +41,19 @@ export const tier1Projects: Project[] = [
     tags: ["LLM/Agentic", "Applied ML"],
   },
   {
-    title: "Real-Time Fraud Detection Pipeline",
+    title: "Deep Research Workflow",
     preview:
-      "Streaming fraud detection with live features, drift monitoring, and KPI dashboards.",
+      "Multi-agent research pipeline with routing, eval loops, and async orchestration.",
     description:
-      "Built an end-to-end streaming fraud detection system with real-time feature engineering, online inference, performance monitoring, and drift detection. Includes alerting and an interactive dashboard for tracking model accuracy and operational KPIs over time.",
-    techStack: [
-      "Python",
-      "scikit-learn",
-      "XGBoost",
-      "Streamlit",
-      "Pandas",
-      "NumPy",
-      "Plotly",
-    ],
-    githubUrl: "https://github.com/cam-bell/real-time-fraud-detection",
-    liveUrl: "",
-    image: "/images/fraud-streaming.png",
+      "Built a multi-agent research system implementing production agentic patterns including routing, parallel execution, and evaluator–optimizer loops. The system reduces API cost and latency through async orchestration while improving output quality via iterative evaluation.",
+    techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
+    githubUrl:
+      "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
+    liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
+    image: "/images/deep_research_workflow.png",
     category: "AI/ML",
     tier: "Tier 1",
-    tags: ["Applied ML", "MLOps"],
+    tags: ["LLM/Agentic"],
   },
   {
     title: "Autonomous Trading System",
@@ -98,19 +91,26 @@ export const tier1Projects: Project[] = [
   //   tags: ["LLM/Agentic", "Applied ML"],
   // },
   {
-    title: "Deep Research Workflow",
+    title: "Real-Time Fraud Detection Pipeline",
     preview:
-      "Multi-agent research pipeline with routing, eval loops, and async orchestration.",
+      "Streaming fraud detection with live features, drift monitoring, and KPI dashboards.",
     description:
-      "Built a multi-agent research system implementing production agentic patterns including routing, parallel execution, and evaluator–optimizer loops. The system reduces API cost and latency through async orchestration while improving output quality via iterative evaluation.",
-    techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
-    githubUrl:
-      "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
-    liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
-    image: "/images/deep_research_workflow.png",
+      "Built an end-to-end streaming fraud detection system with real-time feature engineering, online inference, performance monitoring, and drift detection. Includes alerting and an interactive dashboard for tracking model accuracy and operational KPIs over time.",
+    techStack: [
+      "Python",
+      "scikit-learn",
+      "XGBoost",
+      "Streamlit",
+      "Pandas",
+      "NumPy",
+      "Plotly",
+    ],
+    githubUrl: "https://github.com/cam-bell/real-time-fraud-detection",
+    liveUrl: "",
+    image: "/images/fraud-streaming.png",
     category: "AI/ML",
     tier: "Tier 1",
-    tags: ["LLM/Agentic"],
+    tags: ["Applied ML", "MLOps"],
   },
 ];
 
