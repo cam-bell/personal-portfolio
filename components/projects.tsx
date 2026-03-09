@@ -9,20 +9,19 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import {
-  Github,
-  ExternalLink,
-  Zap,
-  Brain,
-  ChevronDown,
-  ChevronUp,
-} from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { Github, ExternalLink, Zap, ChevronDown, ChevronUp } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import type React from "react";
 import Link from "next/link";
-import { tier1Projects, tier2Projects } from "@/lib/projects-data";
+import {
+  tier1Projects,
+  tier2Projects,
+  type Project,
+} from "@/lib/projects-data";
 import * as Tabs from "@radix-ui/react-tabs";
+import * as Dialog from "@radix-ui/react-dialog";
+import * as Collapsible from "@radix-ui/react-collapsible";
 import {
   SiPython,
   SiReact,
@@ -267,6 +266,20 @@ const getTechCategoryColor = (techName: string): string => {
   );
 };
 
+const ARCHITECTURE_PREVIEW_LIMIT = 170;
+
+const getHighlightGridClassName = (count: number): string => {
+  if (count <= 1) {
+    return "grid grid-cols-1 gap-3";
+  }
+
+  if (count === 2) {
+    return "grid grid-cols-1 sm:grid-cols-2 gap-3";
+  }
+
+  return "grid grid-cols-1 md:grid-cols-2 gap-3";
+};
+
 const ProjectCard = ({
   project,
   index,
@@ -278,7 +291,7 @@ const ProjectCard = ({
   onToggleTechStack,
   onOpenDetails,
 }: {
-  project: (typeof tier1Projects)[number];
+  project: Project;
   index: number;
   variant: "primary" | "secondary";
   isHovered: boolean;
@@ -286,7 +299,7 @@ const ProjectCard = ({
   onHoverStart: () => void;
   onHoverEnd: () => void;
   onToggleTechStack: (e: React.MouseEvent) => void;
-  onOpenDetails: () => void;
+  onOpenDetails: (trigger: HTMLButtonElement | null) => void;
 }) => {
   const primaryTech = project.techStack.slice(0, 5);
   const additionalTech = project.techStack.slice(5);
@@ -454,9 +467,9 @@ const ProjectCard = ({
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  onOpenDetails();
+                  onOpenDetails(e.currentTarget);
                 }}
-                className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
+                className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded-sm"
               >
                 View details
               </button>
@@ -581,11 +594,64 @@ export function Projects() {
   const [expandedTechStack, setExpandedTechStack] = useState<string | null>(
     null,
   );
-  const [activeProject, setActiveProject] = useState<
-    (typeof tier1Projects)[number] | null
-  >(null);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [lastTrigger, setLastTrigger] = useState<HTMLButtonElement | null>(
+    null,
+  );
+  const [isArchitectureExpanded, setIsArchitectureExpanded] = useState(false);
   const [activeTab, setActiveTab] = useState("flagship");
+  const shouldReduceMotion = useReducedMotion();
   const categories = getProjectsByCategory();
+  const modalHighlights = useMemo(() => {
+    if (!activeProject?.highlights) {
+      return [];
+    }
+
+    const metrics = activeProject.highlights.metrics?.filter(Boolean) ?? [];
+    const items = [
+      {
+        id: "problem",
+        label: "Problem",
+        value: activeProject.highlights.problem,
+      },
+      {
+        id: "solution",
+        label: "Solution",
+        value: activeProject.highlights.solution,
+      },
+      {
+        id: "architecture",
+        label: "Architecture",
+        value: activeProject.highlights.architecture,
+      },
+      {
+        id: "metrics",
+        label: "Metrics / Results",
+        metrics,
+      },
+    ];
+
+    return items.filter((item) => {
+      if (item.id === "metrics") {
+        return (item.metrics?.length ?? 0) > 0;
+      }
+
+      return Boolean(item.value?.trim());
+    });
+  }, [activeProject]);
+
+  const closeDetails = () => {
+    setActiveProject(null);
+  };
+
+  const openDetails = (project: Project, trigger: HTMLButtonElement | null) => {
+    setLastTrigger(trigger);
+    setActiveProject(project);
+  };
+
+  useEffect(() => {
+    setIsArchitectureExpanded(false);
+  }, [activeProject?.title]);
 
   return (
     <section
@@ -666,7 +732,7 @@ export function Projects() {
                       isTechStackExpanded ? null : project.title,
                     );
                   }}
-                  onOpenDetails={() => setActiveProject(project)}
+                  onOpenDetails={(trigger) => openDetails(project, trigger)}
                 />
               );
             })}
@@ -742,7 +808,7 @@ export function Projects() {
                           isTechStackExpanded ? null : project.title,
                         );
                       }}
-                      onOpenDetails={() => setActiveProject(project)}
+                      onOpenDetails={(trigger) => openDetails(project, trigger)}
                     />
                   );
                 })}
@@ -779,7 +845,7 @@ export function Projects() {
                           isTechStackExpanded ? null : project.title,
                         );
                       }}
-                      onOpenDetails={() => setActiveProject(project)}
+                      onOpenDetails={(trigger) => openDetails(project, trigger)}
                     />
                   );
                 })}
@@ -816,7 +882,7 @@ export function Projects() {
                           isTechStackExpanded ? null : project.title,
                         );
                       }}
-                      onOpenDetails={() => setActiveProject(project)}
+                      onOpenDetails={(trigger) => openDetails(project, trigger)}
                     />
                   );
                 })}
@@ -853,7 +919,7 @@ export function Projects() {
                           isTechStackExpanded ? null : project.title,
                         );
                       }}
-                      onOpenDetails={() => setActiveProject(project)}
+                      onOpenDetails={(trigger) => openDetails(project, trigger)}
                     />
                   );
                 })}
@@ -881,111 +947,179 @@ export function Projects() {
         </div>
       </div>
 
-      {activeProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <button
-            type="button"
-            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
-            aria-label="Close project details"
-            onClick={() => setActiveProject(null)}
-          />
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            className="relative w-full max-w-3xl glass-card border border-white/10 shadow-glass rounded-2xl p-6"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <Badge
-                    variant="secondary"
-                    className="backdrop-blur-md bg-background/80 border-slate-700/50"
-                  >
-                    {activeProject.category}
-                  </Badge>
-                  {activeProject.status && (
-                    <Badge
-                      variant="outline"
-                      className="backdrop-blur-md bg-background/70 border-amber-400/40 text-amber-200 text-xs px-2 py-0.5"
-                    >
-                      {activeProject.status}
-                    </Badge>
-                  )}
-                  {activeProject.label && (
-                    <Badge
-                      variant="outline"
-                      className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
-                    >
-                      {activeProject.label}
-                    </Badge>
-                  )}
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-2">
-                  {activeProject.title}
-                </h3>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setActiveProject(null)}
-                className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+      <Dialog.Root
+        open={Boolean(activeProject)}
+        onOpenChange={(open) => {
+          if (!open) {
+            closeDetails();
+          }
+        }}
+      >
+        <Dialog.Portal>
+          <Dialog.Overlay className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm" />
+          {activeProject ? (
+            <Dialog.Content
+              className="fixed inset-0 z-50 grid place-items-center p-4 focus:outline-none"
+              onCloseAutoFocus={(event) => {
+                if (lastTrigger) {
+                  event.preventDefault();
+                  lastTrigger.focus();
+                }
+              }}
+            >
+              <motion.div
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }}
+                animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.98 }}
+                transition={{ duration: 0.2 }}
+                className="w-full max-w-4xl max-h-[85vh] overflow-y-auto glass-card border border-white/10 shadow-glass rounded-2xl p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                Close
-              </Button>
-            </div>
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <Badge
+                        variant="secondary"
+                        className="backdrop-blur-md bg-background/80 border-slate-700/50"
+                      >
+                        {activeProject.category}
+                      </Badge>
+                      {activeProject.status && (
+                        <Badge
+                          variant="outline"
+                          className="backdrop-blur-md bg-background/70 border-amber-400/40 text-amber-200 text-xs px-2 py-0.5"
+                        >
+                          {activeProject.status}
+                        </Badge>
+                      )}
+                      {activeProject.label && (
+                        <Badge
+                          variant="outline"
+                          className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
+                        >
+                          {activeProject.label}
+                        </Badge>
+                      )}
+                    </div>
+                    <Dialog.Title className="text-2xl font-semibold text-white mb-2">
+                      {activeProject.title}
+                    </Dialog.Title>
+                  </div>
+                  <Dialog.Close asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+                    >
+                      Close
+                    </Button>
+                  </Dialog.Close>
+                </div>
 
-            <p className="text-slate-300 leading-7 mt-2">
-              {activeProject.description}
-            </p>
+                <Dialog.Description className="text-slate-300 leading-7 mt-2">
+                  {activeProject.description}
+                </Dialog.Description>
 
-            <div className="mt-5 flex flex-wrap gap-2">
-              {activeProject.techStack.map((tech) => (
-                <Badge
-                  key={tech}
-                  variant="outline"
-                  className="text-xs px-2 py-1 bg-primary/5 border-primary/20 text-primary"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
+                {modalHighlights.length > 0 ? (
+                  <section className="mt-6 space-y-3">
+                    <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-300">
+                      Key Highlights
+                    </h4>
+                    <div className={getHighlightGridClassName(modalHighlights.length)}>
+                      {modalHighlights.map((item) => (
+                        <article
+                          key={item.id}
+                          className="rounded-xl border border-white/10 bg-white/[0.03] p-4 min-h-[132px]"
+                        >
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-primary/90 mb-2">
+                            {item.label}
+                          </p>
+                          {item.id === "metrics" ? (
+                            <ul className="space-y-1.5 text-sm text-slate-200 leading-6">
+                              {item.metrics?.map((metric) => (
+                                <li key={metric} className="flex items-start gap-2">
+                                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary/80" />
+                                  <span>{metric}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : item.id === "architecture" &&
+                            item.value &&
+                            item.value.length > ARCHITECTURE_PREVIEW_LIMIT ? (
+                            <Collapsible.Root
+                              open={isArchitectureExpanded}
+                              onOpenChange={setIsArchitectureExpanded}
+                            >
+                              <p className="text-sm text-slate-200 leading-6">
+                                {isArchitectureExpanded
+                                  ? item.value
+                                  : `${item.value.slice(0, ARCHITECTURE_PREVIEW_LIMIT).trimEnd()}...`}
+                              </p>
+                              <Collapsible.Trigger asChild>
+                                <button
+                                  type="button"
+                                  className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
+                                >
+                                  {isArchitectureExpanded ? "Show less" : "Show more"}
+                                </button>
+                              </Collapsible.Trigger>
+                            </Collapsible.Root>
+                          ) : (
+                            <p className="text-sm text-slate-200 leading-6">{item.value}</p>
+                          )}
+                        </article>
+                      ))}
+                    </div>
+                  </section>
+                ) : null}
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              {activeProject.githubUrl && activeProject.githubUrl !== "#" ? (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
-                  asChild
-                >
-                  <a
-                    href={activeProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    View Code
-                  </a>
-                </Button>
-              ) : null}
-              {activeProject.liveUrl && activeProject.liveUrl !== "#" ? (
-                <Button size="sm" asChild>
-                  <a
-                    href={activeProject.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Live Demo
-                  </a>
-                </Button>
-              ) : null}
-            </div>
-          </motion.div>
-        </div>
-      )}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {activeProject.techStack.map((tech) => (
+                    <Badge
+                      key={tech}
+                      variant="outline"
+                      className="text-xs px-2 py-1 bg-primary/5 border-primary/20 text-primary"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  {activeProject.githubUrl && activeProject.githubUrl !== "#" ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
+                      asChild
+                    >
+                      <a
+                        href={activeProject.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Github className="mr-2 h-4 w-4" />
+                        View Code
+                      </a>
+                    </Button>
+                  ) : null}
+                  {activeProject.liveUrl && activeProject.liveUrl !== "#" ? (
+                    <Button size="sm" asChild>
+                      <a
+                        href={activeProject.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Live Demo
+                      </a>
+                    </Button>
+                  ) : null}
+                </div>
+              </motion.div>
+            </Dialog.Content>
+          ) : null}
+        </Dialog.Portal>
+      </Dialog.Root>
     </section>
   );
 }

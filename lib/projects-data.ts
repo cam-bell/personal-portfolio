@@ -15,6 +15,14 @@ export type Project = {
   colabUrl?: string | null;
   primaryBadge?: string;
   secondaryBadge?: string;
+  highlights?: ProjectHighlights;
+};
+
+export type ProjectHighlights = {
+  problem?: string;
+  solution?: string;
+  architecture?: string;
+  metrics?: string[];
 };
 
 export const tier1Projects: Project[] = [
@@ -39,6 +47,17 @@ export const tier1Projects: Project[] = [
     category: "AI/ML",
     tier: "Tier 1",
     tags: ["LLM/Agentic", "Applied ML"],
+    highlights: {
+      problem: "Manual underwriting review required hours of research.",
+      solution:
+        "Multi-agent system aggregating financial signals, news, and risk metrics.",
+      architecture:
+        "Agent orchestration + async execution + structured outputs.",
+      metrics: [
+        "95% reduction in review time",
+        "Automated risk classification",
+      ],
+    },
   },
   {
     title: "Deep Research Workflow",
@@ -47,8 +66,7 @@ export const tier1Projects: Project[] = [
     description:
       "Built a multi-agent research system implementing production agentic patterns including routing, parallel execution, and evaluator–optimizer loops. The system reduces API cost and latency through async orchestration while improving output quality via iterative evaluation.",
     techStack: ["Python", "OpenAI Agents SDK", "asyncio", "Gradio"],
-    githubUrl:
-      "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
+    githubUrl: "https://github.com/cam-bell/deep-research-workflow",
     liveUrl: "https://huggingface.co/spaces/cameronbell/deep-research-workflow",
     image: "/images/deep_research_workflow.png",
     category: "AI/ML",
@@ -62,8 +80,9 @@ export const tier1Projects: Project[] = [
     description:
       "Built an autonomous trading system that uses LLM-driven trading simulations to optimize portfolio performance. The system uses a multi-agent architecture to orchestrate LLMs, tools and data pipelines to solve real operational problems.",
     techStack: ["Python", "MCP", "OpenAI Agents SDK", "Gradio", "SQLite"],
-    githubUrl: "#",
-    liveUrl: "",
+    githubUrl: "https://github.com/cam-bell/autonomous-trading-system",
+    liveUrl:
+      "https://huggingface.co/spaces/cameronbell/autonomous_trading_system",
     image: "/images/trading.webp",
     status: "In Progress",
     category: "AI/ML",
@@ -175,8 +194,8 @@ export const tier2Projects: Project[] = [
       "SQLite",
       "Serper",
     ],
-    githubUrl: "#",
-    liveUrl: "",
+    githubUrl: "https://github.com/cam-bell/langgraph-sidekick-agent/tree/main",
+    liveUrl: "https://huggingface.co/spaces/cameronbell/sidekick",
     image: "/images/langgraph.jpg",
     category: "AI/ML",
     tier: "Tier 2",
