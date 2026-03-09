@@ -1,6 +1,8 @@
 "use client";
 
+import React from "react";
 import { useState } from "react";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -61,6 +63,7 @@ import {
   SiGraphql,
   SiPytest,
 } from "react-icons/si";
+import AWSBadgeImage from "@/public/images/aws-certified-cloud-practitioner.png";
 import { MatplotlibIcon } from "./icons/MatplotlibIcon";
 import { SeabornIcon } from "./icons/SeabornIcon";
 
@@ -223,6 +226,28 @@ export function SkillsMockupA() {
                 </motion.div>
               )}
             </AnimatePresence>
+
+            {/* AWS Cloud Practitioner Skills Badge */}
+            <div
+              style={{
+                position: "absolute",
+                top: "1rem",
+                right: "1rem",
+              }}
+            >
+              <a
+                href="https://www.credly.com/share/fed34534-1c50-42d0-8f9f-a268bf2da30b"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image
+                  src={AWSBadgeImage}
+                  alt="AWS Cloud Practitioner Skills Badge"
+                  width={150}
+                  height={270}
+                />
+              </a>
+            </div>
           </div>
         </motion.div>
 
