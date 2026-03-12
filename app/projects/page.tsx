@@ -2,10 +2,23 @@
 
 import { useMemo, useState } from "react";
 import { allProjects } from "@/lib/projects-data";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Layers } from "lucide-react";
+import {
+  BarChart3,
+  Brain,
+  ExternalLink,
+  Github,
+  Layers,
+  TrendingUp,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const filters = [
@@ -18,10 +31,46 @@ const filters = [
   "Full-Stack",
 ];
 
+const hasProjectImage = (image?: string) =>
+  Boolean(image && image !== "/placeholder.svg");
+
+const shouldShowTierBadge = (category?: string, tier?: string) =>
+  Boolean(tier && tier !== category);
+
+const getCategoryBadgeLabel = (project: (typeof allProjects)[number]) =>
+  project.category === "Coursework" && project.primaryBadge
+    ? project.primaryBadge
+    : project.category;
+
+const getFallbackProjectIcon = (project: (typeof allProjects)[number]) => {
+  const title = project.title.toLowerCase();
+  const primaryBadge = project.primaryBadge?.toLowerCase();
+  const category = project.category.toLowerCase();
+
+  if (
+    title.includes("regression") ||
+    primaryBadge === "regression" ||
+    category === "analytics"
+  ) {
+    return TrendingUp;
+  }
+
+  if (
+    title.includes("classification") ||
+    title.includes("detection") ||
+    primaryBadge === "classification" ||
+    primaryBadge === "computer vision"
+  ) {
+    return Brain;
+  }
+
+  return BarChart3;
+};
+
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [activeProject, setActiveProject] = useState(
-    null as (typeof allProjects)[number] | null
+    null as (typeof allProjects)[number] | null,
   );
 
   const filteredProjects = useMemo(() => {
@@ -29,7 +78,7 @@ export default function ProjectsPage() {
       return allProjects;
     }
     return allProjects.filter((project) =>
-      project.tags?.includes(activeFilter)
+      project.tags?.includes(activeFilter),
     );
   }, [activeFilter]);
 
@@ -80,13 +129,17 @@ export default function ProjectsPage() {
                 className="h-full flex flex-col overflow-hidden glass-card backdrop-blur-xl border border-white/10 shadow-glass"
               >
                 <div className="relative aspect-[16/8] bg-slate-900/60 overflow-hidden rounded-lg">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-contain object-center brightness-105 contrast-105"
-                  />
+                  {hasProjectImage(project.image) ? (
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-contain object-center brightness-105 contrast-105"
+                    />
+                  ) : (
+                    <ProjectFallback project={project} />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                   <div className="absolute top-3 right-3 z-10 flex flex-col items-end gap-2">
@@ -94,9 +147,9 @@ export default function ProjectsPage() {
                       variant="secondary"
                       className="backdrop-blur-md bg-background/80 border-slate-700/50"
                     >
-                      {project.category}
+                      {getCategoryBadgeLabel(project)}
                     </Badge>
-                    {project.tier && (
+                    {shouldShowTierBadge(project.category, project.tier) && (
                       <Badge
                         variant="outline"
                         className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
@@ -225,9 +278,12 @@ export default function ProjectsPage() {
                     variant="secondary"
                     className="backdrop-blur-md bg-background/80 border-slate-700/50"
                   >
-                    {activeProject.category}
+                    {getCategoryBadgeLabel(activeProject)}
                   </Badge>
-                  {activeProject.tier && (
+                  {shouldShowTierBadge(
+                    activeProject.category,
+                    activeProject.tier,
+                  ) && (
                     <Badge
                       variant="outline"
                       className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
@@ -317,5 +373,52 @@ export default function ProjectsPage() {
         </div>
       )}
     </main>
+  );
+}
+
+function ProjectFallback({
+  project,
+}: {
+  project: (typeof allProjects)[number];
+}) {
+  const FallbackIcon = getFallbackProjectIcon(project);
+  const headerTags = project.techStack.slice(0, 3);
+
+  return (
+    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-primary/20">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.22),_transparent_50%),linear-gradient(135deg,rgba(15,23,42,0.92),rgba(2,6,23,0.82))]" />
+      <div className="absolute left-6 top-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
+      <div className="absolute bottom-4 right-4 h-20 w-20 rounded-full bg-cyan-400/10 blur-2xl" />
+
+      <div className="relative z-10 flex h-full w-full flex-col justify-between p-5">
+        <div className="flex items-start gap-4">
+          <div className="rounded-2xl border border-primary/20 bg-primary/10 p-3 backdrop-blur-sm">
+            <FallbackIcon className="h-7 w-7 text-primary" />
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">
+              {project.secondaryBadge ?? project.category}
+            </p>
+            <h3 className="mt-2 max-w-[16rem] text-lg font-semibold leading-tight text-white">
+              {project.title}
+            </h3>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {headerTags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-[11px] text-primary"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
