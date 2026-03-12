@@ -13,12 +13,12 @@ import { motion } from "framer-motion";
 
 const education = [
   {
-    degree: "Masters in Computer Science and Business Technology",
+    degree: "MSc Computer Science and Business Technology",
     institution: "IE School of Science and Technology",
     location: "Madrid, Spain",
     period: "Sep 2024 - Jul 2025",
     description:
-      "Combined advanced AI/ML engineering with business technology strategy. Gained hands-on experience building scalable ML systems, deploying models to production, and applying computer vision and NLP to real-world problems. Developed full-stack capabilities with modern cloud technologies.",
+      "One-year conversion master's combining computer science with business technology strategy. Built applied coursework and team projects across generative AI, NLP, machine learning, cloud, and software engineering, strengthening my transition from business-focused roles into AI and product-facing technical work.",
     modules: [
       "Generative AI",
       "NLP",
@@ -44,7 +44,7 @@ const education = [
     location: "Bristol, United Kingdom",
     period: "Sep 2017 - Jul 2020",
     description:
-      "Established foundation in business strategy and management that revealed the transformative potential of technology. This understanding of business needs, market dynamics, and financial analysis informed my transition into AI/ML engineering, enabling development of solutions that bridge technical innovation and business outcomes.",
+      "Built a foundation in management, strategy, finance, and structured problem-solving. That background now shapes how I approach AI and software work with commercial awareness, customer empathy, and a strong focus on practical business outcomes.",
     modules: [
       "Project Management",
       "Consultancy Project",
@@ -88,9 +88,9 @@ export function Education() {
             Education
           </h2>
           <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-            Academic foundation in computer science, AI/ML, and business
-            technology, complemented by leadership roles and community
-            engagement.
+            Academic foundation spanning management, computer science, and
+            business technology, supporting a transition into applied AI and
+            software roles.
           </p>
         </motion.div>
 

@@ -13,6 +13,21 @@ import { motion } from "framer-motion";
 
 const experiences = [
   {
+    title: "Independent AI Engineering Projects",
+    company: "Applied AI, Data & Software Portfolio",
+    location: "Remote",
+    period: "Aug 2025 - Mar 2026",
+    description:
+      "Built hands-on AI, ML, and software projects after completing my MSc, focusing on LLM applications, data workflows, automation, and end-to-end product implementation.",
+    technologies: [
+      "Python",
+      "TypeScript",
+      "LLM Apps",
+      "Data Workflows",
+      "Automation",
+    ],
+  },
+  {
     title: "Instructor & Developer",
     company: "React Native Bootcamp",
     location: "IE University",
@@ -106,8 +121,9 @@ export function Experience() {
             Work & Experience
           </h2>
           <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-            My professional journey in software development and data science,
-            from freelancing to leading development teams.
+            Experience across business, customer-facing, innovation, and
+            finance settings, now complemented by focused applied AI and
+            software projects.
           </p>
         </motion.div>
 
