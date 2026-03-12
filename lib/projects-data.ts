@@ -344,9 +344,10 @@ export const tier2Projects: Project[] = [
       "Llama 3.2",
       "Custom Message Protocol",
     ],
-    githubUrl: "#",
-    liveUrl: "",
-    image: "/placeholder.svg",
+    githubUrl: "https://github.com/cam-bell/self-replicating-agent",
+    liveUrl:
+      "https://huggingface.co/spaces/cameronbell/self-replicating-agent-system",
+    image: "/images/self-replicating-agent.png",
     category: "AI/ML",
     tier: "Tier 2",
     tags: ["LLM/Agentic"],
