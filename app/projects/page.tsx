@@ -2,10 +2,23 @@
 
 import { useMemo, useState } from "react";
 import { allProjects } from "@/lib/projects-data";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { BarChart3, Brain, ExternalLink, Github, Layers, TrendingUp } from "lucide-react";
+import {
+  BarChart3,
+  Brain,
+  ExternalLink,
+  Github,
+  Layers,
+  TrendingUp,
+} from "lucide-react";
 import { motion } from "framer-motion";
 
 const filters = [
@@ -57,7 +70,7 @@ const getFallbackProjectIcon = (project: (typeof allProjects)[number]) => {
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState("All");
   const [activeProject, setActiveProject] = useState(
-    null as (typeof allProjects)[number] | null
+    null as (typeof allProjects)[number] | null,
   );
 
   const filteredProjects = useMemo(() => {
@@ -65,7 +78,7 @@ export default function ProjectsPage() {
       return allProjects;
     }
     return allProjects.filter((project) =>
-      project.tags?.includes(activeFilter)
+      project.tags?.includes(activeFilter),
     );
   }, [activeFilter]);
 
@@ -363,7 +376,11 @@ export default function ProjectsPage() {
   );
 }
 
-function ProjectFallback({ project }: { project: (typeof allProjects)[number] }) {
+function ProjectFallback({
+  project,
+}: {
+  project: (typeof allProjects)[number];
+}) {
   const FallbackIcon = getFallbackProjectIcon(project);
   const headerTags = project.techStack.slice(0, 3);
 
