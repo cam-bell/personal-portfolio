@@ -189,6 +189,47 @@ export const tier1Projects: Project[] = [
     },
   },
   {
+    title: "Healthcare Readmission Risk MLOps Pipeline",
+    preview:
+      "Production-style healthcare readmission pipeline with experiment tracking, config-driven runs, and a Dockerised FastAPI /predict service.",
+    description:
+      "Converted a Jupyter notebook diabetes readmission model into a production-style, reproducible MLOps pipeline with experiment tracking, config-driven runs, and a Dockerised FastAPI /predict service.",
+    techStack: [
+      "Python",
+      "scikit-learn",
+      "MLflow",
+      "Hydra",
+      "W&B",
+      "Docker",
+      "FastAPI",
+      "GitHub Actions",
+      "BorderlineSMOTE",
+    ],
+    githubUrl: "https://github.com/kollie/mlops-project-ci",
+    liveUrl: "#",
+    image: "/images/mlops.png",
+    category: "MLOps",
+    label: "Team of 5",
+    tier: "Tier 1",
+    tags: ["Applied ML", "MLOps"],
+    highlights: {
+      problem:
+        "Notebook-based healthcare models are difficult to reproduce, operationalize, and evaluate reliably, especially when severe class imbalance makes minority-risk detection the real business objective.",
+      solution:
+        "A config-driven 9-stage MLOps pipeline that transformed a diabetes readmission notebook into a reproducible training, evaluation, and inference system with MLflow, W&B, Hydra, GitHub Actions, Docker, and a FastAPI /predict service.",
+      architecture:
+        "Ingestion -> preprocessing -> feature engineering -> modelling -> evaluation -> inference across a 9-stage pipeline. Hydra orchestrates repeatable runs, MLflow and W&B track experiments and artifacts, GitHub Actions automates checks, and Dockerized FastAPI exposes synchronous inference patterns for real-time and batch-ready use.",
+      metrics: [
+        "100K+ patient records from 130+ US hospitals",
+        "Minority-class Recall improved from 17.5% to 57.6% (+229% relative lift)",
+        "$15.79M projected savings from intervention simulation",
+        "~$2.39 saved per $1 invested",
+        "38+ W&B tracked experiment runs",
+        "9-stage reproducible MLOps pipeline",
+      ],
+    },
+  },
+  {
     title: "Real-Time Fraud Detection Pipeline",
     preview:
       "Streaming fraud detection with live features, drift monitoring, and KPI dashboards.",
@@ -285,6 +326,44 @@ export const tier2Projects: Project[] = [
         "Persistent task memory stored in SQLite",
         "RAG-enabled context retrieval across task steps",
         "Iterative evaluation loop for improved task completion",
+      ],
+    },
+  },
+  {
+    title: "Self-Replicating Agent System",
+    preview:
+      "Distributed meta-programming platform where agents generate, compile, and register new Python agents at runtime.",
+    description:
+      "Engineered a distributed meta-programming platform where an autonomous agent dynamically generates, compiles and registers new Python agent modules at runtime, enabling emergent collaboration across gRPC-connected workers.",
+    techStack: [
+      "Python",
+      "AutoGen Core",
+      "gRPC",
+      "importlib",
+      "GPT-4o-mini",
+      "Llama 3.2",
+      "Custom Message Protocol",
+    ],
+    githubUrl: "#",
+    liveUrl: "",
+    image: "/placeholder.svg",
+    category: "AI/ML",
+    tier: "Tier 2",
+    tags: ["LLM/Agentic"],
+    highlights: {
+      problem:
+        "Fixed agent systems are hard to scale and adapt, while manually extending multi-agent networks slows experimentation with autonomous collaboration patterns.",
+      solution:
+        "A self-extending agent runtime where a Creator agent uses LLM-driven code generation to synthesize new Python agent modules, validate them, import them dynamically, and register them for immediate execution across distributed workers.",
+      architecture:
+        "Creator agent reads a template, generates new RoutedAgent modules via GPT-4o-mini or Llama 3.2, writes them to disk, compiles them through importlib, and registers them with AutoGen runtimes. Distributed execution runs through gRPC worker hosts and asynchronous message handlers, using AgentId routing plus a custom protocol for probabilistic collaboration.",
+      metrics: [
+        "50% probabilistic delegation rate creating emergent collaboration",
+        "Distributed gRPC worker architecture for horizontal scaling",
+        "Dynamic module generation, compilation, and runtime registration",
+        "Async agent communication across multi-process workers",
+        "Custom internal validation for generated code compilation and registration",
+        // "System autonomy increased by [X]% (placeholder)",
       ],
     },
   },
