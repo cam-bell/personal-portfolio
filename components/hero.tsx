@@ -35,8 +35,8 @@ export function Hero() {
 
   const downloadResume = () => {
     const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "Cameron_Bell_Resume.pdf";
+    link.href = "/Cameron_Bell_CV_AI_Engineer.pdf";
+    link.download = "Cameron_Bell_AI_Engineer.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -65,7 +65,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center overflow-hidden bg-slate-950 pt-24 pb-16 sm:pt-28"
+      className="relative flex min-h-[calc(100vh-2rem)] items-center overflow-hidden bg-slate-950 pt-20 pb-10 sm:pt-24 sm:pb-12"
     >
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.14),transparent_34%),radial-gradient(circle_at_78%_22%,rgba(45,212,191,0.12),transparent_30%),linear-gradient(135deg,#020617_0%,#0f172a_55%,#020617_100%)]" />
@@ -81,14 +81,14 @@ export function Hero() {
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           style={{ y: contentY, opacity: contentOpacity }}
-          className="grid items-center gap-14 lg:grid-cols-[minmax(0,1.02fr)_minmax(340px,0.98fr)] lg:gap-20"
+          className="grid items-center gap-10 lg:grid-cols-[minmax(0,1.02fr)_minmax(320px,0.9fr)] lg:gap-14"
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="mx-auto flex max-w-2xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left">
+          <div className="mx-auto flex max-w-xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left">
             <motion.div
-              className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[0.7rem] font-medium uppercase tracking-[0.24em] text-cyan-100/85 backdrop-blur-md"
+              className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-cyan-100/85 backdrop-blur-md"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -102,29 +102,38 @@ export function Hero() {
             </motion.div>
 
             <motion.h1
-              className="mt-8 max-w-4xl font-display text-5xl font-semibold tracking-[-0.05em] text-white sm:text-6xl lg:text-[5.6rem] lg:leading-[0.94]"
+              className="mt-6 font-display text-4xl font-semibold tracking-[-0.05em] text-white sm:text-5xl lg:text-[4.6rem] lg:leading-[0.95]"
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.18 }}
             >
-              Building agentic AI systems that turn operational complexity into
-              decisive action.
+              Cameron Bell
             </motion.h1>
 
+            <motion.h2
+              className="mt-4 max-w-2xl text-xl font-medium leading-8 text-slate-100/92 sm:text-2xl lg:text-[1.75rem]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.26 }}
+            >
+              AI Engineer building agentic systems that turn operational
+              complexity into decisive action.
+            </motion.h2>
+
             <motion.p
-              className="mt-8 max-w-xl text-lg leading-8 text-slate-300 sm:text-xl"
+              className="mt-5 max-w-lg text-base leading-7 text-slate-300 sm:text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.32 }}
             >
-              I design multi-agent workflows that coordinate LLMs, tools, and
-              data pipelines so teams can move from manual decision-making to
-              reliable automation across research, risk, and execution-heavy
+              I design multi-agent workflows that coordinate LLMs, tools, and ML
+              production pipelines so teams can move from manual decision-making
+              to reliable automation across research, risk, and execution-heavy
               environments.
             </motion.p>
 
             <motion.div
-              className="mt-10 flex w-full flex-col items-stretch justify-center gap-4 sm:w-auto sm:flex-row sm:items-center lg:justify-start"
+              className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center lg:justify-start"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.45 }}
@@ -136,7 +145,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   onClick={scrollToProjects}
-                  className="group h-12 bg-white px-6 text-sm font-semibold text-slate-950 shadow-[0_18px_48px_rgba(255,255,255,0.12)] transition-all duration-300 hover:bg-cyan-100"
+                  className="group h-11 bg-white px-5 text-sm font-semibold text-slate-950 shadow-[0_18px_48px_rgba(255,255,255,0.12)] transition-all duration-300 hover:bg-cyan-100"
                 >
                   Explore My Work
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
@@ -151,7 +160,7 @@ export function Hero() {
                   size="lg"
                   variant="outline"
                   onClick={downloadResume}
-                  className="h-12 border-white/15 bg-white/5 px-6 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:text-white"
+                  className="h-11 border-white/15 bg-white/5 px-5 text-sm font-medium text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:text-white"
                 >
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
@@ -160,7 +169,7 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start"
+              className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:flex-wrap sm:justify-center lg:justify-start"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.58 }}
@@ -217,7 +226,7 @@ export function Hero() {
 
             <motion.button
               onClick={scrollToProjects}
-              className="group mt-14 hidden items-center gap-3 text-sm uppercase tracking-[0.24em] text-slate-400 transition-colors duration-300 hover:text-slate-100 lg:inline-flex"
+              className="group mt-10 hidden items-center gap-3 text-sm uppercase tracking-[0.24em] text-slate-400 transition-colors duration-300 hover:text-slate-100 lg:inline-flex"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.72 }}
@@ -243,16 +252,16 @@ export function Hero() {
           </div>
 
           <motion.div
-            className="relative mx-auto w-full max-w-[34rem]"
+            className="relative mx-auto w-full max-w-[28rem] lg:max-w-[31rem]"
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, delay: 0.28 }}
           >
-            <div className="absolute inset-x-[14%] top-8 h-16 rounded-full bg-cyan-300/10 blur-3xl" />
+            <div className="absolute inset-x-[14%] top-8 h-14 rounded-full bg-cyan-300/10 blur-3xl" />
             <div className="absolute inset-0 rounded-[2rem] bg-[linear-gradient(145deg,rgba(255,255,255,0.09),rgba(255,255,255,0.02))] opacity-90" />
 
             <motion.div
-              className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-4 shadow-[0_30px_90px_rgba(2,6,23,0.55)] backdrop-blur-md sm:p-5"
+              className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-3 shadow-[0_30px_90px_rgba(2,6,23,0.55)] backdrop-blur-md sm:p-4"
               animate={
                 shouldReduceMotion
                   ? undefined
@@ -268,17 +277,17 @@ export function Hero() {
                     }
               }
             >
-              <div className="absolute inset-x-0 top-0 h-32 bg-[linear-gradient(180deg,rgba(103,232,249,0.14),transparent)]" />
-              <div className="absolute inset-y-6 left-6 w-px bg-white/10" />
-              <div className="absolute inset-y-6 right-6 w-px bg-white/10" />
-              <div className="absolute inset-x-8 bottom-8 h-px bg-white/10" />
+              <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(103,232,249,0.14),transparent)]" />
+              <div className="absolute inset-y-5 left-5 w-px bg-white/10" />
+              <div className="absolute inset-y-5 right-5 w-px bg-white/10" />
+              <div className="absolute inset-x-7 bottom-7 h-px bg-white/10" />
 
-              <div className="relative rounded-[1.6rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.14),transparent_55%),linear-gradient(180deg,rgba(15,23,42,0.58),rgba(2,6,23,0.88))] p-4 sm:p-6">
+              <div className="relative rounded-[1.6rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.14),transparent_55%),linear-gradient(180deg,rgba(15,23,42,0.58),rgba(2,6,23,0.88))] p-4 sm:p-5">
                 <div className="absolute left-6 top-6 text-[0.65rem] font-medium uppercase tracking-[0.26em] text-slate-400">
                   Portrait
                 </div>
 
-                <div className="relative mx-auto mt-10 aspect-[4/5] w-full max-w-[27rem] overflow-hidden rounded-[1.8rem] border border-white/10 bg-slate-900/60">
+                <div className="relative mx-auto mt-9 aspect-[4/5] w-full max-w-[23rem] overflow-hidden rounded-[1.8rem] border border-white/10 bg-slate-900/60 lg:max-w-[24rem]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.22),transparent_28%),linear-gradient(180deg,rgba(14,165,233,0.1),transparent_30%),linear-gradient(180deg,transparent_48%,rgba(2,6,23,0.44)_100%)]" />
                   <Image
                     src="/images/cameron-avatar.png"
