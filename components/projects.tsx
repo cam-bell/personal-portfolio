@@ -9,17 +9,12 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Github, ExternalLink, Zap, ChevronDown, ChevronUp } from "lucide-react";
+import { Github, ExternalLink, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import type React from "react";
 import Link from "next/link";
-import {
-  tier1Projects,
-  tier2Projects,
-  type Project,
-} from "@/lib/projects-data";
-import * as Tabs from "@radix-ui/react-tabs";
+import { tier1Projects, tier2Projects, type Project } from "@/lib/projects-data";
 import * as Dialog from "@radix-ui/react-dialog";
 import * as Collapsible from "@radix-ui/react-collapsible";
 import {
@@ -301,9 +296,10 @@ const ProjectCard = ({
   onToggleTechStack: (e: React.MouseEvent) => void;
   onOpenDetails: (trigger: HTMLButtonElement | null) => void;
 }) => {
-  const primaryTech = project.techStack.slice(0, 5);
-  const additionalTech = project.techStack.slice(5);
   const isSecondary = variant === "secondary";
+  const visibleTechCount = 4;
+  const primaryTech = project.techStack.slice(0, visibleTechCount);
+  const additionalTech = project.techStack.slice(visibleTechCount);
 
   return (
     <motion.div
@@ -321,11 +317,11 @@ const ProjectCard = ({
       <div className="relative h-full flex-1">
         {isHovered && (
           <motion.div
-            className={`absolute -inset-[2px] rounded-lg bg-gradient-to-r from-primary/30 via-accent/30 to-primary/30 blur-md opacity-60 pointer-events-none ${
-              isSecondary ? "opacity-40" : ""
+            className={`absolute inset-0 rounded-lg bg-gradient-to-r from-primary/18 via-accent/18 to-primary/18 pointer-events-none ${
+              isSecondary ? "opacity-35" : "opacity-45"
             }`}
             initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.6, 0.4, 0.6] }}
+            animate={{ opacity: [0, 0.45, 0.28, 0.45] }}
             transition={{
               duration: 2,
               repeat: Infinity,
@@ -343,7 +339,7 @@ const ProjectCard = ({
               isHovered
                 ? isSecondary
                   ? "shadow-xl shadow-primary/10 scale-[1.02] border-primary/30"
-                  : "shadow-2xl shadow-primary/20 scale-[1.05] border-primary/40"
+                  : "shadow-xl shadow-primary/15 scale-[1.015] border-primary/35"
                 : "hover:shadow-xl hover:border-slate-600/50"
             }
           `}
@@ -403,12 +399,12 @@ const ProjectCard = ({
           </div>
 
           <CardHeader
-            className={`space-y-2 ${isSecondary ? "pb-2 pt-2" : "pb-3 pt-3"} flex-shrink-0`}
+            className={`space-y-2 ${isSecondary ? "pb-2 pt-2" : "pb-2 pt-3"} flex-shrink-0`}
           >
             <CardTitle
               className={`leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2 ${
-                !isSecondary ? "text-center min-h-[56px]" : ""
-              } ${isSecondary ? "text-base" : "text-lg"}`}
+                !isSecondary ? "text-left" : ""
+              } ${isSecondary ? "text-base" : "text-[1.05rem]"}`}
             >
               {project.title}
             </CardTitle>
@@ -457,9 +453,7 @@ const ProjectCard = ({
 
             <motion.div layout>
               <CardDescription
-                className={`text-slate-300 leading-6 text-sm line-clamp-2 ${
-                  !isSecondary ? "min-h-[48px]" : ""
-                }`}
+                className="text-slate-300 leading-6 text-sm line-clamp-2"
               >
                 {project.preview ?? project.description}
               </CardDescription>
@@ -479,7 +473,7 @@ const ProjectCard = ({
           <div className="flex-grow" />
 
           <CardContent
-            className={`space-y-3 flex-shrink-0 ${isSecondary ? "pt-0" : ""}`}
+            className={`space-y-3 flex-shrink-0 ${isSecondary ? "pt-0" : "pt-0 pb-5"}`}
           >
             <div className="flex gap-3 pt-1.5">
               <motion.div
@@ -546,48 +540,24 @@ const ProjectCard = ({
   );
 };
 
-// Project categorization
-const getProjectsByCategory = () => {
-  const allProjects = [...tier1Projects, ...tier2Projects];
+const allProjects = [...tier1Projects, ...tier2Projects];
 
-  // Define featured projects (top 3)
-  const featured = allProjects.slice(0, 3);
+const featuredProjectTitles = [
+  "BHSI Risk Classification System",
+  "Deep Research Workflow",
+  "Healthcare Readmission Risk MLOps Pipeline",
+  "LangGraph Autonomous Task Agent (Sidekick)",
+];
 
-  // Flagship Systems / LLM-Powered
-  const flagshipSystems = allProjects.filter(
-    (p) =>
-      p.title.includes("BHSI") ||
-      p.title.includes("Autonomous") ||
-      p.title.includes("Discharge") ||
-      p.title.includes("Deep Research"),
-  );
+const featuredProjects = featuredProjectTitles
+  .map((title) => allProjects.find((project) => project.title === title))
+  .filter((project): project is Project => Boolean(project));
 
-  // AI Agents
-  const aiAgents = allProjects.filter(
-    (p) =>
-      (p.tags?.includes("LLM/Agentic") || false) &&
-      !flagshipSystems.includes(p),
-  );
-
-  // Applied ML
-  const appliedML = allProjects.filter(
-    (p) =>
-      (p.tags?.includes("Applied ML") || false) &&
-      !flagshipSystems.includes(p) &&
-      !aiAgents.includes(p),
-  );
-
-  // Supporting Projects
-  const supporting = allProjects.filter(
-    (p) =>
-      !featured.includes(p) &&
-      !flagshipSystems.includes(p) &&
-      !aiAgents.includes(p) &&
-      !appliedML.includes(p),
-  );
-
-  return { featured, flagshipSystems, aiAgents, appliedML, supporting };
-};
+const featuredLabels = [
+  "Agent systems",
+  "Applied ML",
+  "Production engineering",
+];
 
 export function Projects() {
   const [hoveredProject, setHoveredProject] = useState<string | null>(null);
@@ -599,9 +569,7 @@ export function Projects() {
     null,
   );
   const [isArchitectureExpanded, setIsArchitectureExpanded] = useState(false);
-  const [activeTab, setActiveTab] = useState("flagship");
   const shouldReduceMotion = useReducedMotion();
-  const categories = getProjectsByCategory();
   const modalHighlights = useMemo(() => {
     if (!activeProject?.highlights) {
       return [];
@@ -656,7 +624,7 @@ export function Projects() {
   return (
     <section
       id="projects"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden"
+      className="py-14 scroll-mt-24 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden sm:scroll-mt-28"
     >
       {/* Parallax background layers */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
@@ -683,259 +651,66 @@ export function Projects() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16 overflow-visible"
+          className="mb-10 overflow-visible"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            <Zap className="h-4 w-4" />
-            Featured Work
+          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary mb-4">
+            Selected Work
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent mb-6 leading-normal pb-1">
-            Projects
+          <h2 className="max-w-4xl text-3xl font-semibold text-white md:text-4xl leading-tight">
+            AI systems shipped with product and engineering discipline
           </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-7">
-            A showcase of cutting-edge projects spanning machine learning,
-            computer vision, NLP, and full-stack development. Each project
-            demonstrates modern AI engineering practices and production-ready
-            solutions.
+          <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
+            Four projects that best show agent orchestration, applied ML, and
+            production-oriented decision making. The full archive lives on the
+            dedicated projects page.
           </p>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {featuredLabels.map((label) => (
+              <Badge
+                key={label}
+                variant="outline"
+                className="border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] font-medium text-slate-300"
+              >
+                {label}
+              </Badge>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Featured Projects */}
-        <div className="space-y-8 mb-16">
-          <div className="text-left">
-            <h3 className="text-2xl md:text-3xl font-semibold text-aurora mb-3">
-              Featured Highlights
-            </h3>
-            <p className="text-slate-300 max-w-3xl">
-              Showcase of my most impactful work across LLM orchestration,
-              applied ML, and full-stack development.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {categories.featured.map((project, index) => {
-              const isHovered = hoveredProject === project.title;
-              const isTechStackExpanded = expandedTechStack === project.title;
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+          {featuredProjects.map((project, index) => {
+            const isHovered = hoveredProject === project.title;
+            const isTechStackExpanded = expandedTechStack === project.title;
 
-              return (
-                <ProjectCard
-                  key={project.title}
-                  project={project}
-                  index={index}
-                  variant="primary"
-                  isHovered={isHovered}
-                  isTechStackExpanded={isTechStackExpanded}
-                  onHoverStart={() => setHoveredProject(project.title)}
-                  onHoverEnd={() => setHoveredProject(null)}
-                  onToggleTechStack={(e: React.MouseEvent) => {
-                    e.stopPropagation();
-                    setExpandedTechStack(
-                      isTechStackExpanded ? null : project.title,
-                    );
-                  }}
-                  onOpenDetails={(trigger) => openDetails(project, trigger)}
-                />
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Categorized Projects with Tabs */}
-        <div className="space-y-8">
-          <div className="text-left">
-            <h3 className="text-2xl md:text-3xl font-semibold text-aurora mb-3">
-              Project Categories
-            </h3>
-            <p className="text-slate-300 max-w-3xl">
-              Browse projects organized by category and technology domain.
-            </p>
-          </div>
-
-          <Tabs.Root value={activeTab} onValueChange={setActiveTab}>
-            <Tabs.List className="flex gap-2 border-b border-white/10 mb-8 overflow-x-auto pb-2">
-              <Tabs.Trigger
-                value="flagship"
-                className="px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-200 data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary transition-colors whitespace-nowrap"
-              >
-                Flagship Systems
-              </Tabs.Trigger>
-              <Tabs.Trigger
-                value="agents"
-                className="px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-200 data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary transition-colors whitespace-nowrap"
-              >
-                AI Agents
-              </Tabs.Trigger>
-              <Tabs.Trigger
-                value="applied"
-                className="px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-200 data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary transition-colors whitespace-nowrap"
-              >
-                Applied ML
-              </Tabs.Trigger>
-              <Tabs.Trigger
-                value="supporting"
-                className="px-4 py-2 text-sm font-medium text-slate-400 hover:text-slate-200 data-[state=active]:text-primary data-[state=active]:border-b-2 data-[state=active]:border-primary transition-colors whitespace-nowrap"
-              >
-                Supporting Projects
-              </Tabs.Trigger>
-            </Tabs.List>
-
-            {/* Flagship Systems Tab */}
-            <Tabs.Content value="flagship">
-              <motion.div
-                key="flagship"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
-              >
-                {categories.flagshipSystems.map((project, index) => {
-                  const isHovered = hoveredProject === project.title;
-                  const isTechStackExpanded =
-                    expandedTechStack === project.title;
-
-                  return (
-                    <ProjectCard
-                      key={project.title}
-                      project={project}
-                      index={index}
-                      variant="secondary"
-                      isHovered={isHovered}
-                      isTechStackExpanded={isTechStackExpanded}
-                      onHoverStart={() => setHoveredProject(project.title)}
-                      onHoverEnd={() => setHoveredProject(null)}
-                      onToggleTechStack={(e: React.MouseEvent) => {
-                        e.stopPropagation();
-                        setExpandedTechStack(
-                          isTechStackExpanded ? null : project.title,
-                        );
-                      }}
-                      onOpenDetails={(trigger) => openDetails(project, trigger)}
-                    />
-                  );
-                })}
-              </motion.div>
-            </Tabs.Content>
-
-            {/* AI Agents Tab */}
-            <Tabs.Content value="agents">
-              <motion.div
-                key="agents"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
-              >
-                {categories.aiAgents.map((project, index) => {
-                  const isHovered = hoveredProject === project.title;
-                  const isTechStackExpanded =
-                    expandedTechStack === project.title;
-
-                  return (
-                    <ProjectCard
-                      key={project.title}
-                      project={project}
-                      index={index}
-                      variant="secondary"
-                      isHovered={isHovered}
-                      isTechStackExpanded={isTechStackExpanded}
-                      onHoverStart={() => setHoveredProject(project.title)}
-                      onHoverEnd={() => setHoveredProject(null)}
-                      onToggleTechStack={(e: React.MouseEvent) => {
-                        e.stopPropagation();
-                        setExpandedTechStack(
-                          isTechStackExpanded ? null : project.title,
-                        );
-                      }}
-                      onOpenDetails={(trigger) => openDetails(project, trigger)}
-                    />
-                  );
-                })}
-              </motion.div>
-            </Tabs.Content>
-
-            {/* Applied ML Tab */}
-            <Tabs.Content value="applied">
-              <motion.div
-                key="applied"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
-              >
-                {categories.appliedML.map((project, index) => {
-                  const isHovered = hoveredProject === project.title;
-                  const isTechStackExpanded =
-                    expandedTechStack === project.title;
-
-                  return (
-                    <ProjectCard
-                      key={project.title}
-                      project={project}
-                      index={index}
-                      variant="secondary"
-                      isHovered={isHovered}
-                      isTechStackExpanded={isTechStackExpanded}
-                      onHoverStart={() => setHoveredProject(project.title)}
-                      onHoverEnd={() => setHoveredProject(null)}
-                      onToggleTechStack={(e: React.MouseEvent) => {
-                        e.stopPropagation();
-                        setExpandedTechStack(
-                          isTechStackExpanded ? null : project.title,
-                        );
-                      }}
-                      onOpenDetails={(trigger) => openDetails(project, trigger)}
-                    />
-                  );
-                })}
-              </motion.div>
-            </Tabs.Content>
-
-            {/* Supporting Projects Tab */}
-            <Tabs.Content value="supporting">
-              <motion.div
-                key="supporting"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch"
-              >
-                {categories.supporting.map((project, index) => {
-                  const isHovered = hoveredProject === project.title;
-                  const isTechStackExpanded =
-                    expandedTechStack === project.title;
-
-                  return (
-                    <ProjectCard
-                      key={project.title}
-                      project={project}
-                      index={index}
-                      variant="secondary"
-                      isHovered={isHovered}
-                      isTechStackExpanded={isTechStackExpanded}
-                      onHoverStart={() => setHoveredProject(project.title)}
-                      onHoverEnd={() => setHoveredProject(null)}
-                      onToggleTechStack={(e: React.MouseEvent) => {
-                        e.stopPropagation();
-                        setExpandedTechStack(
-                          isTechStackExpanded ? null : project.title,
-                        );
-                      }}
-                      onOpenDetails={(trigger) => openDetails(project, trigger)}
-                    />
-                  );
-                })}
-              </motion.div>
-            </Tabs.Content>
-          </Tabs.Root>
+            return (
+              <ProjectCard
+                key={project.title}
+                project={project}
+                index={index}
+                variant="primary"
+                isHovered={isHovered}
+                isTechStackExpanded={isTechStackExpanded}
+                onHoverStart={() => setHoveredProject(project.title)}
+                onHoverEnd={() => setHoveredProject(null)}
+                onToggleTechStack={(e: React.MouseEvent) => {
+                  e.stopPropagation();
+                  setExpandedTechStack(isTechStackExpanded ? null : project.title);
+                }}
+                onOpenDetails={(trigger) => openDetails(project, trigger)}
+              />
+            );
+          })}
         </div>
 
         {/* Full Archive CTA */}
-        <div className="mt-12 flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-6 py-5 shadow-glass">
+        <div className="mt-8 flex flex-col items-start justify-between gap-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-5 py-4 shadow-glass md:flex-row md:items-center">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-slate-400">
-              Want the full archive?
+            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400">
+              Full archive
             </p>
-            <p className="text-lg font-semibold text-white">
-              Browse every project, with filters and full write-ups.
+            <p className="mt-1 text-base font-semibold text-white">
+              Explore all projects, filters, and full write-ups on the
+              dedicated page.
             </p>
           </div>
           <Button size="sm" className="group" asChild>

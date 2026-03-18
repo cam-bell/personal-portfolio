@@ -69,7 +69,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden"
+      className="py-20 scroll-mt-24 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden sm:scroll-mt-28"
     >
       <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
       <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
@@ -80,13 +80,16 @@ export function Contact() {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <MessageSquare className="h-8 w-8 text-primary" />
-            <h2 className="text-4xl md:text-5xl font-bold text-aurora">
-              Get In Touch
-            </h2>
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <MessageSquare className="h-7 w-7 text-cyan-200" />
+            <p className="text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
+              Contact
+            </p>
           </div>
-          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
+          <h2 className="text-center font-serif text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">
+            Get In Touch
+          </h2>
+          <p className="mx-auto mt-8 mb-12 max-w-2xl text-center text-base leading-8 text-slate-300 sm:text-lg">
             Have a project in mind or just want to chat about technology? I'd
             love to hear from you. Let's build something amazing together.
           </p>
@@ -101,11 +104,11 @@ export function Contact() {
           >
             <Card className="glass-card border border-white/10 shadow-glass backdrop-blur-xl">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <Mail className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 text-white">
+                  <Mail className="h-5 w-5 text-cyan-200" />
                   Send me a message
                 </CardTitle>
-                <CardDescription>
+                <CardDescription className="text-slate-400">
                   Fill out the form below and I'll get back to you as soon as
                   possible.
                 </CardDescription>
@@ -118,7 +121,7 @@ export function Contact() {
                     className="text-center py-8"
                   >
                     <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                    <h3 className="text-xl font-semibold mb-2">
+                    <h3 className="mb-2 text-xl font-semibold text-white">
                       Message Sent!
                     </h3>
                     <p className="text-slate-300">
@@ -148,7 +151,9 @@ export function Contact() {
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <Label htmlFor="name">Name</Label>
+                        <Label htmlFor="name" className="text-slate-200">
+                          Name
+                        </Label>
                         <Input
                           id="name"
                           name="name"
@@ -157,7 +162,9 @@ export function Contact() {
                         />
                       </div>
                       <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
+                        <Label htmlFor="email" className="text-slate-200">
+                          Email
+                        </Label>
                         <Input
                           id="email"
                           name="email"
@@ -169,7 +176,9 @@ export function Contact() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="subject">Subject</Label>
+                      <Label htmlFor="subject" className="text-slate-200">
+                        Subject
+                      </Label>
                       <Input
                         id="subject"
                         name="subject"
@@ -179,7 +188,9 @@ export function Contact() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="message">Message</Label>
+                      <Label htmlFor="message" className="text-slate-200">
+                        Message
+                      </Label>
                       <Textarea
                         id="message"
                         name="message"

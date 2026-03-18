@@ -72,11 +72,9 @@ export function Navigation() {
 
     const element = document.querySelector(href);
     if (element) {
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - 80;
-      window.scrollTo({
-        top: offsetPosition,
+      element.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     }
     setIsOpen(false);

@@ -62,7 +62,7 @@ export function Experience() {
   return (
     <section
       id="experience"
-      className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 py-20"
+      className="relative overflow-hidden scroll-mt-24 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 py-20 sm:scroll-mt-28"
     >
       <div className="absolute inset-0 bg-aurora-soft opacity-50 pointer-events-none" />
       <div className="absolute inset-0 noise-overlay opacity-40 pointer-events-none" />

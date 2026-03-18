@@ -1,14 +1,8 @@
 "use client";
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, GraduationCap, Award } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Award, Calendar, GraduationCap, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 
 const education = [
@@ -59,137 +53,189 @@ const education = [
   },
 ];
 
+const featuredEducation = education[0];
+const supportingEducation = education[1];
+
 export function Education() {
   return (
     <section
       id="education"
-      className="py-14 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden"
+      className="relative overflow-hidden scroll-mt-24 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 py-20 sm:scroll-mt-28"
     >
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
-      <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
-      <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
-      <motion.div
-        className="absolute top-0 right-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        viewport={{ once: true }}
-      />
+      <div className="absolute inset-0 bg-aurora-soft opacity-45 pointer-events-none" />
+      <div className="absolute inset-0 noise-overlay opacity-40 pointer-events-none" />
+      <div className="absolute left-0 top-16 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl pointer-events-none" />
+      <div className="absolute right-0 top-0 h-[28rem] w-[28rem] rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.08),transparent_38%)] pointer-events-none" />
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
+          className="max-w-3xl"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-aurora">
+          <p className="text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
             Education
+          </p>
+          <h2 className="mt-6 font-serif text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">
+            Academic Foundation
           </h2>
-          <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
+          <p className="mt-8 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
             Academic foundation in computer science, AI/ML, and business
             technology, complemented by leadership roles and community
             engagement.
           </p>
         </motion.div>
 
-        <div className="max-w-5xl mx-auto space-y-4">
-          {/* Education Cards */}
-          {education.map((edu, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-            >
-              <Card className="glass-card backdrop-blur-xl border border-white/10 hover:border-primary/30 transition-all duration-500 shadow-glass">
-                <CardHeader className="pb-1.5">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 min-w-0">
-                      <CardTitle className="text-lg md:text-xl mb-1">
-                        {edu.degree}
-                      </CardTitle>
-                      <CardDescription className="text-sm md:text-base font-medium text-primary mb-1.5">
-                        {edu.institution}
-                      </CardDescription>
-                      <div className="flex items-center gap-2 text-xs text-slate-400">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3 w-3" />
-                          {edu.period}
-                        </div>
-                        <span className="text-slate-500">•</span>
-                        <div className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          {edu.location}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex-shrink-0">
-                      <GraduationCap className="h-5 w-5 text-primary" />
+        <div className="mt-16 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.82fr)]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <Card className="glass-card overflow-hidden rounded-[2rem] border-white/10 shadow-[0_30px_90px_rgba(2,8,23,0.55)]">
+              <CardContent className="p-8 sm:p-10">
+                <div className="flex items-start justify-between gap-6 border-b border-white/10 pb-8">
+                  <div className="max-w-3xl">
+                    <p className="text-sm uppercase tracking-[0.32em] text-slate-500">
+                      {featuredEducation.period}
+                    </p>
+                    <h3 className="mt-4 text-4xl font-semibold leading-tight text-white sm:text-5xl">
+                      {featuredEducation.degree}
+                    </h3>
+                    <p className="mt-3 text-xl text-slate-300">
+                      {featuredEducation.institution}
+                    </p>
+                    <p className="mt-3 flex items-center gap-2 text-sm text-slate-400">
+                      <MapPin className="h-4 w-4 text-cyan-200" />
+                      {featuredEducation.location}
+                    </p>
+                  </div>
+
+                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-100 shadow-[0_0_30px_rgba(34,211,238,0.16)]">
+                    <GraduationCap className="h-7 w-7" />
+                  </div>
+                </div>
+
+                <div className="mt-8 grid gap-8 xl:grid-cols-[minmax(0,1fr)_300px]">
+                  <div>
+                    <p className="text-base leading-8 text-slate-200">
+                      {featuredEducation.description}
+                    </p>
+
+                    <div className="mt-8">
+                      <h4 className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">
+                        Leadership Roles
+                      </h4>
+                      <ul className="mt-4 space-y-3">
+                        {featuredEducation.leadership.map((role) => (
+                          <li
+                            key={role}
+                            className="flex items-start gap-3 text-sm leading-6 text-slate-300"
+                          >
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" />
+                            <span>{role}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                </CardHeader>
-                <CardContent className="!p-5 md:!p-6 !pt-1 !pb-4">
-                  <div className="grid lg:grid-cols-2 gap-3 lg:gap-4 items-start">
-                    {/* Description - Left Column */}
-                    {edu.description && (
-                      <div>
-                        <p className="text-xs text-slate-300 leading-normal text-justify">
-                          {edu.description}
-                        </p>
-                      </div>
-                    )}
 
-                    {/* Modules & Leadership - Right Column */}
-                    <div className="space-y-2.5">
-                      {/* Modules */}
-                      <div>
-                        <h4 className="text-xs font-semibold text-slate-200 mb-1.5 flex items-center gap-1.5">
-                          <Award className="h-3.5 w-3.5 text-primary" />
-                          Key Modules
-                        </h4>
-                        <div className="flex flex-wrap gap-1.5">
-                          {edu.modules.map((module) => (
-                            <Badge
-                              key={module}
-                              variant="outline"
-                              className="text-[10px] px-2 py-0.5 bg-primary/5 border-primary/20 text-primary hover:bg-primary/10 hover:border-primary/30 transition-all"
-                            >
-                              {module}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Leadership Roles */}
-                      {edu.leadership.length > 0 && (
-                        <div>
-                          <h4 className="text-xs font-semibold text-slate-200 mb-1.5">
-                            Leadership Roles
-                          </h4>
-                          <ul className="space-y-1">
-                            {edu.leadership.map((role, roleIndex) => (
-                              <li
-                                key={roleIndex}
-                                className="text-xs text-slate-300 flex items-start gap-1.5"
-                              >
-                                <span className="text-primary mt-0.5 text-[10px]">
-                                  •
-                                </span>
-                                <span>{role}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
+                  <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md">
+                    <h4 className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">
+                      <Award className="h-3.5 w-3.5 text-cyan-200" />
+                      Key Modules
+                    </h4>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {featuredEducation.modules.map((module) => (
+                        <Badge
+                          key={module}
+                          variant="outline"
+                          className="rounded-full border-cyan-300/15 bg-cyan-300/5 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-cyan-100/90"
+                        >
+                          {module}
+                        </Badge>
+                      ))}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <Card className="overflow-hidden rounded-[2rem] border-white/10 bg-white/[0.04] shadow-[0_22px_70px_rgba(2,8,23,0.45)]">
+              <CardContent className="p-7 sm:p-8">
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                  {supportingEducation.period}
+                </p>
+                <h3 className="mt-3 text-3xl font-semibold leading-tight text-white">
+                  {supportingEducation.degree}
+                </h3>
+                <p className="mt-2 text-lg text-slate-300">
+                  {supportingEducation.institution}
+                </p>
+                <p className="mt-2 flex items-center gap-2 text-sm text-slate-500">
+                  <MapPin className="h-4 w-4" />
+                  {supportingEducation.location}
+                </p>
+
+                <p className="mt-6 text-sm leading-7 text-slate-300">
+                  {supportingEducation.description}
+                </p>
+              </CardContent>
+            </Card>
+
+            <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.03] p-6 backdrop-blur-md">
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <Calendar className="h-4 w-4" />
+                <span>Supporting details</span>
+              </div>
+
+              <div className="mt-6">
+                <h4 className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">
+                  Key Modules
+                </h4>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {supportingEducation.modules.map((module) => (
+                    <Badge
+                      key={module}
+                      variant="outline"
+                      className="rounded-full border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-slate-300"
+                    >
+                      {module}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 border-t border-white/10 pt-6">
+                <h4 className="text-xs font-semibold uppercase tracking-[0.26em] text-slate-400">
+                  Leadership Roles
+                </h4>
+                <ul className="mt-4 space-y-3">
+                  {supportingEducation.leadership.map((role) => (
+                    <li
+                      key={role}
+                      className="flex items-start gap-3 text-sm leading-6 text-slate-300"
+                    >
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-cyan-200" />
+                      <span>{role}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
