@@ -62,8 +62,9 @@ type SkillItem = {
 
 type CapabilityGroup = {
   title: string;
-  recruiterLabel: string;
+  eyebrow: string;
   summary: string;
+  impact: string;
   icon: any;
   skills: SkillItem[];
 };
@@ -71,9 +72,11 @@ type CapabilityGroup = {
 const capabilityGroups: CapabilityGroup[] = [
   {
     title: "Agent Systems",
-    recruiterLabel: "LLM orchestration",
+    eyebrow: "Orchestration",
     summary:
-      "I build multi-step AI workflows with structured state, tool use, and validation.",
+      "I structure multi-step AI flows with typed state, tool calling, and reliable handoffs between models and services.",
+    impact:
+      "Designed for workflows that need coordination, validation, and operational control.",
     icon: Code,
     skills: [
       { name: "LangChain", icon: SiLangchain, color: "#2C6262" },
@@ -86,9 +89,11 @@ const capabilityGroups: CapabilityGroup[] = [
   },
   {
     title: "ML & Model Work",
-    recruiterLabel: "Applied AI",
+    eyebrow: "Applied AI",
     summary:
-      "Hands-on experience across model training, evaluation, experimentation, and adaptation workflows.",
+      "From experimentation to evaluation, I work across training stacks, traditional ML, and model-adaptation workflows.",
+    impact:
+      "Useful when projects move between research prototypes and production-adjacent delivery.",
     icon: Brain,
     skills: [
       { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
@@ -101,9 +106,11 @@ const capabilityGroups: CapabilityGroup[] = [
   },
   {
     title: "Data Foundations",
-    recruiterLabel: "Storage and retrieval",
+    eyebrow: "Storage & Retrieval",
     summary:
-      "Structured data, analytical stores, and retrieval layers for product and model workflows.",
+      "I work with structured data, retrieval layers, and analytical stores that support both model pipelines and product features.",
+    impact:
+      "Built for systems that need context, state, and measurable outputs.",
     icon: Database,
     skills: [
       { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
@@ -115,9 +122,11 @@ const capabilityGroups: CapabilityGroup[] = [
   },
   {
     title: "Application Layer",
-    recruiterLabel: "Product delivery",
+    eyebrow: "Interfaces & APIs",
     summary:
-      "I turn AI systems into usable applications with backend APIs, web interfaces, and internal tools.",
+      "I package AI capabilities into usable products with modern backend and frontend tooling across web apps and internal tools.",
+    impact:
+      "Focused on moving from isolated models to systems people can actually use.",
     icon: Layers,
     skills: [
       { name: "Python", icon: SiPython, color: "#3776AB" },
@@ -131,9 +140,11 @@ const capabilityGroups: CapabilityGroup[] = [
   },
   {
     title: "Platform & Delivery",
-    recruiterLabel: "Cloud and MLOps",
+    eyebrow: "Cloud & MLOps",
     summary:
-      "Enough infrastructure depth to ship, version, monitor, and repeat technical work reliably.",
+      "I deploy, version, and monitor technical work with cloud, container, and experiment management tools.",
+    impact:
+      "Enough platform depth to make prototypes more repeatable and delivery more dependable.",
     icon: Cloud,
     skills: [
       { name: "AWS", icon: SiAmazon, color: "#FF9900" },
@@ -146,9 +157,11 @@ const capabilityGroups: CapabilityGroup[] = [
   },
   {
     title: "Working Toolkit",
-    recruiterLabel: "Execution tools",
+    eyebrow: "Delivery Tools",
     summary:
-      "The tools I use for testing, debugging, experimentation, and day-to-day delivery.",
+      "The day-to-day tooling I use for debugging, experimentation, testing, and shipping work cleanly.",
+    impact:
+      "Less glamorous than models, but essential for consistent execution.",
     icon: Wrench,
     skills: [
       { name: "Git", icon: SiGit, color: "#F05032" },
@@ -161,23 +174,7 @@ const capabilityGroups: CapabilityGroup[] = [
   },
 ];
 
-const featuredSkills = capabilityGroups
-  .flatMap((group) => group.skills)
-  .filter((skill) =>
-    [
-      "Python",
-      "TypeScript",
-      "OpenAI",
-      "LangChain",
-      "LangGraph",
-      "FastAPI",
-      "React",
-      "PostgreSQL",
-      "Docker",
-      "AWS",
-    ].includes(skill.name),
-  );
-
+const featuredCapability = capabilityGroups[0];
 const totalSkills = capabilityGroups.reduce(
   (count, group) => count + group.skills.length,
   0,
@@ -197,7 +194,7 @@ function SkillChip({ skill }: { skill: SkillItem }) {
   );
 }
 
-export function SkillsMockupA() {
+export function SkillsMockupACapabilityStory() {
   return (
     <section
       id="skills"
@@ -236,15 +233,9 @@ export function SkillsMockupA() {
                 {totalSkills} selected tools
               </Badge>
               <span className="hidden h-1 w-1 rounded-full bg-white/30 sm:block" />
-              <span>{capabilityGroups.length} grouped categories</span>
+              <span>{capabilityGroups.length} capability tracks</span>
               <ArrowRight className="h-4 w-4 text-slate-500" />
-              <span>LLM systems to full-stack delivery</span>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              {featuredSkills.map((skill) => (
-                <SkillChip key={skill.name} skill={skill} />
-              ))}
+              <span>research to production-adjacent delivery</span>
             </div>
           </div>
 
@@ -288,7 +279,133 @@ export function SkillsMockupA() {
           </Card>
         </motion.div>
 
-        <div className="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-16 grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            viewport={{ once: true }}
+          >
+            <Card className="glass-card overflow-hidden rounded-[2rem] border-white/10 shadow-[0_30px_90px_rgba(2,8,23,0.55)]">
+              <CardContent className="p-8 sm:p-10">
+                <div className="flex flex-wrap items-center gap-3">
+                  <Badge className="rounded-full bg-cyan-400/10 px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-cyan-200 hover:bg-cyan-400/10">
+                    Featured capability
+                  </Badge>
+                  <span className="text-xs uppercase tracking-[0.28em] text-slate-500">
+                    {featuredCapability.eyebrow}
+                  </span>
+                </div>
+
+                <h3 className="mt-8 max-w-3xl text-4xl font-semibold leading-tight text-white sm:text-5xl">
+                  {featuredCapability.title}
+                </h3>
+                <p className="mt-5 max-w-3xl text-base leading-8 text-slate-200">
+                  {featuredCapability.summary}
+                </p>
+                <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-400">
+                  {featuredCapability.impact}
+                </p>
+
+                <div className="mt-10 grid gap-4 border-t border-white/10 pt-8 md:grid-cols-3">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.28em] text-slate-500">
+                      Plan
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">
+                      Define state, roles, and decision points clearly before
+                      model calls multiply complexity.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.28em] text-slate-500">
+                      Control
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">
+                      Add structure, validation, and tool boundaries so the
+                      system behaves predictably.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.28em] text-slate-500">
+                      Deliver
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">
+                      Package the workflow into interfaces and services that can
+                      support real operating use.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-10 flex flex-wrap gap-3">
+                  {featuredCapability.skills.map((skill) => (
+                    <SkillChip key={skill.name} skill={skill} />
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.08 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
+            <Card className="rounded-[2rem] border border-white/10 bg-white/[0.04] shadow-[0_24px_60px_rgba(2,8,23,0.42)] backdrop-blur-xl">
+              <CardContent className="p-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                  Operating style
+                </p>
+                <div className="mt-6 space-y-5">
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Systems over isolated demos
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-slate-300">
+                      The stack is selected to connect models, data, interfaces,
+                      and deployment instead of treating them as separate
+                      tracks.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Breadth with a center of gravity
+                    </p>
+                    <p className="mt-2 text-sm leading-7 text-slate-300">
+                      The strongest bias is toward agentic systems, applied AI,
+                      and product-facing technical delivery.
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <Card className="rounded-[2rem] border border-white/10 bg-white/[0.03] shadow-[0_24px_60px_rgba(2,8,23,0.42)] backdrop-blur-xl">
+              <CardContent className="p-6">
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                  Archive link
+                </p>
+                <p className="mt-4 text-sm leading-7 text-slate-300">
+                  These tools appear because they show up in actual project
+                  work. Some are primary build choices, others surface in the
+                  archive where they support experiments, integrations, or
+                  delivery layers.
+                </p>
+                <div className="mt-5 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.22em] text-slate-400">
+                  <span>LLM systems</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                  <span>applied ML</span>
+                  <ArrowRight className="h-3.5 w-3.5" />
+                  <span>full-stack delivery</span>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {capabilityGroups.map((group, index) => (
             <motion.div
               key={group.title}
@@ -302,7 +419,7 @@ export function SkillsMockupA() {
                   <div className="flex items-start justify-between gap-4">
                     <div>
                       <p className="text-xs uppercase tracking-[0.28em] text-slate-500">
-                        {group.recruiterLabel}
+                        {group.eyebrow}
                       </p>
                       <h3 className="mt-3 text-2xl font-semibold text-white">
                         {group.title}
@@ -315,6 +432,9 @@ export function SkillsMockupA() {
 
                   <p className="mt-5 text-sm leading-7 text-slate-300">
                     {group.summary}
+                  </p>
+                  <p className="mt-3 text-sm leading-7 text-slate-500">
+                    {group.impact}
                   </p>
 
                   <div className="mt-6 flex flex-wrap gap-2">
