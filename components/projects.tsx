@@ -677,7 +677,7 @@ export function Projects() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
           {featuredProjects.map((project, index) => {
             const isHovered = hoveredProject === project.title;
             const isTechStackExpanded = expandedTechStack === project.title;
