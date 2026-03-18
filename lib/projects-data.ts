@@ -29,16 +29,16 @@ export const tier1Projects: Project[] = [
   {
     title: "BHSI Risk Classification System",
     preview:
-      "Automated D&O risk scoring with LLM orchestration + hybrid rules for underwriters.",
+      "Production risk classification system that cut underwriting review from hours to minutes with agent orchestration and hybrid rules.",
     description:
       "Designed and deployed a production risk classification system for Berkshire Hathaway Specialty Insurance, using multi-agent LLM orchestration and hybrid rule-based logic to automate D&O policy assessments and reduce manual underwriting review from hours to minutes.",
     techStack: [
       "Python",
-      "FastAPI",
-      "BigQuery",
-      "Google Cloud",
       "Gemini Pro",
       "LangChain",
+      "BigQuery",
+      "Google Cloud",
+      "FastAPI",
       "Vector Search",
     ],
     githubUrl: "https://github.com/cam-bell/bhsi-risk-assessment-platform",
@@ -62,7 +62,7 @@ export const tier1Projects: Project[] = [
   {
     title: "Deep Research Workflow",
     preview:
-      "Multi-agent research pipeline with routing, eval loops, and async orchestration.",
+      "Multi-agent research workflow with routing, evaluator loops, and async execution to improve quality while reducing API cost.",
     description:
       "Production-style multi-agent research system implementing async orchestration, intelligent routing, and automated evaluation loops to optimise research quality and API cost.",
     techStack: [
@@ -110,7 +110,6 @@ export const tier1Projects: Project[] = [
     liveUrl:
       "https://huggingface.co/spaces/cameronbell/autonomous_trading_system",
     image: "/images/trading.webp",
-    status: "In Progress",
     category: "AI/ML",
     tier: "Tier 1",
     tags: ["LLM/Agentic"],
@@ -191,18 +190,18 @@ export const tier1Projects: Project[] = [
   {
     title: "Healthcare Readmission Risk MLOps Pipeline",
     preview:
-      "Production-style healthcare readmission pipeline with experiment tracking, config-driven runs, and a Dockerised FastAPI /predict service.",
+      "Reproducible healthcare MLOps pipeline with experiment tracking, CI, and a Dockerised FastAPI inference service.",
     description:
       "Converted a Jupyter notebook diabetes readmission model into a production-style, reproducible MLOps pipeline with experiment tracking, config-driven runs, and a Dockerised FastAPI /predict service.",
     techStack: [
       "Python",
-      "scikit-learn",
       "MLflow",
       "Hydra",
-      "W&B",
-      "Docker",
       "FastAPI",
       "GitHub Actions",
+      "Docker",
+      "W&B",
+      "scikit-learn",
       "BorderlineSMOTE",
     ],
     githubUrl: "https://github.com/kollie/mlops-project-ci",
@@ -303,7 +302,7 @@ export const tier2Projects: Project[] = [
   {
     title: "LangGraph Autonomous Task Agent (Sidekick)",
     preview:
-      "Autonomous task execution agent built with LangGraph for web browsing, extraction, and iterative reasoning with persistent memory.",
+      "Stateful LangGraph agent that browses the web, uses tools, and iterates on tasks with memory-backed execution.",
     description:
       "Autonomous task execution agent built with LangGraph that performs web browsing, information extraction, and iterative reasoning using tool-based agents with persistent memory and evaluation loops.",
     techStack: ["Python", "LangGraph", "Playwright", "SQLite", "RAG", "Gradio"],

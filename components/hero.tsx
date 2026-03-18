@@ -29,7 +29,10 @@ export function Hero() {
   const scrollToProjects = () => {
     const element = document.querySelector("#projects");
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
     }
   };
 
@@ -65,7 +68,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative flex min-h-[calc(100vh-2rem)] items-center overflow-hidden bg-slate-950 pt-20 pb-10 sm:pt-24 sm:pb-12"
+      className="relative flex min-h-[calc(100vh-2rem)] scroll-mt-24 items-center overflow-hidden bg-slate-950 pt-20 pb-10 sm:scroll-mt-28 sm:pt-24 sm:pb-12"
     >
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.14),transparent_34%),radial-gradient(circle_at_78%_22%,rgba(45,212,191,0.12),transparent_30%),linear-gradient(135deg,#020617_0%,#0f172a_55%,#020617_100%)]" />

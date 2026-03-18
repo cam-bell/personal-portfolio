@@ -23,7 +23,7 @@ export default function Home() {
       <Experience />
       <Education />
       {/* <ReadingList /> */}
-      <About />
+      {/* <About /> */}
       <Contact />
       <Footer />
     </main>

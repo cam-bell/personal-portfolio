@@ -95,7 +95,7 @@ export function AdditionalProjects() {
     <section
       ref={ref}
       id="additional-projects"
-      className="py-14 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden"
+      className="py-14 scroll-mt-24 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden sm:scroll-mt-28"
     >
       {/* Background Effects */}
       <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />

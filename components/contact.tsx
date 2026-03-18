@@ -69,7 +69,7 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden"
+      className="py-20 scroll-mt-24 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden sm:scroll-mt-28"
     >
       <div className="absolute inset-0 bg-aurora-soft opacity-60 pointer-events-none" />
       <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
