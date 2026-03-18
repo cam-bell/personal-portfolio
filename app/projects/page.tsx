@@ -1,424 +1,50 @@
-"use client";
-
-import { useMemo, useState } from "react";
-import { allProjects } from "@/lib/projects-data";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import {
-  BarChart3,
-  Brain,
-  ExternalLink,
-  Github,
-  Layers,
-  TrendingUp,
-} from "lucide-react";
-import { motion } from "framer-motion";
-
-const filters = [
-  "All",
-  "LLM/Agentic",
-  "Applied ML",
-  "MLOps",
-  "NLP",
-  "CV",
-  "Full-Stack",
-];
-
-const hasProjectImage = (image?: string) =>
-  Boolean(image && image !== "/placeholder.svg");
-
-const shouldShowTierBadge = (category?: string, tier?: string) =>
-  Boolean(tier && tier !== category);
-
-const getCategoryBadgeLabel = (project: (typeof allProjects)[number]) =>
-  project.category === "Coursework" && project.primaryBadge
-    ? project.primaryBadge
-    : project.category;
-
-const getFallbackProjectIcon = (project: (typeof allProjects)[number]) => {
-  const title = project.title.toLowerCase();
-  const primaryBadge = project.primaryBadge?.toLowerCase();
-  const category = project.category.toLowerCase();
-
-  if (
-    title.includes("regression") ||
-    primaryBadge === "regression" ||
-    category === "analytics"
-  ) {
-    return TrendingUp;
-  }
-
-  if (
-    title.includes("classification") ||
-    title.includes("detection") ||
-    primaryBadge === "classification" ||
-    primaryBadge === "computer vision"
-  ) {
-    return Brain;
-  }
-
-  return BarChart3;
-};
+import { Layers, Search } from "lucide-react";
+import { getArchiveProjects } from "@/lib/projects-data";
+import { ProjectArchiveGrid } from "@/components/projects/project-archive-grid";
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState("All");
-  const [activeProject, setActiveProject] = useState(
-    null as (typeof allProjects)[number] | null,
-  );
-
-  const filteredProjects = useMemo(() => {
-    if (activeFilter === "All") {
-      return allProjects;
-    }
-    return allProjects.filter((project) =>
-      project.tags?.includes(activeFilter),
-    );
-  }, [activeFilter]);
+  const projects = getArchiveProjects();
 
   return (
-    <main className="min-h-screen bg-slate-950">
-      <section className="py-20 bg-gradient-to-br from-slate-950 via-slate-900/95 to-slate-950 relative overflow-hidden">
+    <main className="min-h-screen bg-slate-950 pb-16">
+      <section className="relative overflow-hidden pt-16 sm:pt-20">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         <div className="absolute inset-0 bg-aurora opacity-70 pointer-events-none" />
         <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.35em] text-slate-300">
               <Layers className="h-4 w-4" />
               Projects Archive
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-aurora mb-6 leading-normal pb-1">
-              Applied AI Systems
+            <h1 className="mt-6 font-serif text-4xl leading-[0.98] text-white sm:text-5xl lg:text-6xl">
+              Technical Case Studies and Project Archive
             </h1>
-            <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-7">
-              A focused portfolio of LLM-powered systems and applied ML
-              platforms that emphasize orchestration, reliability, and
-              production-adjacent impact.
+            <p className="mx-auto mt-8 max-w-3xl text-base leading-8 text-slate-300 sm:text-lg">
+              Explore flagship agentic systems, supporting AI and ML projects,
+              and coursework case studies.
             </p>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {filters.map((filter) => (
-              <Button
-                key={filter}
-                variant={activeFilter === filter ? "default" : "outline"}
-                size="sm"
-                onClick={() => setActiveFilter(filter)}
-                className={
-                  activeFilter === filter
-                    ? "shadow-lg shadow-primary/30"
-                    : "border-white/10 text-slate-300 hover:text-white hover:border-white/30"
-                }
-              >
-                {filter}
-              </Button>
-            ))}
-          </div>
+          <div className="mt-10 rounded-[28px] border border-white/10 bg-white/[0.04] px-6 py-6 shadow-glass backdrop-blur-xl">
+            <div className="mb-8 flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full border border-primary/20 bg-primary/10">
+                <Search className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
+                  Discovery
+                </p>
+                <p className="text-base font-semibold text-white sm:text-lg">
+                  Filter by archive group or search by project, tool, or domain
+                </p>
+              </div>
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
-            {filteredProjects.map((project) => (
-              <Card
-                key={`${project.title}-${project.tier ?? "misc"}`}
-                className="h-full flex flex-col overflow-hidden glass-card backdrop-blur-xl border border-white/10 shadow-glass"
-              >
-                <div className="relative aspect-[16/8] bg-slate-900/60 overflow-hidden rounded-lg">
-                  {hasProjectImage(project.image) ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-contain object-center brightness-105 contrast-105"
-                    />
-                  ) : (
-                    <ProjectFallback project={project} />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-
-                  <div className="absolute top-3 right-3 z-10 flex flex-col items-end gap-2">
-                    <Badge
-                      variant="secondary"
-                      className="backdrop-blur-md bg-background/80 border-slate-700/50"
-                    >
-                      {getCategoryBadgeLabel(project)}
-                    </Badge>
-                    {shouldShowTierBadge(project.category, project.tier) && (
-                      <Badge
-                        variant="outline"
-                        className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
-                      >
-                        {project.tier}
-                      </Badge>
-                    )}
-                    {project.label && (
-                      <Badge
-                        variant="outline"
-                        className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
-                      >
-                        {project.label}
-                      </Badge>
-                    )}
-                    {project.status && (
-                      <Badge
-                        variant="outline"
-                        className="backdrop-blur-md bg-background/70 border-amber-400/40 text-amber-200 text-xs px-2 py-0.5"
-                      >
-                        {project.status}
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-
-                <CardHeader className="pb-2 pt-3 flex-shrink-0">
-                  <CardTitle className="text-base leading-tight">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm leading-6 text-slate-300 line-clamp-2">
-                    {project.preview ?? project.description}
-                  </CardDescription>
-                  <button
-                    type="button"
-                    onClick={() => setActiveProject(project)}
-                    className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors"
-                  >
-                    View details
-                  </button>
-                </CardHeader>
-
-                <CardContent className="pt-0 flex flex-col flex-grow">
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.techStack.map((tech) => (
-                      <Badge
-                        key={tech}
-                        variant="outline"
-                        className="text-xs px-2 py-1 bg-primary/5 border-primary/20 text-primary"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-
-                  <div className="mt-auto flex gap-2">
-                    {project.githubUrl && project.githubUrl !== "#" ? (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 text-[11px]"
-                        asChild
-                      >
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2"
-                        >
-                          <Github className="h-3 w-3" />
-                          Code
-                        </a>
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="flex-1 text-xs bg-muted/50 border-muted text-muted-foreground cursor-not-allowed"
-                        disabled
-                      >
-                        <Github className="mr-2 h-3 w-3" />
-                        Code
-                      </Button>
-                    )}
-
-                    {project.liveUrl && project.liveUrl !== "#" ? (
-                      <Button size="sm" className="flex-1 text-[11px]" asChild>
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex items-center justify-center gap-2"
-                        >
-                          <ExternalLink className="h-3 w-3" />
-                          Live
-                        </a>
-                      </Button>
-                    ) : null}
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            <ProjectArchiveGrid projects={projects} />
           </div>
         </div>
       </section>
-
-      {activeProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <button
-            type="button"
-            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
-            aria-label="Close project details"
-            onClick={() => setActiveProject(null)}
-          />
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.98 }}
-            transition={{ duration: 0.2 }}
-            className="relative w-full max-w-3xl glass-card border border-white/10 shadow-glass rounded-2xl p-6"
-          >
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <Badge
-                    variant="secondary"
-                    className="backdrop-blur-md bg-background/80 border-slate-700/50"
-                  >
-                    {getCategoryBadgeLabel(activeProject)}
-                  </Badge>
-                  {shouldShowTierBadge(
-                    activeProject.category,
-                    activeProject.tier,
-                  ) && (
-                    <Badge
-                      variant="outline"
-                      className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
-                    >
-                      {activeProject.tier}
-                    </Badge>
-                  )}
-                  {activeProject.label && (
-                    <Badge
-                      variant="outline"
-                      className="backdrop-blur-md bg-background/70 border-slate-600/50 text-slate-200 text-xs px-2 py-0.5"
-                    >
-                      {activeProject.label}
-                    </Badge>
-                  )}
-                  {activeProject.status && (
-                    <Badge
-                      variant="outline"
-                      className="backdrop-blur-md bg-background/70 border-amber-400/40 text-amber-200 text-xs px-2 py-0.5"
-                    >
-                      {activeProject.status}
-                    </Badge>
-                  )}
-                </div>
-                <h3 className="text-2xl font-semibold text-white mb-2">
-                  {activeProject.title}
-                </h3>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setActiveProject(null)}
-                className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
-              >
-                Close
-              </Button>
-            </div>
-
-            <p className="text-slate-300 leading-7 mt-2">
-              {activeProject.description}
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {activeProject.techStack.map((tech) => (
-                <Badge
-                  key={tech}
-                  variant="outline"
-                  className="text-xs px-2 py-1 bg-primary/5 border-primary/20 text-primary"
-                >
-                  {tech}
-                </Badge>
-              ))}
-            </div>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              {activeProject.githubUrl && activeProject.githubUrl !== "#" ? (
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="border-white/10 text-slate-200 hover:text-white hover:border-white/30"
-                  asChild
-                >
-                  <a
-                    href={activeProject.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="mr-2 h-4 w-4" />
-                    View Code
-                  </a>
-                </Button>
-              ) : null}
-              {activeProject.liveUrl && activeProject.liveUrl !== "#" ? (
-                <Button size="sm" asChild>
-                  <a
-                    href={activeProject.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <ExternalLink className="mr-2 h-4 w-4" />
-                    Live Demo
-                  </a>
-                </Button>
-              ) : null}
-            </div>
-          </motion.div>
-        </div>
-      )}
     </main>
-  );
-}
-
-function ProjectFallback({
-  project,
-}: {
-  project: (typeof allProjects)[number];
-}) {
-  const FallbackIcon = getFallbackProjectIcon(project);
-  const headerTags = project.techStack.slice(0, 3);
-
-  return (
-    <div className="relative flex h-full w-full items-center justify-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-primary/20">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(59,130,246,0.22),_transparent_50%),linear-gradient(135deg,rgba(15,23,42,0.92),rgba(2,6,23,0.82))]" />
-      <div className="absolute left-6 top-6 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
-      <div className="absolute bottom-4 right-4 h-20 w-20 rounded-full bg-cyan-400/10 blur-2xl" />
-
-      <div className="relative z-10 flex h-full w-full flex-col justify-between p-5">
-        <div className="flex items-start gap-4">
-          <div className="rounded-2xl border border-primary/20 bg-primary/10 p-3 backdrop-blur-sm">
-            <FallbackIcon className="h-7 w-7 text-primary" />
-          </div>
-        </div>
-
-        <div className="space-y-3">
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.24em] text-slate-400">
-              {project.secondaryBadge ?? project.category}
-            </p>
-            <h3 className="mt-2 max-w-[16rem] text-lg font-semibold leading-tight text-white">
-              {project.title}
-            </h3>
-          </div>
-
-          <div className="flex flex-wrap gap-2">
-            {headerTags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-[11px] text-primary"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
