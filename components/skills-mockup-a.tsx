@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import type { CSSProperties, ComponentType } from "react";
+import type { CSSProperties, ElementType } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -56,7 +56,7 @@ import AWSBadgeImage from "@/public/images/aws-certified-cloud-practitioner.png"
 
 type SkillItem = {
   name: string;
-  icon: ComponentType<{ className?: string; style?: CSSProperties }>;
+  icon: ElementType;
   color: string;
 };
 
@@ -65,7 +65,7 @@ type CapabilityGroup = {
   eyebrow: string;
   summary: string;
   impact: string;
-  icon: ComponentType<{ className?: string }>;
+  icon: ElementType;
   skills: SkillItem[];
 };
 
@@ -170,6 +170,17 @@ const capabilityGroups: CapabilityGroup[] = [
 
 const featuredCapability = capabilityGroups[0];
 const totalSkills = capabilityGroups.reduce((count, group) => count + group.skills.length, 0);
+
+function SkillChip({ skill }: { skill: SkillItem }) {
+  const Icon = skill.icon;
+
+  return (
+    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">
+      <Icon className="h-4 w-4" style={{ color: skill.color } as CSSProperties} />
+      <span>{skill.name}</span>
+    </div>
+  );
+}
 
 export function SkillsMockupA() {
   return (
@@ -322,13 +333,7 @@ export function SkillsMockupA() {
 
                 <div className="mt-10 flex flex-wrap gap-3">
                   {featuredCapability.skills.map((skill) => (
-                    <div
-                      key={skill.name}
-                      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-200"
-                    >
-                      <skill.icon className="h-4 w-4" style={{ color: skill.color }} />
-                      <span>{skill.name}</span>
-                    </div>
+                    <SkillChip key={skill.name} skill={skill} />
                   ))}
                 </div>
               </CardContent>
@@ -427,13 +432,7 @@ export function SkillsMockupA() {
 
                   <div className="mt-6 flex flex-wrap gap-2">
                     {group.skills.map((skill) => (
-                      <div
-                        key={skill.name}
-                        className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-slate-200"
-                      >
-                        <skill.icon className="h-4 w-4" style={{ color: skill.color }} />
-                        <span>{skill.name}</span>
-                      </div>
+                      <SkillChip key={skill.name} skill={skill} />
                     ))}
                   </div>
                 </CardContent>
