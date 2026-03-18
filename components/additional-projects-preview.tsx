@@ -27,6 +27,80 @@ import { useRef, useState } from "react";
 import useHorizontalScroll from "@/lib/useHorizontalScroll";
 import { courseworkProjects } from "@/lib/projects-data";
 
+const courseworkProjectNarratives: Record<
+  string,
+  {
+    domain: string;
+    method: string;
+    result: string;
+    proof: string;
+  }
+> = {
+  "Customer Churn Modelling": {
+    domain: "Business retention risk on customer churn data.",
+    method:
+      "SMOTE, stratified 5-fold cross-validation, and gradient boosting.",
+    result:
+      "Reached 93.2% accuracy and F1 = 0.926, outperforming baseline accuracy by 8.2 points.",
+    proof:
+      "Shows disciplined classification workflow design on imbalanced business data.",
+  },
+  "Breast Cancer Classification": {
+    domain: "Healthcare classification for breast cancer diagnosis support.",
+    method:
+      "Scikit-learn pipeline with tuned KNN, preprocessing, and cross-validation.",
+    result:
+      "Delivered 94.2% test accuracy with error-curve analysis for model selection.",
+    proof:
+      "Shows clean end-to-end supervised learning workflow, not just model fitting.",
+  },
+  "Diabetes Risk Classification": {
+    domain: "Healthcare risk prediction on an imbalanced diabetes dataset.",
+    method:
+      "Benchmarked XGBoost against logistic regression with structured model comparison.",
+    result:
+      "Selected logistic regression after it outperformed XGBoost, 81.2% vs 75.3%.",
+    proof:
+      "Shows judgement in choosing the better model, not the more complex one.",
+  },
+  "Used Vehicle Pricing & Valuation Model": {
+    domain: "Cross-country used vehicle pricing and valuation.",
+    method:
+      "Feature engineering, outlier handling, and tuned tree-based regression models.",
+    result:
+      "Reached R² = 0.867 and MAE of about EUR 2,660 across 100K listings.",
+    proof:
+      "Shows practical regression thinking with scale, cleaning, and evaluation discipline.",
+  },
+  "Multilingual Sentiment & Keyword Analyzer": {
+    domain: "Review analytics across multiple consumer platforms and languages.",
+    method:
+      "Transformer-based sentiment analysis with KeyBERT keyword extraction and multilingual NLP tooling.",
+    result:
+      "Processed 239 reviews with sentiment, emotion, and keyword extraction at 0% error rate.",
+    proof:
+      "Shows applied NLP workflow design across multilingual, real-world text sources.",
+  },
+  "Swimming Pool Detection": {
+    domain: "Insurance-relevant aerial image analysis for swimming pool detection.",
+    method:
+      "YOLOv11 transfer learning with custom labels built using GroundingDINO and Roboflow.",
+    result:
+      "Achieved 95.5% mAP after 30 training epochs on the labeled dataset.",
+    proof:
+      "Shows computer vision delivery from labeling pipeline through evaluated detection performance.",
+  },
+  "Gapminder Global Trends": {
+    domain: "Global development analysis across GDP, life expectancy, and population trends.",
+    method:
+      "Visual analytics, regression, clustering, and narrative data exploration over 50+ years.",
+    result:
+      "Surfaced interpretable cross-country patterns through animated and comparative analysis.",
+    proof:
+      "Shows analytical storytelling and structured exploratory modelling, not just dashboarding.",
+  },
+};
+
 // Icon mapping function based on project keywords
 const getProjectIcon = (title: string) => {
   const lowerTitle = title.toLowerCase();
@@ -79,7 +153,7 @@ const getSecondaryBadgeColor = (domain: string) => {
   );
 };
 
-export function AdditionalProjects() {
+export function AdditionalProjectsPreview() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [activeProject, setActiveProject] = useState(
@@ -124,13 +198,12 @@ export function AdditionalProjects() {
             </motion.div>
 
             <h2 className="max-w-4xl text-3xl leading-tight font-semibold text-white md:text-4xl">
-              Applied AI case studies across ML, NLP, and computer vision
+              Supporting case studies that show modelling judgement and evaluation discipline
             </h2>
             <p className="mt-4 max-w-3xl text-base leading-7 text-slate-300 md:text-lg">
-              Selected coursework and applied projects demonstrating
-              classification, regression, evaluation strategy, and modelling
-              trade-offs across business, healthcare, language, and visual
-              domains.
+              Additional machine learning, NLP, computer vision, and analytics
+              work that shows how I frame problems, choose methods, and evaluate
+              results beyond the featured portfolio projects.
             </p>
           </div>
         </motion.div>
@@ -149,6 +222,16 @@ export function AdditionalProjects() {
           >
             {visibleProjects.map((project, index) => {
               const ProjectIcon = getProjectIcon(project.title);
+              const narrative = courseworkProjectNarratives[project.title] ?? {
+                domain: `${project.secondaryBadge ?? project.domain ?? "Applied"} use case.`,
+                method:
+                  project.preview ??
+                  "Applied modelling workflow with structured evaluation.",
+                result: project.description,
+                proof:
+                  "Shows practical problem framing and evidence-based modelling decisions.",
+              };
+
               return (
                 <motion.div
                   key={project.title}
@@ -235,12 +318,12 @@ export function AdditionalProjects() {
                         </div>
                       </div>
 
-                      <CardHeader className="pb-3 pt-4 flex-shrink-0 flex flex-col items-center text-center">
-                        <CardTitle className="text-base leading-tight font-semibold group-hover:text-primary transition-colors duration-300 mb-2 line-clamp-2">
+                      <CardHeader className="flex-shrink-0 pb-3 pt-4 text-left">
+                        <CardTitle className="mb-2 text-base leading-tight font-semibold transition-colors duration-300 group-hover:text-primary line-clamp-2">
                           {project.title}
                         </CardTitle>
-                        <CardDescription className="text-sm leading-6 text-slate-300/85 group-hover:text-slate-200 transition-colors duration-300 line-clamp-2">
-                          {project.preview ?? project.description}
+                        <CardDescription className="text-sm leading-6 text-slate-300">
+                          {narrative.proof}
                         </CardDescription>
                         <button
                           type="button"
@@ -248,15 +331,44 @@ export function AdditionalProjects() {
                             e.stopPropagation();
                             setActiveProject(project);
                           }}
-                          className="mt-2 text-xs text-primary/80 hover:text-primary transition-colors mx-auto"
+                          className="mt-2 text-left text-xs text-primary/80 transition-colors hover:text-primary"
                         >
                           View details
                         </button>
                       </CardHeader>
 
                       <CardContent className="pt-0 flex flex-col flex-grow justify-between">
+                        <div className="mb-4 space-y-3">
+                          <div>
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
+                              Problem / Domain
+                            </p>
+                            <p className="mt-1 text-sm leading-6 text-slate-300">
+                              {narrative.domain}
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
+                              Model / Method
+                            </p>
+                            <p className="mt-1 text-sm leading-6 text-slate-300">
+                              {narrative.method}
+                            </p>
+                          </div>
+
+                          <div>
+                            <p className="text-[11px] uppercase tracking-[0.18em] text-slate-500">
+                              Result / Insight
+                            </p>
+                            <p className="mt-1 text-sm leading-6 text-slate-200">
+                              {narrative.result}
+                            </p>
+                          </div>
+                        </div>
+
                         {/* Tech Stack Badges - Top-aligned and centered */}
-                        <div className="flex flex-wrap justify-center items-center gap-2 mb-3 min-h-[56px]">
+                        <div className="mb-3 flex min-h-[56px] flex-wrap items-center gap-2">
                           {project.techStack?.map((tech, techIndex) => (
                             <motion.div
                               key={tech}

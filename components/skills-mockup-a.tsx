@@ -221,8 +221,7 @@ export function SkillsMockupA() {
               Technical Depth
             </p>
             <h2 className="mt-6 font-serif text-5xl leading-[0.95] text-white sm:text-6xl lg:text-7xl">
-              Built Around Capabilities,
-              <span className="block text-cyan-200">Not Just Tool Lists</span>
+              Skills & Technologies
             </h2>
             <p className="mt-8 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
               The stack below reflects how I actually work across projects:
