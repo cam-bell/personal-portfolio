@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import type { CSSProperties, ElementType } from "react";
+import type { CSSProperties } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
@@ -56,7 +56,7 @@ import AWSBadgeImage from "@/public/images/aws-certified-cloud-practitioner.png"
 
 type SkillItem = {
   name: string;
-  icon: ElementType;
+  icon: any;
   color: string;
 };
 
@@ -65,7 +65,7 @@ type CapabilityGroup = {
   eyebrow: string;
   summary: string;
   impact: string;
-  icon: ElementType;
+  icon: any;
   skills: SkillItem[];
 };
 
@@ -75,7 +75,8 @@ const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Orchestration",
     summary:
       "I structure multi-step AI flows with typed state, tool calling, and reliable handoffs between models and services.",
-    impact: "Designed for workflows that need coordination, validation, and operational control.",
+    impact:
+      "Designed for workflows that need coordination, validation, and operational control.",
     icon: Code,
     skills: [
       { name: "LangChain", icon: SiLangchain, color: "#2C6262" },
@@ -91,7 +92,8 @@ const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Applied AI",
     summary:
       "From experimentation to evaluation, I work across training stacks, traditional ML, and model-adaptation workflows.",
-    impact: "Useful when projects move between research prototypes and production-adjacent delivery.",
+    impact:
+      "Useful when projects move between research prototypes and production-adjacent delivery.",
     icon: Brain,
     skills: [
       { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
@@ -107,7 +109,8 @@ const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Storage & Retrieval",
     summary:
       "I work with structured data, retrieval layers, and analytical stores that support both model pipelines and product features.",
-    impact: "Built for systems that need context, state, and measurable outputs.",
+    impact:
+      "Built for systems that need context, state, and measurable outputs.",
     icon: Database,
     skills: [
       { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
@@ -122,7 +125,8 @@ const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Interfaces & APIs",
     summary:
       "I package AI capabilities into usable products with modern backend and frontend tooling across web apps and internal tools.",
-    impact: "Focused on moving from isolated models to systems people can actually use.",
+    impact:
+      "Focused on moving from isolated models to systems people can actually use.",
     icon: Layers,
     skills: [
       { name: "Python", icon: SiPython, color: "#3776AB" },
@@ -139,7 +143,8 @@ const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Cloud & MLOps",
     summary:
       "I deploy, version, and monitor technical work with cloud, container, and experiment management tools.",
-    impact: "Enough platform depth to make prototypes more repeatable and delivery more dependable.",
+    impact:
+      "Enough platform depth to make prototypes more repeatable and delivery more dependable.",
     icon: Cloud,
     skills: [
       { name: "AWS", icon: SiAmazon, color: "#FF9900" },
@@ -155,7 +160,8 @@ const capabilityGroups: CapabilityGroup[] = [
     eyebrow: "Delivery Tools",
     summary:
       "The day-to-day tooling I use for debugging, experimentation, testing, and shipping work cleanly.",
-    impact: "Less glamorous than models, but essential for consistent execution.",
+    impact:
+      "Less glamorous than models, but essential for consistent execution.",
     icon: Wrench,
     skills: [
       { name: "Git", icon: SiGit, color: "#F05032" },
@@ -169,14 +175,20 @@ const capabilityGroups: CapabilityGroup[] = [
 ];
 
 const featuredCapability = capabilityGroups[0];
-const totalSkills = capabilityGroups.reduce((count, group) => count + group.skills.length, 0);
+const totalSkills = capabilityGroups.reduce(
+  (count, group) => count + group.skills.length,
+  0,
+);
 
 function SkillChip({ skill }: { skill: SkillItem }) {
   const Icon = skill.icon;
 
   return (
     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-slate-900/70 px-3 py-2 text-sm text-slate-200">
-      <Icon className="h-4 w-4" style={{ color: skill.color } as CSSProperties} />
+      <Icon
+        className="h-4 w-4"
+        style={{ color: skill.color } as CSSProperties}
+      />
       <span>{skill.name}</span>
     </div>
   );
@@ -199,9 +211,9 @@ export function SkillsMockupA() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_320px] lg:items-end"
+          className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_260px] lg:items-end"
         >
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <p className="text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
               Technical Depth
             </p>
@@ -210,7 +222,7 @@ export function SkillsMockupA() {
               <span className="block text-cyan-200">Not Just Tool Lists</span>
             </h2>
             <p className="mt-8 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-              The stack below reflects how I actually work across the archive:
+              The stack below reflects how I actually work across projects:
               orchestrating agents, building applications around models, and
               shipping systems that need data, infrastructure, and operational
               clarity.
@@ -227,47 +239,41 @@ export function SkillsMockupA() {
             </div>
           </div>
 
-          <Card className="overflow-hidden rounded-[2rem] border-white/10 bg-white/[0.04] shadow-[0_30px_90px_rgba(2,8,23,0.55)] backdrop-blur-xl">
-            <CardContent className="p-6">
-              <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-                  <Award className="h-5 w-5" />
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                    Credential
-                  </p>
-                  <p className="mt-1 text-lg font-semibold text-white">
-                    AWS Cloud Practitioner
-                  </p>
-                </div>
-              </div>
-
+          <Card className="overflow-hidden rounded-[1.8rem] border-white/10 bg-white/[0.04] shadow-[0_24px_70px_rgba(2,8,23,0.45)] backdrop-blur-xl">
+            <CardContent className="p-4">
               <a
                 href="https://www.credly.com/share/fed34534-1c50-42d0-8f9f-a268bf2da30b"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 block rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4 transition-colors duration-300 hover:border-cyan-200/30"
+                className="group block rounded-[1.45rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(255,255,255,0.02))] p-4 transition-colors duration-300 hover:border-cyan-200/30"
               >
-                <div className="flex items-center gap-4">
-                  <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/60">
-                    <Image
-                      src={AWSBadgeImage}
-                      alt="AWS Certified Cloud Practitioner badge"
-                      fill
-                      className="object-contain p-2"
-                    />
+                <div className="flex items-center gap-3 text-slate-400">
+                  <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
+                    <Award className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="text-sm leading-7 text-slate-300">
-                      Formal cloud fundamentals layered into the broader AI and
-                      delivery stack shown here.
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-slate-500">
+                      Credential
                     </p>
-                    <p className="mt-3 text-xs uppercase tracking-[0.24em] text-cyan-200">
-                      View credential
+                    <p className="mt-1 text-sm font-semibold text-white">
+                      AWS Cloud Practitioner
                     </p>
                   </div>
                 </div>
+
+                <div className="relative mx-auto mt-4 aspect-[4/5] w-full max-w-[9.5rem] overflow-hidden rounded-[1.25rem] border border-white/10 bg-slate-950/70 shadow-[0_16px_40px_rgba(2,8,23,0.3)]">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_55%)]" />
+                  <Image
+                    src={AWSBadgeImage}
+                    alt="AWS Certified Cloud Practitioner badge"
+                    fill
+                    className="object-contain p-3 transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+
+                <p className="mt-4 text-center text-[10px] uppercase tracking-[0.24em] text-cyan-200">
+                  View credential
+                </p>
               </a>
             </CardContent>
           </Card>
@@ -359,7 +365,8 @@ export function SkillsMockupA() {
                     </p>
                     <p className="mt-2 text-sm leading-7 text-slate-300">
                       The stack is selected to connect models, data, interfaces,
-                      and deployment instead of treating them as separate tracks.
+                      and deployment instead of treating them as separate
+                      tracks.
                     </p>
                   </div>
                   <div>

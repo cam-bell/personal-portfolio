@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -68,7 +69,47 @@ const education = [
 const featuredEducation = education[0];
 const supportingEducation = education[1];
 
+const pillarLabels = ["AI Systems", "Deployment Thinking", "Leadership"] as const;
+
+const pillarCopyVariants = [
+  {
+    id: "balanced",
+    label: "Balanced",
+    copy: [
+      "Applied GenAI, NLP, deep learning, and MLOps across hands-on coursework.",
+      "Moved from experimentation toward production with cloud and engineering discipline.",
+      "Took ownership beyond coursework through representative and community roles.",
+    ],
+  },
+  {
+    id: "compact",
+    label: "Compact",
+    copy: [
+      "GenAI, NLP, deep learning, and MLOps in practice.",
+      "Experimentation to production, grounded in cloud and engineering.",
+      "Leadership carried through representative and community roles.",
+    ],
+  },
+  {
+    id: "punchy",
+    label: "Punchy",
+    copy: [
+      "Built applied AI capability, not just academic familiarity.",
+      "Learned to think beyond demos toward deployment.",
+      "Proved ownership outside the classroom as well.",
+    ],
+  },
+] as const;
+
 export function Education() {
+  const [activePillarVariant, setActivePillarVariant] = useState<
+    (typeof pillarCopyVariants)[number]["id"]
+  >("balanced");
+
+  const selectedPillarVariant =
+    pillarCopyVariants.find((variant) => variant.id === activePillarVariant) ??
+    pillarCopyVariants[0];
+
   return (
     <section
       id="education"
@@ -143,20 +184,40 @@ export function Education() {
                       {featuredEducation.summary}
                     </p>
 
-                    <div className="mt-8 grid gap-4 md:grid-cols-3">
-                      {featuredEducation.highlights.map((highlight, index) => (
+                    <div className="mt-8 flex flex-wrap items-center gap-2">
+                      <span className="text-[11px] uppercase tracking-[0.24em] text-slate-500">
+                        Pillar copy
+                      </span>
+                      {pillarCopyVariants.map((variant) => {
+                        const isActive = variant.id === selectedPillarVariant.id;
+
+                        return (
+                          <button
+                            key={variant.id}
+                            type="button"
+                            onClick={() => setActivePillarVariant(variant.id)}
+                            className={`rounded-full border px-3 py-1 text-[11px] uppercase tracking-[0.18em] transition-colors ${
+                              isActive
+                                ? "border-cyan-300/30 bg-cyan-300/10 text-cyan-100"
+                                : "border-white/10 bg-white/[0.03] text-slate-400 hover:border-white/20 hover:text-slate-200"
+                            }`}
+                          >
+                            {variant.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+
+                    <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                      {selectedPillarVariant.copy.map((highlight, index) => (
                         <div
-                          key={highlight}
+                          key={`${selectedPillarVariant.id}-${pillarLabels[index]}`}
                           className="rounded-[1.35rem] border border-white/10 bg-white/[0.04] p-5 backdrop-blur-md"
                         >
                           <p className="text-xs uppercase tracking-[0.26em] text-slate-500">
-                            {index === 0
-                              ? "AI Systems"
-                              : index === 1
-                                ? "Deployment Thinking"
-                                : "Leadership"}
+                            {pillarLabels[index]}
                           </p>
-                          <p className="mt-3 text-sm leading-7 text-slate-300">
+                          <p className="mt-3 text-sm leading-6 text-slate-300">
                             {highlight}
                           </p>
                         </div>
