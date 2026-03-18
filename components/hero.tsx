@@ -88,13 +88,15 @@ export function Hero() {
         >
           <div className="mx-auto flex max-w-xl flex-col items-center text-center lg:mx-0 lg:items-start lg:text-left">
             <motion.div
-              className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-[0.68rem] font-medium uppercase tracking-[0.22em] text-cyan-100/85 backdrop-blur-md"
+              className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/5 px-3 py-2 text-[0.68rem] font-medium uppercase tracking-[0.2em] text-cyan-100/85 backdrop-blur-md"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <span className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(103,232,249,0.8)]" />
-              AI Engineer
+              <span className="inline-flex items-center gap-2 rounded-full border border-cyan-200/35 bg-cyan-300/18 px-3 py-1 text-[0.62rem] font-semibold tracking-[0.22em] text-cyan-100 shadow-[0_0_18px_rgba(103,232,249,0.32)]">
+                <span className="h-2 w-2 rounded-full bg-cyan-200 shadow-[0_0_12px_rgba(165,243,252,0.95)]" />
+                AI Engineer
+              </span>
               <span className="hidden h-1 w-1 rounded-full bg-white/40 sm:inline-flex" />
               <span className="hidden text-slate-300/80 sm:inline">
                 MSc Computer Science & Business Technology
@@ -116,8 +118,9 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.26 }}
             >
-              AI Engineer building agentic systems that turn operational
-              complexity into decisive action.
+              <span className="font-semibold text-cyan-200">AI Engineer</span>{" "}
+              building agentic systems that turn operational complexity into
+              decisive action.
             </motion.h2>
 
             <motion.p
@@ -283,11 +286,7 @@ export function Hero() {
               <div className="absolute inset-x-7 bottom-7 h-px bg-white/10" />
 
               <div className="relative rounded-[1.6rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(148,163,184,0.14),transparent_55%),linear-gradient(180deg,rgba(15,23,42,0.58),rgba(2,6,23,0.88))] p-4 sm:p-5">
-                <div className="absolute left-6 top-6 text-[0.65rem] font-medium uppercase tracking-[0.26em] text-slate-400">
-                  Portrait
-                </div>
-
-                <div className="relative mx-auto mt-9 aspect-[4/5] w-full max-w-[23rem] overflow-hidden rounded-[1.8rem] border border-white/10 bg-slate-900/60 lg:max-w-[24rem]">
+                <div className="relative mx-auto aspect-[4/5] w-full max-w-[23rem] overflow-hidden rounded-[1.8rem] border border-white/10 bg-slate-900/60 lg:max-w-[24rem]">
                   <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.22),transparent_28%),linear-gradient(180deg,rgba(14,165,233,0.1),transparent_30%),linear-gradient(180deg,transparent_48%,rgba(2,6,23,0.44)_100%)]" />
                   <Image
                     src="/images/cameron-avatar.png"
