@@ -44,9 +44,29 @@ function ProjectImageFallback({ project }: { project: Project }) {
 
 export function ProjectArchiveCard({ project }: { project: Project }) {
   const primaryLink = getProjectPrimaryLink(project);
+  const secondaryActions = [
+    isProjectLinkAvailable(project.githubUrl)
+      ? {
+          href: project.githubUrl,
+          label: "Code",
+          icon: Github,
+        }
+      : null,
+    primaryLink && primaryLink.href !== project.githubUrl
+      ? {
+          href: primaryLink.href,
+          label: primaryLink.label,
+          icon: primaryLink.label === "Open Colab" ? FileText : ExternalLink,
+        }
+      : null,
+  ].filter(Boolean) as Array<{
+    href: string;
+    label: string;
+    icon: typeof Github;
+  }>;
 
   return (
-    <Card className="glass-card border border-white/10 shadow-glass backdrop-blur-xl h-full overflow-hidden">
+    <Card className="glass-card h-full overflow-hidden border border-white/10 shadow-glass backdrop-blur-xl flex flex-col">
       <div className="relative aspect-[16/9] overflow-hidden bg-slate-900/70">
         {project.image && project.image !== "/placeholder.svg" ? (
           <img
@@ -73,19 +93,21 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
           >
             {project.year}
           </Badge>
-          {project.primaryBadge ? (
-            <Badge
-              variant="outline"
-              className="border-primary/30 bg-primary/10 text-primary"
-            >
-              {project.primaryBadge}
-            </Badge>
-          ) : null}
         </div>
       </div>
 
       <CardHeader className="space-y-3">
-        <div className="space-y-1">
+        <div className="space-y-2">
+          {project.primaryBadge ? (
+            <div>
+              <Badge
+                variant="outline"
+                className="h-7 rounded-full border-primary/20 bg-primary/8 px-3 text-[11px] font-medium uppercase tracking-[0.18em] text-primary"
+              >
+                {project.primaryBadge}
+              </Badge>
+            </div>
+          ) : null}
           <CardTitle className="text-xl leading-tight">{project.title}</CardTitle>
           <CardDescription className="text-primary">
             {project.role}
@@ -96,13 +118,13 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
         </p>
       </CardHeader>
 
-      <CardContent className="space-y-5">
-        <div className="flex flex-wrap gap-2">
+      <CardContent className="flex flex-1 flex-col space-y-5">
+        <div className="flex min-h-[4.5rem] flex-wrap content-start gap-2">
           {project.techStack.slice(0, 4).map((tech) => (
             <Badge
               key={tech}
               variant="outline"
-              className="border-white/10 bg-white/[0.03] text-slate-200"
+              className="inline-flex h-8 items-center rounded-full border border-white/10 bg-white/[0.03] px-3 text-[11px] font-medium leading-none text-slate-200 whitespace-nowrap"
             >
               {tech}
             </Badge>
@@ -121,42 +143,39 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-3">
-          <Button asChild>
+        <div className="mt-auto space-y-3 pt-2">
+          <Button className="w-full justify-center" asChild>
             <Link href={`/projects/${project.slug}`}>
               Read case study
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
 
-          {isProjectLinkAvailable(project.githubUrl) ? (
-            <Button variant="outline" asChild>
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="h-4 w-4" />
-                Code
-              </a>
-            </Button>
-          ) : null}
+          {secondaryActions.length ? (
+            <div className="flex flex-wrap gap-2">
+              {secondaryActions.map((action) => {
+                const Icon = action.icon;
 
-          {primaryLink && primaryLink.href !== project.githubUrl ? (
-            <Button variant="outline" asChild>
-              <a
-                href={primaryLink.href}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {primaryLink.label === "Open Colab" ? (
-                  <FileText className="h-4 w-4" />
-                ) : (
-                  <ExternalLink className="h-4 w-4" />
-                )}
-                {primaryLink.label}
-              </a>
-            </Button>
+                return (
+                  <Button
+                    key={`${project.slug}-${action.label}`}
+                    variant="outline"
+                    size="sm"
+                    className="h-9 flex-1 justify-center border-white/10 bg-transparent text-slate-200 hover:border-white/30 hover:bg-white/[0.04] hover:text-white"
+                    asChild
+                  >
+                    <a
+                      href={action.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon className="h-4 w-4" />
+                      {action.label}
+                    </a>
+                  </Button>
+                );
+              })}
+            </div>
           ) : null}
         </div>
       </CardContent>
