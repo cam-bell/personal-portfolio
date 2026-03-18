@@ -11,7 +11,16 @@ export function ProjectArchiveGrid({ projects }: { projects: Project[] }) {
   const [activeFilter, setActiveFilter] = useState<string>("All");
   const [query, setQuery] = useState("");
 
-  const filters = useMemo(() => ["All", ...archiveGroups], []);
+  const { primaryFilters, secondaryFilters } = useMemo(() => {
+    const primaryArchiveGroups = archiveGroups.filter(
+      (group) => group !== "Coursework",
+    );
+
+    return {
+      primaryFilters: ["All", ...primaryArchiveGroups],
+      secondaryFilters: ["Coursework"],
+    };
+  }, []);
 
   const filteredProjects = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -46,7 +55,8 @@ export function ProjectArchiveGrid({ projects }: { projects: Project[] }) {
     <div className="space-y-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <ProjectArchiveFilters
-          filters={filters}
+          primaryFilters={primaryFilters}
+          secondaryFilters={secondaryFilters}
           activeFilter={activeFilter}
           onChange={setActiveFilter}
         />
