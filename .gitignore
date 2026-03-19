@@ -106,6 +106,5 @@ dist
 tmp/
 temp/
 
-.toml
-.codex
 AGENTS.md
+.pnpm-store

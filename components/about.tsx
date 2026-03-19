@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Leaf, Sparkles, Coffee } from "lucide-react";
 import { motion } from "framer-motion";
@@ -21,7 +22,7 @@ export function About() {
             About Me
           </h2>
           <p className="text-lg text-slate-300 text-center mb-12 max-w-2xl mx-auto">
-            Beyond the code and data, here's what drives my passion for
+            Beyond the code and data, here&apos;s what drives my passion for
             technology.
           </p>
         </motion.div>
@@ -37,9 +38,11 @@ export function About() {
               className="lg:col-span-1"
             >
               <div className="aspect-square bg-muted rounded-2xl overflow-hidden mx-auto max-w-sm">
-                <img
+                <Image
                   src="/placeholder.svg?height=400&width=400"
                   alt="Cameron Bell"
+                  width={400}
+                  height={400}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -55,7 +58,7 @@ export function About() {
             >
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="text-lg leading-7">
-                  I'm a software developer and AI engineer with a deep passion
+                  I&apos;m a software developer and AI engineer with a deep passion
                   for creating technology that makes a positive impact. My
                   journey began with curiosity about how things work, which led
                   me to explore the fascinating intersection of code, data, and
@@ -63,7 +66,7 @@ export function About() {
                 </p>
 
                 <p className="text-lg leading-7">
-                  When I'm not coding, you'll find me exploring the latest
+                  When I&apos;m not coding, you&apos;ll find me exploring the latest
                   developments in artificial intelligence, contributing to
                   open-source projects, or experimenting with creative coding
                   projects that blend art and technology. I believe that the

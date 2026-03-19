@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -91,9 +92,11 @@ export function ReadingList() {
               <Card className="h-full hover:shadow-lg transition-shadow duration-300">
                 <CardHeader className="text-center">
                   <div className="mx-auto mb-4 w-32 h-48 bg-muted rounded-lg overflow-hidden">
-                    <img
+                    <Image
                       src={book.cover || "/placeholder.svg"}
                       alt={`${book.title} cover`}
+                      width={200}
+                      height={300}
                       className="w-full h-full object-cover"
                     />
                   </div>

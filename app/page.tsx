@@ -1,7 +1,5 @@
 import { Hero } from "@/components/hero";
 import { SkillsMockupA } from "@/components/skills-mockup-a";
-import { SkillsMockupB } from "@/components/skills-mockup-b";
-import { SkillsMockupC } from "@/components/skills-mockup-c";
 import { Projects } from "@/components/projects";
 import { AdditionalProjects } from "@/components/additional-projects";
 import { Experience } from "@/components/experience";
@@ -16,8 +14,6 @@ export default function Home() {
     <main className="min-h-screen bg-slate-950">
       <Hero />
       <SkillsMockupA />
-      {/* <SkillsMockupB /> */}
-      {/* <SkillsMockupC /> */}
       <Projects />
       <AdditionalProjects />
       <Experience />

@@ -90,8 +90,8 @@ export function Contact() {
             Get In Touch
           </h2>
           <p className="mx-auto mt-8 mb-12 max-w-2xl text-center text-base leading-8 text-slate-300 sm:text-lg">
-            Have a project in mind or just want to chat about technology? I'd
-            love to hear from you. Let's build something amazing together.
+            Have a project in mind or just want to chat about technology? I&apos;d
+            love to hear from you. Let&apos;s build something amazing together.
           </p>
         </motion.div>
 
@@ -109,7 +109,7 @@ export function Contact() {
                   Send me a message
                 </CardTitle>
                 <CardDescription className="text-slate-400">
-                  Fill out the form below and I'll get back to you as soon as
+                  Fill out the form below and I&apos;ll get back to you as soon as
                   possible.
                 </CardDescription>
               </CardHeader>
@@ -125,7 +125,7 @@ export function Contact() {
                       Message Sent!
                     </h3>
                     <p className="text-slate-300">
-                      Thank you for reaching out. I'll get back to you soon.
+                      Thank you for reaching out. I&apos;ll get back to you soon.
                     </p>
                   </motion.div>
                 ) : error ? (
