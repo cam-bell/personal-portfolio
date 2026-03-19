@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties, ComponentType } from "react";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -260,10 +261,19 @@ export function SkillsMockupA() {
                           {/* Animated background effect */}
                           <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                          <skill.icon
+                          {(() => {
+                            const SkillIcon = skill.icon as ComponentType<{
+                              className?: string;
+                              style?: CSSProperties;
+                            }>;
+
+                            return (
+                              <SkillIcon
                             className="w-5 h-5 relative z-10 group-hover:scale-110 transition-transform duration-300"
                             style={{ color: skill.color }}
-                          />
+                              />
+                            );
+                          })()}
                           <span className="text-sm text-slate-300 group-hover:text-foreground transition-colors duration-300 relative z-10">
                             {skill.name}
                           </span>

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import * as Tabs from "@radix-ui/react-tabs";
 import { ProjectDiagram } from "@/lib/projects-data";
 
@@ -18,12 +19,13 @@ export function ArchitectureDiagramTabs({
     return (
       <figure className="rounded-3xl border border-white/10 bg-slate-950/50 p-4">
         <div className="overflow-hidden rounded-2xl border border-white/10 bg-white">
-          <img
+          <Image
             src={diagram.src}
             alt={diagram.alt}
+            width={1600}
+            height={900}
             className="w-full h-auto"
             loading="lazy"
-            decoding="async"
           />
         </div>
         <figcaption className="mt-3 text-sm leading-6 text-slate-400">
@@ -51,12 +53,13 @@ export function ArchitectureDiagramTabs({
         <Tabs.Content key={diagram.id} value={diagram.id}>
           <figure className="rounded-3xl border border-white/10 bg-slate-950/50 p-4">
             <div className="overflow-hidden rounded-2xl border border-white/10 bg-white">
-              <img
+              <Image
                 src={diagram.src}
                 alt={diagram.alt}
+                width={1600}
+                height={900}
                 className="w-full h-auto"
                 loading="lazy"
-                decoding="async"
               />
             </div>
             <figcaption className="mt-3 text-sm leading-6 text-slate-400">

@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties, ComponentType } from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -211,10 +212,19 @@ export function SkillsMockupB() {
                   }}
                   className="flex flex-col items-center justify-center p-4 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer group border border-slate-700/50 hover:border-primary/50 backdrop-blur-sm"
                 >
-                  <skill.icon
-                    className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-200"
-                    style={{ color: skill.color }}
-                  />
+                  {(() => {
+                    const SkillIcon = skill.icon as ComponentType<{
+                      className?: string;
+                      style?: CSSProperties;
+                    }>;
+
+                    return (
+                      <SkillIcon
+                        className="w-8 h-8 mb-2 group-hover:scale-110 transition-transform duration-200"
+                        style={{ color: skill.color }}
+                      />
+                    );
+                  })()}
                   <span className="text-xs text-center text-gray-300 group-hover:text-white transition-colors leading-tight">
                     {skill.name}
                   </span>

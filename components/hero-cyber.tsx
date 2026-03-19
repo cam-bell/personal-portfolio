@@ -5,23 +5,18 @@ import { Github, Linkedin, Mail, Download, ChevronDown, Terminal, Code2, Cpu } f
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+const TEXTS = ["AI Engineer", "ML Researcher", "Data Scientist", "Tech Innovator"];
+
 export function HeroCyber() {
   const [currentText, setCurrentText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [textIndex, setTextIndex] = useState(0);
   
-  const texts = [
-    "AI Engineer",
-    "ML Researcher", 
-    "Data Scientist",
-    "Tech Innovator"
-  ];
-
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (!isDeleting) {
-        if (currentText.length < texts[textIndex].length) {
-          setCurrentText(texts[textIndex].slice(0, currentText.length + 1));
+        if (currentText.length < TEXTS[textIndex].length) {
+          setCurrentText(TEXTS[textIndex].slice(0, currentText.length + 1));
         } else {
           setTimeout(() => setIsDeleting(true), 2000);
         }
@@ -30,13 +25,13 @@ export function HeroCyber() {
           setCurrentText(currentText.slice(0, -1));
         } else {
           setIsDeleting(false);
-          setTextIndex((prev) => (prev + 1) % texts.length);
+          setTextIndex((prev) => (prev + 1) % TEXTS.length);
         }
       }
     }, isDeleting ? 50 : 100);
 
     return () => clearTimeout(timeout);
-  }, [currentText, isDeleting, textIndex, texts]);
+  }, [currentText, isDeleting, textIndex]);
 
   const scrollToProjects = () => {
     const element = document.querySelector("#projects");
@@ -119,7 +114,7 @@ export function HeroCyber() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <span className="text-cyan-400">//</span> Building the future with{" "}
+            <span className="text-cyan-400">{"//"}</span> Building the future with{" "}
             <span className="text-green-400 font-semibold">intelligent systems</span>{" "}
             and <span className="text-purple-400 font-semibold">machine learning</span>{" "}
             solutions that drive innovation.

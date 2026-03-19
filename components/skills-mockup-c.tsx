@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties, ComponentType } from "react";
 import { motion } from "framer-motion";
 import {
   SiPython,
@@ -175,10 +176,19 @@ export function SkillsMockupC() {
                   className="group"
                 >
                   <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 transition-all duration-300 cursor-pointer border border-slate-700/50 hover:border-primary/50 hover:shadow-lg backdrop-blur-sm">
-                    <skill.icon
-                      className="w-6 h-6 group-hover:scale-110 transition-transform duration-200"
-                      style={{ color: skill.color }}
-                    />
+                    {(() => {
+                      const SkillIcon = skill.icon as ComponentType<{
+                        className?: string;
+                        style?: CSSProperties;
+                      }>;
+
+                      return (
+                        <SkillIcon
+                          className="w-6 h-6 group-hover:scale-110 transition-transform duration-200"
+                          style={{ color: skill.color }}
+                        />
+                      );
+                    })()}
                     <div className="flex-1">
                       <div className="font-medium text-white group-hover:text-blue-100 transition-colors">
                         {skill.name}
@@ -205,7 +215,7 @@ export function SkillsMockupC() {
                 Broader Exposure
               </h3>
               <p className="text-slate-300 max-w-2xl mx-auto">
-                Additional technologies I've worked with and can quickly adapt
+                Additional technologies I&apos;ve worked with and can quickly adapt
                 to new projects. Demonstrates versatility and continuous
                 learning.
               </p>
@@ -221,10 +231,19 @@ export function SkillsMockupC() {
                   viewport={{ once: true }}
                   className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-800/50 text-sm hover:bg-slate-700/50 transition-all duration-200 cursor-pointer group border border-slate-700/50 hover:border-primary/50 backdrop-blur-sm"
                 >
-                  <skill.icon
-                    className="w-4 h-4 group-hover:scale-110 transition-transform duration-200"
-                    style={{ color: skill.color }}
-                  />
+                  {(() => {
+                    const SkillIcon = skill.icon as ComponentType<{
+                      className?: string;
+                      style?: CSSProperties;
+                    }>;
+
+                    return (
+                      <SkillIcon
+                        className="w-4 h-4 group-hover:scale-110 transition-transform duration-200"
+                        style={{ color: skill.color }}
+                      />
+                    );
+                  })()}
                   <span className="text-gray-300 group-hover:text-white transition-colors">
                     {skill.name}
                   </span>

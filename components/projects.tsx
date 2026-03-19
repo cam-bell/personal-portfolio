@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -349,11 +350,16 @@ const ProjectCard = ({
               isSecondary ? "aspect-[16/7]" : "aspect-[16/9]"
             } bg-slate-900/60 overflow-hidden rounded-lg`}
           >
-            <img
+            <Image
               src={project.image || "/placeholder.svg"}
               alt={project.title}
+              fill
+              sizes={
+                isSecondary
+                  ? "(min-width: 1024px) 33vw, 100vw"
+                  : "(min-width: 1024px) 50vw, 100vw"
+              }
               loading={isSecondary ? "lazy" : "eager"}
-              decoding="async"
               className="w-full h-full object-contain object-center brightness-105 contrast-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />

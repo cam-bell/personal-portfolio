@@ -251,7 +251,7 @@ export function AdditionalProjectsPreview() {
                     transition: { duration: 0.3, ease: "easeOut" },
                   }}
                   tabIndex={0}
-                  onFocus={(e) =>
+                  onFocus={(e: React.FocusEvent<HTMLDivElement>) =>
                     (e.currentTarget as HTMLElement).scrollIntoView({
                       behavior: "smooth",
                       inline: "center",

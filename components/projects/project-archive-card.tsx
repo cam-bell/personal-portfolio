@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -69,11 +70,12 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
     <Card className="glass-card h-full overflow-hidden border border-white/10 shadow-glass backdrop-blur-xl flex flex-col">
       <div className="relative aspect-[16/9] overflow-hidden bg-slate-900/70">
         {project.image && project.image !== "/placeholder.svg" ? (
-          <img
+          <Image
             src={project.image}
             alt={project.title}
+            fill
+            sizes="(min-width: 1024px) 33vw, 100vw"
             loading="lazy"
-            decoding="async"
             className="h-full w-full object-cover object-center"
           />
         ) : (
@@ -98,22 +100,26 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
 
       <CardHeader className="space-y-3">
         <div className="space-y-2">
-          {project.primaryBadge ? (
-            <div>
+          <div className="min-h-7">
+            {project.primaryBadge ? (
               <Badge
                 variant="outline"
                 className="h-7 rounded-full border-primary/20 bg-primary/8 px-3 text-[11px] font-medium uppercase tracking-[0.18em] text-primary"
               >
                 {project.primaryBadge}
               </Badge>
-            </div>
-          ) : null}
-          <CardTitle className="text-xl leading-tight">{project.title}</CardTitle>
-          <CardDescription className="text-primary">
-            {project.role}
-          </CardDescription>
+            ) : null}
+          </div>
+          <div className="space-y-1">
+            <CardTitle className="min-h-[3.5rem] line-clamp-2 text-xl leading-tight">
+              {project.title}
+            </CardTitle>
+            <CardDescription className="min-h-[1.25rem] line-clamp-1 text-primary">
+              {project.role}
+            </CardDescription>
+          </div>
         </div>
-        <p className="text-sm leading-6 text-slate-300">
+        <p className="min-h-[4.5rem] text-sm leading-6 text-slate-300 line-clamp-3">
           {project.preview ?? project.homepageSummary}
         </p>
       </CardHeader>
@@ -131,7 +137,7 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        <div className="space-y-2">
+        <div className="min-h-[5.5rem] space-y-2">
           {project.outcomes?.slice(0, 2).map((outcome) => (
             <div
               key={outcome}
@@ -143,16 +149,17 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        <div className="mt-auto space-y-3 pt-2">
-          <Button className="w-full justify-center" asChild>
+        <div className="mt-auto space-y-3">
+          <Button className="h-11 w-full justify-center" asChild>
             <Link href={`/projects/${project.slug}`}>
               Read case study
               <ArrowRight className="h-4 w-4" />
             </Link>
           </Button>
 
-          {secondaryActions.length ? (
-            <div className="flex flex-wrap gap-2">
+          <div className="min-h-9">
+            {secondaryActions.length ? (
+              <div className="flex flex-wrap gap-2">
               {secondaryActions.map((action) => {
                 const Icon = action.icon;
 
@@ -175,8 +182,9 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
                   </Button>
                 );
               })}
-            </div>
-          ) : null}
+              </div>
+            ) : null}
+          </div>
         </div>
       </CardContent>
     </Card>

@@ -7,7 +7,7 @@ export default function ProjectsPage() {
 
   return (
     <main className="min-h-screen bg-slate-950 pb-16">
-      <section className="relative overflow-hidden pt-16 sm:pt-20">
+      <section className="relative overflow-hidden pt-24 sm:pt-28">
         <div className="absolute inset-0 bg-grid-white/[0.02] bg-[size:50px_50px]" />
         <div className="absolute inset-0 bg-aurora opacity-70 pointer-events-none" />
         <div className="absolute inset-0 noise-overlay opacity-60 pointer-events-none" />
