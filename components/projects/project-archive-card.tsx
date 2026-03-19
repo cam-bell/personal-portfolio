@@ -98,9 +98,9 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      <CardHeader className="space-y-3">
+      <CardHeader className="space-y-2 px-5 pb-3 pt-5 md:px-6 md:pb-3 md:pt-6">
         <div className="space-y-2">
-          <div className="min-h-7">
+          <div className="h-7">
             {project.primaryBadge ? (
               <Badge
                 variant="outline"
@@ -111,21 +111,21 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
             ) : null}
           </div>
           <div className="space-y-1">
-            <CardTitle className="min-h-[3.5rem] line-clamp-2 text-xl leading-tight">
+            <CardTitle className="min-h-[3.2rem] line-clamp-2 text-[1.05rem] leading-[1.24]">
               {project.title}
             </CardTitle>
-            <CardDescription className="min-h-[1.25rem] line-clamp-1 text-primary">
+            <CardDescription className="h-[1.25rem] line-clamp-1 text-primary">
               {project.role}
             </CardDescription>
           </div>
         </div>
-        <p className="min-h-[4.5rem] text-sm leading-6 text-slate-300 line-clamp-3">
+        <p className="h-[4.5rem] text-sm leading-6 text-slate-300 line-clamp-3">
           {project.preview ?? project.homepageSummary}
         </p>
       </CardHeader>
 
-      <CardContent className="flex flex-1 flex-col space-y-5">
-        <div className="flex min-h-[4.5rem] flex-wrap content-start gap-2">
+      <CardContent className="flex flex-1 flex-col space-y-3 px-5 pb-5 pt-0 md:px-6 md:pb-6">
+        <div className="flex h-[4.5rem] flex-wrap content-start gap-2 overflow-hidden">
           {project.techStack.slice(0, 4).map((tech) => (
             <Badge
               key={tech}
@@ -137,14 +137,14 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
           ))}
         </div>
 
-        <div className="min-h-[5.5rem] space-y-2">
+        <div className="h-[6rem] space-y-2 overflow-hidden">
           {project.outcomes?.slice(0, 2).map((outcome) => (
             <div
               key={outcome}
               className="flex items-start gap-2 text-sm leading-6 text-slate-300"
             >
               <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
-              <span>{outcome}</span>
+              <span className="line-clamp-2">{outcome}</span>
             </div>
           ))}
         </div>
@@ -160,28 +160,28 @@ export function ProjectArchiveCard({ project }: { project: Project }) {
           <div className="min-h-9">
             {secondaryActions.length ? (
               <div className="flex flex-wrap gap-2">
-              {secondaryActions.map((action) => {
-                const Icon = action.icon;
+                {secondaryActions.map((action) => {
+                  const Icon = action.icon;
 
-                return (
-                  <Button
-                    key={`${project.slug}-${action.label}`}
-                    variant="outline"
-                    size="sm"
-                    className="h-9 flex-1 justify-center border-white/10 bg-transparent text-slate-200 hover:border-white/30 hover:bg-white/[0.04] hover:text-white"
-                    asChild
-                  >
-                    <a
-                      href={action.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  return (
+                    <Button
+                      key={`${project.slug}-${action.label}`}
+                      variant="outline"
+                      size="sm"
+                      className="h-9 flex-1 justify-center border-white/10 bg-transparent text-slate-200 hover:border-white/30 hover:bg-white/[0.04] hover:text-white"
+                      asChild
                     >
-                      <Icon className="h-4 w-4" />
-                      {action.label}
-                    </a>
-                  </Button>
-                );
-              })}
+                      <a
+                        href={action.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <Icon className="h-4 w-4" />
+                        {action.label}
+                      </a>
+                    </Button>
+                  );
+                })}
               </div>
             ) : null}
           </div>

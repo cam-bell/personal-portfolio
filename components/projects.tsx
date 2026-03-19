@@ -408,9 +408,9 @@ const ProjectCard = ({
             className={`space-y-2 ${isSecondary ? "pb-2 pt-2" : "pb-2 pt-3"} flex-shrink-0`}
           >
             <CardTitle
-              className={`leading-tight group-hover:text-primary transition-colors duration-300 line-clamp-2 ${
-                !isSecondary ? "text-left" : ""
-              } ${isSecondary ? "text-base" : "text-[1.05rem]"}`}
+              className={`min-h-[2.8rem] text-[clamp(1rem,0.97rem+0.18vw,1.1rem)] leading-[1.24] group-hover:text-primary transition-colors duration-300 line-clamp-2 ${
+                !isSecondary ? "text-center" : ""
+              } ${isSecondary ? "min-h-[2.5rem] text-[clamp(0.96rem,0.94rem+0.12vw,1rem)] leading-[1.24]" : ""}`}
             >
               {project.title}
             </CardTitle>

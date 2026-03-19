@@ -308,8 +308,7 @@ const projects: Project[] = [
           label: "Architecture",
           src: "/diagrams/deep-research-architecture.svg",
           alt: "Deep research architecture diagram",
-          caption:
-            "High-level agent topology for the deep research workflow.",
+          caption: "High-level agent topology for the deep research workflow.",
         },
         {
           id: "services-dataflow",
@@ -343,8 +342,8 @@ const projects: Project[] = [
     role: "Lead builder",
     year: "2026",
     outcomes: [
-      "4 concurrent AI traders coordinated in a shared simulation",
-      "24 MCP instances active during execution cycles",
+      "4 AI traders coordinated concurrently",
+      "24 MCP instances active per cycle",
       "Structured trade logs for post-run analysis",
     ],
     status: "In Progress",
@@ -487,7 +486,7 @@ const projects: Project[] = [
     slug: "healthcare-readmission-risk-mlops-pipeline",
     title: "Healthcare Readmission Risk MLOps Pipeline",
     preview:
-      "Production-style healthcare readmission pipeline with experiment tracking, config-driven runs, and a Dockerised FastAPI /predict service.",
+      "Healthcare readmission pipeline with experiment tracking, config-driven runs, and a Dockerised FastAPI /predict service.",
     homepageSummary:
       "MLOps-focused healthcare pipeline that turns a notebook model into a reproducible training, evaluation, and inference system.",
     description:
@@ -569,78 +568,6 @@ const projects: Project[] = [
     ],
     tier: "Tier 1",
     tags: ["Applied ML", "MLOps"],
-  },
-  {
-    slug: "cloud-cost-sustainability-advisor",
-    title: "Cloud Cost & Sustainability Advisor",
-    preview:
-      "Decision-support app forecasting cloud costs and carbon impact across providers.",
-    homepageSummary:
-      "Full-stack decision-support product for comparing cost, carbon impact, and migration risk across cloud providers.",
-    description:
-      "Built a full-stack decision-support platform to help SMEs plan cloud migrations by forecasting costs, assessing risk, and comparing carbon impact across AWS, GCP, and Azure using hybrid ML models and semantic retrieval.",
-    techStack: [
-      "React",
-      "TypeScript",
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "Google Cloud",
-      "Docker",
-    ],
-    githubUrl: "https://github.com/cam-bell/Capstone",
-    liveUrl: "#",
-    image: "/images/cloud-migration-dashboard.png",
-    category: "Full-Stack",
-    kind: "project",
-    featuredOnHome: false,
-    archiveGroup: "Full-Stack",
-    role: "Full-stack builder",
-    year: "2025",
-    outcomes: [
-      "Cross-cloud cost and carbon forecasting",
-      "Risk-aware migration comparison workflows",
-      "Semantic retrieval layered into planning experience",
-    ],
-    tier: "Tier 2",
-    tags: ["Full-Stack", "Applied ML"],
-  },
-  {
-    slug: "ai-powered-crypto-risk-dashboard",
-    title: "AI-Powered Crypto Risk Dashboard",
-    preview:
-      "Real-time portfolio risk insights with ML-driven volatility and correlation analysis.",
-    homepageSummary:
-      "In-progress portfolio analytics dashboard blending risk metrics, market data, and AI-generated reporting.",
-    description:
-      "Developed a real-time crypto portfolio risk analysis platform combining traditional financial metrics with ML-driven insights. The system aggregates on-chain and market data to assess volatility, concentration risk, and correlations, delivering proactive alerts and AI-generated portfolio reports.",
-    techStack: [
-      "Python",
-      "FastAPI",
-      "PostgreSQL",
-      "TimescaleDB",
-      "Next.js",
-      "LangChain",
-      "OpenAI",
-      "Docker",
-    ],
-    githubUrl: "#",
-    liveUrl: "",
-    image: "/images/crypto.png",
-    category: "AI/ML",
-    kind: "project",
-    featuredOnHome: false,
-    archiveGroup: "Full-Stack",
-    role: "Lead builder",
-    year: "2026",
-    outcomes: [
-      "Real-time portfolio risk views",
-      "Volatility and correlation analysis",
-      "AI-assisted reporting for portfolio summaries",
-    ],
-    status: "In Progress",
-    tier: "Tier 2",
-    tags: ["Applied ML", "LLM/Agentic"],
   },
   {
     slug: "langgraph-autonomous-task-agent",
@@ -866,6 +793,78 @@ const projects: Project[] = [
     },
   },
   {
+    slug: "cloud-cost-sustainability-advisor",
+    title: "Cloud Cost & Sustainability Advisor",
+    preview:
+      "Decision-support app forecasting cloud costs and carbon impact across providers.",
+    homepageSummary:
+      "Full-stack decision-support product for comparing cost, carbon impact, and migration risk across cloud providers.",
+    description:
+      "Built a full-stack decision-support platform to help SMEs plan cloud migrations by forecasting costs, assessing risk, and comparing carbon impact across AWS, GCP, and Azure using hybrid ML models and semantic retrieval.",
+    techStack: [
+      "React",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Google Cloud",
+      "Docker",
+    ],
+    githubUrl: "https://github.com/cam-bell/Capstone",
+    liveUrl: "#",
+    image: "/images/cloud-migration-dashboard.png",
+    category: "Full-Stack",
+    kind: "project",
+    featuredOnHome: false,
+    archiveGroup: "Full-Stack",
+    role: "Full-stack builder",
+    year: "2025",
+    outcomes: [
+      "Cross-cloud cost and carbon forecasting",
+      "Risk-aware migration comparison workflows",
+      "Semantic retrieval layered into planning experience",
+    ],
+    tier: "Tier 2",
+    tags: ["Full-Stack", "Applied ML"],
+  },
+  {
+    slug: "ai-powered-crypto-risk-dashboard",
+    title: "AI-Powered Crypto Risk Dashboard",
+    preview:
+      "Real-time portfolio risk insights with ML-driven volatility and correlation analysis.",
+    homepageSummary:
+      "In-progress portfolio analytics dashboard blending risk metrics, market data, and AI-generated reporting.",
+    description:
+      "Developed a real-time crypto portfolio risk analysis platform combining traditional financial metrics with ML-driven insights. The system aggregates on-chain and market data to assess volatility, concentration risk, and correlations, delivering proactive alerts and AI-generated portfolio reports.",
+    techStack: [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "TimescaleDB",
+      "Next.js",
+      "LangChain",
+      "OpenAI",
+      "Docker",
+    ],
+    githubUrl: "#",
+    liveUrl: "",
+    image: "/images/crypto.png",
+    category: "AI/ML",
+    kind: "project",
+    featuredOnHome: false,
+    archiveGroup: "Full-Stack",
+    role: "Lead builder",
+    year: "2026",
+    outcomes: [
+      "Real-time portfolio risk views",
+      "Volatility and correlation analysis",
+      "AI-assisted reporting for portfolio summaries",
+    ],
+    status: "In Progress",
+    tier: "Tier 2",
+    tags: ["Applied ML", "LLM/Agentic"],
+  },
+  {
     slug: "multi-model-sales-agent-system",
     title: "Multi-Model Sales Agent System",
     preview:
@@ -935,6 +934,119 @@ const projects: Project[] = [
     label: "Human-Centred CV Project",
     tier: "Tier 2",
     tags: ["CV"],
+  },
+  {
+    slug: "multilingual-sentiment-keyword-analyzer",
+    title: "Multilingual Sentiment & Keyword Analyzer",
+    preview:
+      "Multilingual sentiment + keyword extraction with transformer-based NLP.",
+    homepageSummary:
+      "NLP coursework project combining multilingual transformers, sentiment analysis, and keyword extraction.",
+    description:
+      "Built a multilingual NLP system that analyzes reviews from IMDb, Trustpilot, Steam, and Google Play. Uses HuggingFace transformers and KeyBERT for sentiment, emotion, and keyword extraction with 0% error rate across 239 reviews.",
+    techStack: [
+      "Python",
+      "HuggingFace",
+      "spaCy",
+      "KeyBERT",
+      "LaBSE",
+      "VADER",
+      "BERT",
+    ],
+    githubUrl: "https://github.com/felixhommels/reviews-group-nlp",
+    liveUrl: "#",
+    image: "/images/review-analyzer.png",
+    category: "NLP",
+    kind: "coursework",
+    featuredOnHome: false,
+    archiveGroup: "NLP",
+    role: "Team coursework",
+    year: "2025",
+    outcomes: [
+      "239 cross-platform reviews analyzed",
+      "Sentiment, emotion, and keyword extraction",
+      "Transformer-driven multilingual analysis",
+    ],
+    domain: "NLP",
+    tier: "Coursework",
+    primaryBadge: "NLP",
+    secondaryBadge: "Analytics",
+    tags: ["NLP"],
+  },
+  {
+    slug: "swimming-pool-detection",
+    title: "Swimming Pool Detection",
+    preview:
+      "YOLOv11 aerial detection of pools using transfer learning and custom labels.",
+    homepageSummary:
+      "Computer vision coursework project focused on transfer learning and aerial object detection.",
+    description:
+      "Built a YOLOv11 object detection model to identify swimming pools from aerial images. Achieved 95.5% mAP after 30 epochs using transfer learning on a custom-labeled dataset with GroundingDINO + Roboflow.",
+    techStack: [
+      "YOLOv11",
+      "GroundingDINO",
+      "Roboflow",
+      "Object Detection",
+      "Python",
+      "OpenCV",
+    ],
+    githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
+    liveUrl: "#",
+    image: "/images/pool-detection.jpeg",
+    category: "Computer Vision",
+    kind: "coursework",
+    featuredOnHome: false,
+    archiveGroup: "Computer Vision",
+    role: "Individual coursework",
+    year: "2025",
+    outcomes: [
+      "95.5% mAP after 30 epochs",
+      "Transfer learning with custom aerial labels",
+      "GroundingDINO and Roboflow data workflow",
+    ],
+    domain: "CV",
+    tier: "Coursework",
+    primaryBadge: "Computer Vision",
+    secondaryBadge: "Insurance",
+    tags: ["CV"],
+  },
+  {
+    slug: "used-vehicle-pricing-valuation-model",
+    title: "Used Vehicle Pricing & Valuation Model",
+    preview:
+      "Regression models predicting used car prices with engineered features.",
+    homepageSummary:
+      "Regression case study using feature engineering and tree ensembles on cross-country car listings.",
+    description:
+      "Built a regression model to predict used car prices across 8 countries using 100K listings. Cleaned outliers, engineered features, and tuned tree-based models (Random Forest, Gradient Boosting) to reach R² = 0.867 and MAE ≈ €2,660.",
+    githubUrl:
+      "https://github.com/cam-bell/applied-ml-regression/tree/main/projects/used_car_pricing",
+    colabUrl: null,
+    domain: "Business",
+    techStack: [
+      "Pandas",
+      "scikit-learn",
+      "Random Forest",
+      "Gradient Boosting",
+      "ANOVA",
+    ],
+    image: "/placeholder.svg",
+    liveUrl: "",
+    category: "Coursework",
+    kind: "coursework",
+    featuredOnHome: false,
+    archiveGroup: "Coursework",
+    role: "Individual coursework",
+    year: "2025",
+    outcomes: [
+      "R² = 0.867",
+      "MAE ≈ EUR 2,660",
+      "100K listings across 8 countries",
+    ],
+    tier: "Coursework",
+    primaryBadge: "Regression",
+    secondaryBadge: "Business",
+    tags: ["Applied ML"],
   },
   {
     slug: "customer-churn-modelling",
@@ -1039,127 +1151,14 @@ const projects: Project[] = [
     role: "Individual coursework",
     year: "2025",
     outcomes: [
-      "Compared complex vs simple classifiers on imbalanced data",
-      "Recommended simpler model based on robust evaluation",
+      "Classifier comparison on imbalanced data",
+      "Simpler model selected after evaluation",
       "Healthcare-focused classification case study",
     ],
     tier: "Coursework",
     primaryBadge: "Classification",
     secondaryBadge: "Healthcare",
     tags: ["Applied ML"],
-  },
-  {
-    slug: "used-vehicle-pricing-valuation-model",
-    title: "Used Vehicle Pricing & Valuation Model",
-    preview:
-      "Regression models predicting used car prices with engineered features.",
-    homepageSummary:
-      "Regression case study using feature engineering and tree ensembles on cross-country car listings.",
-    description:
-      "Built a regression model to predict used car prices across 8 countries using 100K listings. Cleaned outliers, engineered features, and tuned tree-based models (Random Forest, Gradient Boosting) to reach R² = 0.867 and MAE ≈ €2,660.",
-    githubUrl:
-      "https://github.com/cam-bell/applied-ml-regression/tree/main/projects/used_car_pricing",
-    colabUrl: null,
-    domain: "Business",
-    techStack: [
-      "Pandas",
-      "scikit-learn",
-      "Random Forest",
-      "Gradient Boosting",
-      "ANOVA",
-    ],
-    image: "/placeholder.svg",
-    liveUrl: "",
-    category: "Coursework",
-    kind: "coursework",
-    featuredOnHome: false,
-    archiveGroup: "Coursework",
-    role: "Individual coursework",
-    year: "2025",
-    outcomes: [
-      "R² = 0.867",
-      "MAE ≈ EUR 2,660",
-      "100K listings across 8 countries",
-    ],
-    tier: "Coursework",
-    primaryBadge: "Regression",
-    secondaryBadge: "Business",
-    tags: ["Applied ML"],
-  },
-  {
-    slug: "multilingual-sentiment-keyword-analyzer",
-    title: "Multilingual Sentiment & Keyword Analyzer",
-    preview:
-      "Multilingual sentiment + keyword extraction with transformer-based NLP.",
-    homepageSummary:
-      "NLP coursework project combining multilingual transformers, sentiment analysis, and keyword extraction.",
-    description:
-      "Built a multilingual NLP system that analyzes reviews from IMDb, Trustpilot, Steam, and Google Play. Uses HuggingFace transformers and KeyBERT for sentiment, emotion, and keyword extraction with 0% error rate across 239 reviews.",
-    techStack: [
-      "Python",
-      "HuggingFace",
-      "spaCy",
-      "KeyBERT",
-      "LaBSE",
-      "VADER",
-      "BERT",
-    ],
-    githubUrl: "https://github.com/felixhommels/reviews-group-nlp",
-    liveUrl: "#",
-    image: "/images/review-analyzer.png",
-    category: "NLP",
-    kind: "coursework",
-    featuredOnHome: false,
-    archiveGroup: "NLP",
-    role: "Team coursework",
-    year: "2025",
-    outcomes: [
-      "239 reviews processed across multiple platforms",
-      "Sentiment, emotion, and keyword extraction in one pipeline",
-      "Transformer-driven multilingual analysis",
-    ],
-    domain: "NLP",
-    tier: "Coursework",
-    primaryBadge: "NLP",
-    secondaryBadge: "Analytics",
-    tags: ["NLP"],
-  },
-  {
-    slug: "swimming-pool-detection",
-    title: "Swimming Pool Detection",
-    preview:
-      "YOLOv11 aerial detection of pools using transfer learning and custom labels.",
-    homepageSummary:
-      "Computer vision coursework project focused on transfer learning and aerial object detection.",
-    description:
-      "Built a YOLOv11 object detection model to identify swimming pools from aerial images. Achieved 95.5% mAP after 30 epochs using transfer learning on a custom-labeled dataset with GroundingDINO + Roboflow.",
-    techStack: [
-      "YOLOv11",
-      "GroundingDINO",
-      "Roboflow",
-      "Object Detection",
-      "Python",
-      "OpenCV",
-    ],
-    githubUrl: "https://github.com/cam-bell/NLP-Review-Analyzer",
-    liveUrl: "#",
-    image: "/images/pool-detection.jpeg",
-    category: "Computer Vision",
-    kind: "coursework",
-    featuredOnHome: false,
-    archiveGroup: "Computer Vision",
-    role: "Individual coursework",
-    year: "2025",
-    outcomes: [
-      "95.5% mAP after 30 epochs",
-      "Transfer learning with custom aerial labels",
-      "GroundingDINO and Roboflow data workflow",
-    ],
-    domain: "CV",
-    tier: "Coursework",
-    primaryBadge: "Computer Vision",
-    secondaryBadge: "Insurance",
-    tags: ["CV"],
   },
   {
     slug: "gapminder-global-trends",
@@ -1204,9 +1203,13 @@ const projects: Project[] = [
 
 export const allProjects: Project[] = projects;
 
-export const tier1Projects = projects.filter((project) => project.tier === "Tier 1");
+export const tier1Projects = projects.filter(
+  (project) => project.tier === "Tier 1",
+);
 
-export const tier2Projects = projects.filter((project) => project.tier === "Tier 2");
+export const tier2Projects = projects.filter(
+  (project) => project.tier === "Tier 2",
+);
 
 export const courseworkProjects = projects.filter(
   (project) => project.tier === "Coursework",
