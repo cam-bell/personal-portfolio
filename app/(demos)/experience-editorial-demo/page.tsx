@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExperienceEditorialTimeline } from "@/components/experience-editorial-timeline";
+import { ExperienceEditorialTimeline } from "@/components/demos/experience/experience-editorial-timeline";
 
 export default function ExperienceEditorialDemoPage() {
   return (

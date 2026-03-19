@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import { Hero } from "@/components/hero";
-import { Hero3D } from "@/components/hero-3d";
-import { HeroMinimal } from "@/components/hero-minimal";
-import { HeroCyber } from "@/components/hero-cyber";
-import { HeroSpotlight } from "@/components/hero-spotlight";
+import { Hero3D } from "@/components/demos/hero/hero-3d";
+import { HeroMinimal } from "@/components/demos/hero/hero-minimal";
+import { HeroCyber } from "@/components/demos/hero/hero-cyber";
+import { HeroSpotlight } from "@/components/demos/hero/hero-spotlight";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExperienceSplitNarrative } from "@/components/experience-split-narrative";
+import { ExperienceSplitNarrative } from "@/components/demos/experience/experience-split-narrative";
 
 export default function ExperienceDemoPage() {
   return (

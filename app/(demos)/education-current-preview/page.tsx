@@ -1,6 +1,6 @@
-import { SkillsMockupACapabilityStory } from "@/components/skills-mockup-a-capability-story";
+import { EducationCurrentPreview } from "@/components/previews/education-current-preview";
 
-export default function SkillsCapabilityStoryPage() {
+export default function EducationCurrentPreviewPage() {
   return (
     <main className="min-h-screen bg-slate-950 pt-20">
       <section className="border-b border-white/10 bg-slate-950/95">
@@ -10,17 +10,17 @@ export default function SkillsCapabilityStoryPage() {
               Archived Preview
             </p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-              Skills Mockup A Capability Story Version
+              Current Education Version
             </h1>
             <p className="mt-4 text-base leading-8 text-slate-300">
-              This preserves the more narrative capability-led version so you
-              can revisit it later without keeping it on the main site.
+              This preserves the current narrative version of the education
+              section so you can revisit it later without keeping it live.
             </p>
           </div>
         </div>
       </section>
 
-      <SkillsMockupACapabilityStory />
+      <EducationCurrentPreview />
     </main>
   );
 }

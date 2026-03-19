@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ExperienceGlassStoryRail } from "@/components/experience-glass-story-rail";
+import { ExperienceGlassStoryRail } from "@/components/demos/experience/experience-glass-story-rail";
 
 export default function ExperienceGlassDemoPage() {
   return (

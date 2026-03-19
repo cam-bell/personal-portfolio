@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { SkillsMockupA } from "@/components/skills-mockup-a";
-import { SkillsMockupB } from "@/components/skills-mockup-b";
-import { SkillsMockupC } from "@/components/skills-mockup-c";
+import { SkillsMockupB } from "@/components/demos/skills/skills-mockup-b";
+import { SkillsMockupC } from "@/components/demos/skills/skills-mockup-c";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";

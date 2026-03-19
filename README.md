@@ -1,30 +1,68 @@
-# New Project
+# Cameron Bell Portfolio
 
-_Automatically synced with your [v0.app](https://v0.app) deployments_
+This repository powers Cameron Bell's personal portfolio site: a Next.js App Router application for presenting AI engineering work, flagship case studies, supporting project archives, career narrative, education, and contact details.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/cam-bells-projects/v0-new-project-ljchlecbyst)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/LjCHLECBYst)
+## Tech Stack
 
-## Overview
+- Next.js 14 with the App Router
+- React 18
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Radix UI primitives and shadcn-style UI components
+- `pnpm` for package management
+- Vercel Analytics
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+## Local Development
 
-## Deployment
+Install dependencies:
 
-Your project is live at:
+```bash
+pnpm install
+```
 
-**[https://vercel.com/cam-bells-projects/v0-new-project-ljchlecbyst](https://cameron-bell.vercel.app/)**
+Start the development server:
 
-## Build your app
+```bash
+pnpm dev
+```
 
-Continue building your app on:
+Create a production build:
 
-**[https://v0.app/chat/projects/LjCHLECBYst](https://v0.app/chat/projects/LjCHLECBYst)**
+```bash
+pnpm build
+```
 
-## How It Works
+Run the production server locally:
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+```bash
+pnpm start
+```
+
+Run linting:
+
+```bash
+pnpm lint
+```
+
+## Deploy Target
+
+The site is built for deployment on Vercel and is currently intended to ship from this repo to the `cameron-bell.vercel.app` deployment.
+
+## Where Portfolio Content Lives
+
+Most portfolio content is maintained directly in code:
+
+- Featured projects, archive projects, project metadata, and case-study content live in `lib/projects-data.ts`.
+- The homepage composition lives in `app/page.tsx`.
+- Hero copy, headline, CTA text, and social links live in `components/hero.tsx`.
+- Career journey content lives in `components/experience.tsx`.
+- Education content lives in `components/education.tsx`.
+- Contact section copy and form UI live in `components/contact.tsx`.
+- Project archive and detail routes live in `app/projects/page.tsx` and `app/projects/[slug]/page.tsx`.
+- Static assets such as project images, diagrams, and resume files live under `public/`.
+
+## Notes
+
+- This is a content-in-code portfolio rather than a CMS-backed site.
+- If you are updating the portfolio itself, start with `lib/projects-data.ts` for project entries and the section components for profile or narrative changes.
